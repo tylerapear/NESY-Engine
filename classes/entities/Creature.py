@@ -1,5 +1,4 @@
 import pygame
-import os
 
 from classes.effects.Animations import Animations
 
@@ -9,31 +8,43 @@ class Creature:
     self.y = y
     self.width = width
     self.height = height
-    self.direction = "down"
+    self.direction = "Down"
     self.animationPhase = 0
     self.frameCounter = 0
 
     self.animations = Animations(spritePath, animationSpeed, width, height)
 
-    self.sprites = self.load_sprites(spritePath)
-    self.image = pygame.image.load(self.sprites['Down'][0])
-    self.image = pygame.transform.scale(self.image, (self.width, self.height))
-
-  def load_sprites(self, root_dir):
-    directions = ["Up", "Down", "Left", "Right"]
-    sprites = {}
-    for direction in directions:
-      dir_path = os.path.join(root_dir, direction)
-      if os.path.isdir(dir_path):
-        files = sorted([
-          os.path.join(dir_path, f)
-          for f in os.listdir(dir_path)
-          if os.path.isfile(os.path.join(dir_path, f))
-        ])
-        sprites[direction] = files
-      else:
-        sprites[direction] = []
-    return sprites
+    self.image = self.animations.getNextImage("Idle")
 
   def draw(self, surface):
     surface.blit(self.image, (self.x, self.y))
+
+  def moveDirection(self, dt, direction, speed):
+    if direction == "Up":
+      self.y -= speed * dt
+      if not self.direction == direction:
+        self.image = self.animations.getNextImage(direction, True)
+        self.direction = direction
+      else:
+        self.image = self.animations.getNextImage(direction)
+    elif direction == "Down":
+      self.y += speed * dt
+      if not self.direction == direction:
+        self.image = self.animations.getNextImage(direction, True)
+        self.direction = direction
+      else:
+        self.image = self.animations.getNextImage(direction)
+    elif direction == "Left":
+      self.x -= speed * dt
+      if not self.direction == direction:
+        self.image = self.animations.getNextImage(direction, True)
+        self.direction = direction
+      else:
+        self.image = self.animations.getNextImage(direction)
+    elif direction == "Right":
+      self.x += speed * dt
+      if not self.direction == direction:
+        self.image = self.animations.getNextImage(direction, True)
+        self.direction = direction
+      else:
+        self.image = self.animations.getNextImage(direction)

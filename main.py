@@ -25,13 +25,13 @@ while running:
 
   keys = pygame.key.get_pressed()
   if keys[pygame.K_s]:
-    player.moveDown(dt, 200)
+    player.moveDirection(dt, "Down", 200)
   if keys[pygame.K_w]:
-    player.moveUp(dt, 200)
+    player.moveDirection(dt, "Up", 200)
   if keys[pygame.K_a]:
-    player.moveLeft(dt, 200)
+    player.moveDirection(dt, "Left", 200)
   if keys[pygame.K_d]:
-    player.moveRight(dt, 200)
+    player.moveDirection(dt, "Right", 200)
 
   # Fill the screen with a color
   screen.fill((10,10,10))
