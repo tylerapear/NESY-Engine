@@ -8,7 +8,7 @@ screen = pygame.display.set_mode(window_size)
 pygame.display.set_caption("Pygame Window")
 clock = pygame.time.Clock()
 
-player = Player('./assets/Sprites/Player/Down/LinkDown1.png', 50, 50, 100, 100)
+player = Player('./assets/Sprites/PlayerTEST', 100, 100, 100, 100)
 
 # Main loop
 
@@ -22,16 +22,16 @@ while running:
 
   keys = pygame.key.get_pressed()
   if keys[pygame.K_s]:
-    player.moveDown(dt)
+    player.moveDown(dt, 200)
   if keys[pygame.K_w]:
-    player.moveUp(dt)
+    player.moveUp(dt, 200)
   if keys[pygame.K_a]:
-    player.moveLeft(dt)
+    player.moveLeft(dt, 200)
   if keys[pygame.K_d]:
-    player.moveRight(dt)
+    player.moveRight(dt, 200)
 
   # Fill the screen with a color
-  screen.fill((30,30,30))
+  screen.fill((10,10,10))
 
   player.draw(screen)
 
