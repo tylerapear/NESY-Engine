@@ -12,3 +12,15 @@ class Player:
 
   def draw(self, surface):
     surface.blit(self.image, (self.x, self.y))
+
+  def moveUp(self, dt):
+    self.y -= 200 * dt
+
+  def moveDown(self, dt):
+    self.y += 200 * dt
+
+  def moveLeft(self, dt):
+    self.x -= 200 * dt
+
+  def moveRight(self, dt):
+    self.x += 200 * dt
