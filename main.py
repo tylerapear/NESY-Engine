@@ -2,14 +2,12 @@ import pygame
 import sys
 from Player import Player
 
-print("hello world")
-
 # Set window size
 window_size = (800, 600)
 screen = pygame.display.set_mode(window_size)
 pygame.display.set_caption("Pygame Window")
 
-player = Player(50, 50, 100, 100)
+player = Player('./assets/Link.png', 50, 50, 100, 100)
 
 # Main loop
 
