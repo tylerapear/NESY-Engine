@@ -1,7 +1,8 @@
 import pygame
 import sys
-from Player import Player
-from Enemy import Enemy
+from classes.entities.Player import Player
+from classes.entities.Enemy import Enemy
+from classes.effects.Animations import Animations
 
 # Set window size
 window_size = (800, 600)
@@ -9,8 +10,8 @@ screen = pygame.display.set_mode(window_size)
 pygame.display.set_caption("Pygame Window")
 clock = pygame.time.Clock()
 
-player = Player('./assets/Sprites/PlayerTEST', 100, 100, 100, 100)
-chuchu = Enemy('./assets/Sprites/Enemies/ChuChu', 100, 100, 200, 200)
+player = Player('./assets/Sprites/Link', 10, 100, 100, 100, 100)
+chuchu = Enemy('./assets/Sprites/Enemies/ChuChu', 25, 100, 100, 200, 200)
 
 # Main loop
 

@@ -1,11 +1,15 @@
 import pygame
 import os
 
-from Creature import Creature
+from classes.entities.Creature import Creature
 
 class Enemy(Creature):
     
   def draw(self, surface):
+
+    self.image = self.animations.getNextImage("Idle")
+
+    """
     self.frameCounter += 1
     if self.frameCounter >= 25:
       self.frameCounter = 0
@@ -15,5 +19,6 @@ class Enemy(Creature):
         self.animationPhase = 0
       else:
         self.animationPhase += 1
+    """
 
     surface.blit(self.image, (self.x, self.y))

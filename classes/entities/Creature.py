@@ -1,8 +1,10 @@
 import pygame
 import os
 
+from classes.effects.Animations import Animations
+
 class Creature:
-  def __init__(self, spritePath, width = 50, height = 50, x = 0, y = 0):
+  def __init__(self, spritePath, animationSpeed, width = 50, height = 50, x = 0, y = 0):
     self.x = x
     self.y = y
     self.width = width
@@ -10,6 +12,8 @@ class Creature:
     self.direction = "down"
     self.animationPhase = 0
     self.frameCounter = 0
+
+    self.animations = Animations(spritePath, animationSpeed, width, height)
 
     self.sprites = self.load_sprites(spritePath)
     self.image = pygame.image.load(self.sprites['Down'][0])
@@ -29,7 +33,6 @@ class Creature:
         sprites[direction] = files
       else:
         sprites[direction] = []
-    print(sprites)
     return sprites
 
   def draw(self, surface):
