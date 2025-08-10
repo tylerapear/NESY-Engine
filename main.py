@@ -1,6 +1,7 @@
 import pygame
 import sys
 from Player import Player
+from Enemy import Enemy
 
 # Set window size
 window_size = (800, 600)
@@ -9,6 +10,7 @@ pygame.display.set_caption("Pygame Window")
 clock = pygame.time.Clock()
 
 player = Player('./assets/Sprites/PlayerTEST', 100, 100, 100, 100)
+chuchu = Enemy('./assets/Sprites/Enemies/ChuChu', 100, 100, 200, 200)
 
 # Main loop
 
@@ -34,6 +36,7 @@ while running:
   screen.fill((10,10,10))
 
   player.draw(screen)
+  chuchu.draw(screen)
 
   pygame.display.flip()
 
