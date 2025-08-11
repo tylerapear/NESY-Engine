@@ -15,7 +15,9 @@ class Player(Creature):
     hitbox_height = 50,
     hitbox_x = 0,
     hitbox_y = 0,
-    hitbox_visible = False
+    hitbox_visible = False,
+    alive = True,
+    health = 100
   ):
     super().__init__(
       spritePath, 
@@ -28,7 +30,9 @@ class Player(Creature):
       hitbox_height, 
       hitbox_x, 
       hitbox_y,
-      hitbox_visible
+      hitbox_visible,
+      alive,
+      health
     )
     self.attacking = False
     self.attack_cooldown = 0
@@ -42,7 +46,18 @@ class Player(Creature):
   def checkForDamage(self, enemies):
     for enemy in enemies:
       if self.hitbox.collides(enemy.hitbox):
-        pass
+        self.takeDamage(100)
+        self.image = self.animations.getNextImage(self.direction, False, True)
+        if self.health <= 0:
+          self.alive = False
+
+  def checkForGameOver(self):
+    if not self.alive:
+      return True
+
+  def takeDamage(self, damage):
+    if self.health > 0:
+      self.health -= damage
 
   def update(self, dt, enemies):
 

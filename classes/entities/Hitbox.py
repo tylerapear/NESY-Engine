@@ -24,9 +24,7 @@ class Hitbox:
       self.y < hitbox.getY() + hitbox.getHeight() and #BOTTOM SIDE OF HITBOX
       self.y + self.height > hitbox.getY()
     ):
-      print("collide!")
-    else:
-      print("not collide")
+      return True
 
   def setX(self, x):
     self.x = x

@@ -16,7 +16,9 @@ class Creature:
     hitbox_height = 50,
     hitbox_x = 0,
     hitbox_y = 0,
-    hitbox_visible = False
+    hitbox_visible = False,
+    alive = True,
+    health = 100
   ):
     self.x = x
     self.y = y
@@ -30,6 +32,9 @@ class Creature:
     self.image = self.animations.getNextImage("Idle")
 
     self.hitbox = Hitbox(hitbox_x, hitbox_y, hitbox_width, hitbox_height, hitbox_visible)
+
+    self.alive = alive
+    self.health = health
 
   def draw(self, surface):
     surface.blit(self.image, (self.x, self.y))

@@ -28,20 +28,28 @@ class Animations:
     return animations
 
 
-  def getNextImage(self, animation, startOver = False):
+  def getNextImage(self, animation, startOver = False, damageImage = False):
     if startOver:
       self.phase = 0
       self.frame_count = self.speed - 1
 
     self.frame_count += 1
 
-    if self.frame_count >= self.speed:
-      self.frame_count = 0
-      self.image = pygame.image.load(self.animations[animation][self.phase])
+    if damageImage:
+      image = pygame.image.load(self.animations[animation][self.phase])
+      red_image = image.copy()
+      red_image.fill((255,0,0,255), special_flags=pygame.BLEND_RGBA_MULT)
+      self.image = red_image
+
       self.image = pygame.transform.scale(self.image, (self.width, self.height))
-      if self.phase >= len(self.animations[animation]) - 1:
-        self.phase = 0
-      else:
-        self.phase += 1
+    else:
+      if self.frame_count >= self.speed:
+        self.frame_count = 0
+        self.image = pygame.image.load(self.animations[animation][self.phase])
+        self.image = pygame.transform.scale(self.image, (self.width, self.height))
+        if self.phase >= len(self.animations[animation]) - 1:
+          self.phase = 0
+        else:
+          self.phase += 1
       
     return self.image
