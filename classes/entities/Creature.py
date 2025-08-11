@@ -10,7 +10,7 @@ class Creature:
     self.height = height
     self.direction = "Down"
     self.animationPhase = 0
-    self.frameCounter = 0
+    self.frame_count = 0
 
     self.animations = Animations(spritePath, animationSpeed, width, height)
 
@@ -18,6 +18,9 @@ class Creature:
 
   def draw(self, surface):
     surface.blit(self.image, (self.x, self.y))
+
+  def update(self, dt):
+    pass
 
   def moveDirection(self, dt, direction, speed):
     if direction == "Up":

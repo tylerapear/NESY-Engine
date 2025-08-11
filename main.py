@@ -10,7 +10,7 @@ screen = pygame.display.set_mode(window_size)
 pygame.display.set_caption("Pygame Window")
 clock = pygame.time.Clock()
 
-player = Player('./assets/Sprites/Link', 10, 100, 100, 100, 100)
+player = Player('./assets/Sprites/Link', 10, 250, 250, 100, 100)
 chuchu = Enemy('./assets/Sprites/Enemies/ChuChu', 25, 100, 100, 200, 200)
 
 # Main loop
@@ -23,15 +23,8 @@ while running:
     if event.type == pygame.QUIT:
       running = False
 
-  keys = pygame.key.get_pressed()
-  if keys[pygame.K_s]:
-    player.moveDirection(dt, "Down", 200)
-  if keys[pygame.K_w]:
-    player.moveDirection(dt, "Up", 200)
-  if keys[pygame.K_a]:
-    player.moveDirection(dt, "Left", 200)
-  if keys[pygame.K_d]:
-    player.moveDirection(dt, "Right", 200)
+  player.update(dt)
+  chuchu.update(dt)
 
   # Fill the screen with a color
   screen.fill((10,10,10))
