@@ -17,7 +17,8 @@ class Player(Creature):
     hitbox_y = 0,
     hitbox_visible = False,
     alive = True,
-    health = 100
+    health = 100,
+    inventory = []
   ):
     super().__init__(
       spritePath, 
@@ -36,12 +37,14 @@ class Player(Creature):
     )
     self.attacking = False
     self.attack_cooldown = 0
+    self.inventory = inventory
 
-  def attack(self, direction):
+  def attack(self, direction, weapon):
     if self.attack_cooldown <= 0:
       self.attack_cooldown = 20
       self.attacking = True
       self.image = self.animations.getNextImage("Attack" + direction, True)
+      weapon.active = True
 
   def checkForDamage(self, enemies):
     for enemy in enemies:
@@ -55,11 +58,19 @@ class Player(Creature):
     if not self.alive:
       return True
 
-  def takeDamage(self, damage):
-    if self.health > 0:
-      self.health -= damage
+  def moveDirection(self, dt, direction, speed):
+    super().moveDirection(dt, direction, speed)
+    for item in self.inventory:
+      if direction == "Up":
+        item.hitbox.y -= speed * dt
+      elif direction == "Down":
+        item.hitbox.y += speed * dt
+      elif direction == "Left":
+        item.hitbox.x -= speed * dt
+      elif direction == "Right":
+        item.hitbox.x += speed * dt
 
-  def update(self, dt, enemies):
+  def update(self, dt, surface, enemies, weapon):
 
     self.checkForDamage(enemies)
 
@@ -69,11 +80,12 @@ class Player(Creature):
         self.frame_count = 0
         self.attacking = False
         self.image = self.animations.getNextImage(self.direction, True)
+        weapon.active = False
 
     keys = pygame.key.get_pressed()
 
     if keys[pygame.K_j]:
-      self.attack(self.direction)
+      self.attack(self.direction, weapon)
 
     if self.attacking == False:
       if keys[pygame.K_s]:
@@ -87,3 +99,8 @@ class Player(Creature):
 
     if self.attack_cooldown > 0:
       self.attack_cooldown -= 1
+
+  def draw(self, surface):
+    surface.blit(self.image, (self.x, self.y))
+    for item in self.inventory:
+      item.drawHitbox(surface)

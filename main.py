@@ -3,6 +3,7 @@ import sys
 from classes.entities.Player import Player
 from classes.entities.Enemy import Enemy
 from classes.effects.Animations import Animations
+from classes.entities.items.Sword import Sword
 
 pygame.init()
 
@@ -26,9 +27,19 @@ player = Player(
   hitbox_height = 75, 
   hitbox_x = 288, 
   hitbox_y = 188,
-  hitbox_visible = True
+  hitbox_visible = False
 )
-chuchu = Enemy('./assets/Sprites/Enemies/ChuChu', 25, 100, 100, 400, 400, 85, 80, 410, 415, True)
+chuchu = Enemy('./assets/Sprites/Enemies/ChuChu', 25, 100, 100, 400, 400, 85, 80, 410, 415, False)
+
+player.inventory.append(
+  Sword(
+    hitbox_width = 18, 
+    hitbox_height = 60, 
+    hitbox_x = 310, 
+    hitbox_y = 260, 
+    hitbox_visible = True
+  )
+)
 
 # Main loop
 
@@ -40,8 +51,8 @@ while running:
     if event.type == pygame.QUIT:
       running = False
 
-  player.update(dt, [chuchu])
-  chuchu.update(dt)
+  player.update(dt, screen, [chuchu], player.inventory[0])
+  chuchu.update(dt, player.inventory[0])
 
   # Fill the screen with a color
   screen.fill((10,10,10))
@@ -53,9 +64,11 @@ while running:
     screen.blit(gameover_surface, (300,20))
 
   player.draw(screen)
+  player.inventory[0].drawHitbox(screen)
   chuchu.draw(screen)
 
   pygame.display.flip()
+  print("frame")
 
 pygame.quit()
 sys.exit()

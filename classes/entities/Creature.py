@@ -78,3 +78,7 @@ class Creature:
         self.direction = direction
       else:
         self.image = self.animations.getNextImage(direction)
+
+  def takeDamage(self, damage):
+    if self.health > 0:
+      self.health -= damage

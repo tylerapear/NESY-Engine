@@ -3,8 +3,16 @@ from classes.entities.Creature import Creature
 
 class Enemy(Creature):
 
-  def update(self, dt):
+  def checkForDamage(self, weapon):
+    if self.hitbox.collides(weapon.hitbox):
+      self.takeDamage(100)
+      print(self.alive)
+
+
+  def update(self, dt, weapon):
     self.image = self.animations.getNextImage("Idle")
+    if weapon.active:
+      self.checkForDamage(weapon)
     
   def draw(self, surface):
     surface.blit(self.image, (self.x, self.y))
