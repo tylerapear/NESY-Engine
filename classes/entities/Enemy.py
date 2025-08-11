@@ -8,3 +8,6 @@ class Enemy(Creature):
     
   def draw(self, surface):
     surface.blit(self.image, (self.x, self.y))
+
+    #TODO: REMOVE LINE
+    self.hitbox.draw(surface) 
