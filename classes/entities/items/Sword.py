@@ -50,19 +50,24 @@ class Sword(Item):
 
   def moveHitbox(self, dt, speed, direction):
     if direction == "Up":
+      print(f'Moving sword up {speed * dt}')
       for hitbox in self.hitboxes:
         hitbox["y"] -= speed * dt
-      self.hitbox.setY(self.hitbox.getY() - (speed * dt))
+      self.setHitbox(self.hitbox_up)
+      #self.hitbox.setY(self.hitbox.getY() - (speed * dt))
     elif direction == "Down":
       for hitbox in self.hitboxes:
         hitbox["y"] += speed * dt
-      self.hitbox.setY(self.hitbox.getY() + (speed * dt))
+      self.setHitbox(self.hitbox_down)
+      #self.hitbox.setY(self.hitbox.getY() + (speed * dt))
     elif direction == "Left":
       for hitbox in self.hitboxes:
         hitbox["x"] -= speed * dt
-      self.hitbox.setX(self.hitbox.getX() - (speed * dt))
+      self.setHitbox(self.hitbox_left)
+      #self.hitbox.setX(self.hitbox.getX() - (speed * dt))
     elif direction == "Right":
       for hitbox in self.hitboxes:
         hitbox["x"] += speed * dt
-      self.hitbox.setX(self.hitbox.getX() + (speed * dt))
+      self.setHitbox(self.hitbox_right)
+      #self.hitbox.setX(self.hitbox.getX() + (speed * dt))
     

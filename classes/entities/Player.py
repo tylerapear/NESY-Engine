@@ -46,12 +46,16 @@ class Player(Creature):
     for enemy in enemies:
       if self.hitbox.collides(enemy.hitbox) and self.immunity_count <= 0:
         self.damage_direction = self.hitbox.getCollisionDirection(enemy.hitbox)
-        print(self.damage_direction)
         self.takeDamage(10)
         self.immunity_count = 30
         self.image = self.animations.getNextImage(self.direction, False, True)
         if self.health <= 0:
           self.alive = False
+
+  def getKnockedBack(self, dt, direction, speed):
+    super().getKnockedBack(dt, direction, speed)
+    for item in self.inventory:
+      item.moveHitbox(dt, speed, direction)
 
   def checkForGameOver(self):
     if not self.alive:
@@ -61,7 +65,7 @@ class Player(Creature):
     super().moveDirection(dt, direction, speed)
     for item in self.inventory:
       item.changeDirection(direction)
-      item.moveHitbox(speed, dt, direction)
+      item.moveHitbox(dt, speed, direction)
 
   def update(self, dt, surface, enemies, weapon):
     super().update(dt)

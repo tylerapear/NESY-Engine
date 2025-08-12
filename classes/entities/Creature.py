@@ -96,6 +96,7 @@ class Creature:
 
   def getKnockedBack(self, dt, direction, speed):
     if direction == "Up":
+      print(f'Moving player up {speed * dt}')
       self.y -= speed * dt
       self.hitbox.setY(self.hitbox.getY() - (speed * dt))
     elif direction == "Down":
