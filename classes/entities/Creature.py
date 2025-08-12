@@ -25,6 +25,7 @@ class Creature:
     self.direction = "Down"
     self.animationPhase = 0
     self.frame_count = 0
+    self.immunity_count = 0
 
     self.animations = Animations(spritePath, animationSpeed, width, height)
     self.image = self.animations.getNextImage("Idle")
@@ -41,8 +42,9 @@ class Creature:
     #TODO: REMOVE LINE
     self.hitbox.draw(surface) 
 
-  def update(self, dt):
-    pass
+  def update(self):
+    if self.immunity_count > 0:
+      self.immunity_count -= 1
 
   def draw(self, surface):
     if self.display_health:
@@ -50,6 +52,9 @@ class Creature:
       font = pygame.font.Font(None, 24)
       text_surface = font.render(str(self.health), True, (255,255,255))
       surface.blit(text_surface, (self.hitbox.getX() - 20, self.hitbox.getY() - 20))
+
+    if self.hitbox.visible:
+      self.hitbox.draw(surface) 
 
   def moveDirection(self, dt, direction, speed):
     if direction == "Up":
@@ -88,3 +93,4 @@ class Creature:
   def takeDamage(self, damage):
     if self.health > 0:
       self.health -= damage
+    self.immunity_count = 30

@@ -8,13 +8,11 @@ class Enemy(Creature):
       self.takeDamage(weapon.damage)
 
   def update(self, dt, weapon):
+    super().update()
     self.image = self.animations.getNextImage("Idle")
-    if weapon.active:
+    if weapon.active and self.immunity_count <= 0:
       self.checkForDamage(weapon)
     
   def draw(self, surface):
     super().draw(surface)
     surface.blit(self.image, (self.x, self.y))
-
-    #TODO: REMOVE LINE
-    self.hitbox.draw(surface) 
