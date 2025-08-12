@@ -25,6 +25,9 @@ class Sword(Item):
     self.damage = 10
     self.type = "Sword"
 
+  def update(self, player):
+    super().update(player)
+
   def drawHitbox(self, surface):
     if self.hitbox.visible and self.active:
       self.hitbox.draw(surface)

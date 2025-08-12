@@ -45,6 +45,8 @@ class Player(Creature):
   def checkForDamage(self, enemies):
     for enemy in enemies:
       if self.hitbox.collides(enemy.hitbox) and self.immunity_count <= 0:
+        self.damage_direction = self.hitbox.getCollisionDirection(enemy.hitbox)
+        print(self.damage_direction)
         self.takeDamage(10)
         self.immunity_count = 30
         self.image = self.animations.getNextImage(self.direction, False, True)
@@ -62,7 +64,10 @@ class Player(Creature):
       item.moveHitbox(speed, dt, direction)
 
   def update(self, dt, surface, enemies, weapon):
-    super().update()
+    super().update(dt)
+
+    for item in self.inventory:
+      item.update(self)
 
     self.checkForDamage(enemies)
 

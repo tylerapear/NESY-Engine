@@ -35,6 +35,7 @@ class Creature:
     self.alive = alive
     self.health = health
     self.display_health = display_health
+    self.damage_direction = "Down"
 
   def draw(self, surface):
     surface.blit(self.image, (self.x, self.y))
@@ -42,9 +43,11 @@ class Creature:
     #TODO: REMOVE LINE
     self.hitbox.draw(surface) 
 
-  def update(self):
+  def update(self, dt):
     if self.immunity_count > 0:
       self.immunity_count -= 1
+      if self.immunity_count > 18:
+        self.getKnockedBack(dt, self.damage_direction, 600)
 
   def draw(self, surface):
     if self.display_health:
@@ -57,38 +60,53 @@ class Creature:
       self.hitbox.draw(surface) 
 
   def moveDirection(self, dt, direction, speed):
+    if self.immunity_count < 18:
+      if direction == "Up":
+        self.y -= speed * dt
+        self.hitbox.setY(self.hitbox.getY() - (speed * dt))
+        if not self.direction == direction:
+          self.image = self.animations.getNextImage(direction, True)
+          self.direction = direction
+        else:
+          self.image = self.animations.getNextImage(direction)
+      elif direction == "Down":
+        self.y += speed * dt
+        self.hitbox.setY(self.hitbox.getY() + (speed * dt))
+        if not self.direction == direction:
+          self.image = self.animations.getNextImage(direction, True)
+          self.direction = direction
+        else:
+          self.image = self.animations.getNextImage(direction)
+      elif direction == "Left":
+        self.x -= speed * dt
+        self.hitbox.setX(self.hitbox.getX() - (speed * dt))
+        if not self.direction == direction:
+          self.image = self.animations.getNextImage(direction, True)
+          self.direction = direction
+        else:
+          self.image = self.animations.getNextImage(direction)
+      elif direction == "Right":
+        self.x += speed * dt
+        self.hitbox.setX(self.hitbox.getX() + (speed * dt))
+        if not self.direction == direction:
+          self.image = self.animations.getNextImage(direction, True)
+          self.direction = direction
+        else:
+          self.image = self.animations.getNextImage(direction)
+
+  def getKnockedBack(self, dt, direction, speed):
     if direction == "Up":
       self.y -= speed * dt
       self.hitbox.setY(self.hitbox.getY() - (speed * dt))
-      if not self.direction == direction:
-        self.image = self.animations.getNextImage(direction, True)
-        self.direction = direction
-      else:
-        self.image = self.animations.getNextImage(direction)
     elif direction == "Down":
       self.y += speed * dt
       self.hitbox.setY(self.hitbox.getY() + (speed * dt))
-      if not self.direction == direction:
-        self.image = self.animations.getNextImage(direction, True)
-        self.direction = direction
-      else:
-        self.image = self.animations.getNextImage(direction)
     elif direction == "Left":
       self.x -= speed * dt
       self.hitbox.setX(self.hitbox.getX() - (speed * dt))
-      if not self.direction == direction:
-        self.image = self.animations.getNextImage(direction, True)
-        self.direction = direction
-      else:
-        self.image = self.animations.getNextImage(direction)
     elif direction == "Right":
       self.x += speed * dt
       self.hitbox.setX(self.hitbox.getX() + (speed * dt))
-      if not self.direction == direction:
-        self.image = self.animations.getNextImage(direction, True)
-        self.direction = direction
-      else:
-        self.image = self.animations.getNextImage(direction)
 
   def takeDamage(self, damage):
     if self.health > 0:
