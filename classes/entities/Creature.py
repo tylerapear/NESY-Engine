@@ -12,13 +12,11 @@ class Creature:
     height = 50, 
     x = 0, 
     y = 0, 
-    hitbox_width = 50,
-    hitbox_height = 50,
-    hitbox_x = 0,
-    hitbox_y = 0,
+    hitbox_dimentions = {"x": 0, "y": 0, "width": 0, "height": 0},
     hitbox_visible = False,
     alive = True,
-    health = 100
+    health = 100,
+    display_health = True
   ):
     self.x = x
     self.y = y
@@ -31,10 +29,11 @@ class Creature:
     self.animations = Animations(spritePath, animationSpeed, width, height)
     self.image = self.animations.getNextImage("Idle")
 
-    self.hitbox = Hitbox(hitbox_x, hitbox_y, hitbox_width, hitbox_height, hitbox_visible)
+    self.hitbox = Hitbox(hitbox_dimentions, hitbox_visible)
 
     self.alive = alive
     self.health = health
+    self.display_health = display_health
 
   def draw(self, surface):
     surface.blit(self.image, (self.x, self.y))
@@ -44,6 +43,13 @@ class Creature:
 
   def update(self, dt):
     pass
+
+  def draw(self, surface):
+    if self.display_health:
+      pygame.init()
+      font = pygame.font.Font(None, 24)
+      text_surface = font.render(str(self.health), True, (255,255,255))
+      surface.blit(text_surface, (self.hitbox.getX() - 20, self.hitbox.getY() - 20))
 
   def moveDirection(self, dt, direction, speed):
     if direction == "Up":

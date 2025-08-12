@@ -11,13 +11,11 @@ class Player(Creature):
     height = 50, 
     x = 0, 
     y = 0,
-    hitbox_width = 50,
-    hitbox_height = 50,
-    hitbox_x = 0,
-    hitbox_y = 0,
+    hitbox_dimentions = {"x": 0, "y": 0, "width": 0, "height": 0},
     hitbox_visible = False,
     alive = True,
     health = 100,
+    display_health = True,
     inventory = []
   ):
     super().__init__(
@@ -27,13 +25,11 @@ class Player(Creature):
       height, 
       x, 
       y, 
-      hitbox_width, 
-      hitbox_height, 
-      hitbox_x, 
-      hitbox_y,
+      hitbox_dimentions,
       hitbox_visible,
       alive,
-      health
+      health,
+      display_health
     )
     self.attacking = False
     self.attack_cooldown = 0
@@ -61,16 +57,11 @@ class Player(Creature):
   def moveDirection(self, dt, direction, speed):
     super().moveDirection(dt, direction, speed)
     for item in self.inventory:
-      if direction == "Up":
-        item.hitbox.y -= speed * dt
-      elif direction == "Down":
-        item.hitbox.y += speed * dt
-      elif direction == "Left":
-        item.hitbox.x -= speed * dt
-      elif direction == "Right":
-        item.hitbox.x += speed * dt
+      item.changeDirection(direction)
+      item.moveHitbox(speed, dt, direction)
 
   def update(self, dt, surface, enemies, weapon):
+    super().update(dt)
 
     self.checkForDamage(enemies)
 
@@ -101,6 +92,7 @@ class Player(Creature):
       self.attack_cooldown -= 1
 
   def draw(self, surface):
+    super().draw(surface)
     surface.blit(self.image, (self.x, self.y))
     for item in self.inventory:
       item.drawHitbox(surface)

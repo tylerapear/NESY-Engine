@@ -1,11 +1,13 @@
 import pygame
 
+# x, y, width, height
+
 class Hitbox:
-  def __init__(self, x, y, width, height, visible = False):
-    self.x = x
-    self.y = y
-    self.width = width
-    self.height = height
+  def __init__(self, hitbox_dimentions, visible = False):
+    self.x = hitbox_dimentions["x"]
+    self.y = hitbox_dimentions["y"]
+    self.width = hitbox_dimentions["width"]
+    self.height = hitbox_dimentions["height"]
     self.visible = visible
 
   def draw(self, surface, color=(255,0,0), border_width=1):
