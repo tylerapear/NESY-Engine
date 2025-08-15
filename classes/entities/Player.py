@@ -55,7 +55,7 @@ class Player(Creature):
   def getKnockedBack(self, dt, direction, speed):
     super().getKnockedBack(dt, direction, speed)
     for item in self.inventory:
-      item.moveHitbox(dt, speed, direction)
+      item.moveHitbox(self)
 
   def checkForGameOver(self):
     if not self.alive:
@@ -64,8 +64,7 @@ class Player(Creature):
   def moveDirection(self, dt, direction, speed):
     super().moveDirection(dt, direction, speed)
     for item in self.inventory:
-      item.changeDirection(direction)
-      item.moveHitbox(dt, speed, direction)
+      item.moveHitbox(self)
 
   def update(self, dt, surface, enemies, weapon):
     super().update(dt)

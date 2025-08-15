@@ -24,7 +24,7 @@ player = Player(
   x = 200, 
   y = 100,
   hitbox_dimentions = {"x": 288, "y": 188, "width": 75, "height": 75},
-  hitbox_visible = True
+  hitbox_visible = False
 )
 
 chuchus = [
@@ -36,19 +36,21 @@ chuchus = [
     x = 400, 
     y = 400,
     hitbox_dimentions = {"x": 410, "y": 415, "width": 85, "height": 80}, 
-    hitbox_visible = True
+    hitbox_visible = False
   )
 ]
 
 print(chuchus[0].hitbox.getX())
 
+  #hitbox_dimentions_down = {"x": 310, "y": 260, "width": 18, "height": 60},
+  #hitbox_dimentions_up = {"x": 309, "y": 114, "width": 18, "height": 65},
+  #hitbox_dimentions_left = {"x": 215, "y": 215, "width": 65, "height": 18},
+  #itbox_dimentions_right = {"x": 370, "y": 215, "width": 65, "height": 18},
+
 player.inventory.append(
   Sword(
-    hitbox_dimentions_down = {"x": 310, "y": 260, "width": 18, "height": 60},
-    hitbox_dimentions_up = {"x": 309, "y": 114, "width": 18, "height": 65},
-    hitbox_dimentions_left = {"x": 215, "y": 215, "width": 65, "height": 18},
-    hitbox_dimentions_right = {"x": 370, "y": 215, "width": 65, "height": 18},
-    hitbox_visible = True
+    player = player,
+    hitbox_visible = False
   )
 )
 
