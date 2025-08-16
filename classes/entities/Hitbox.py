@@ -31,8 +31,6 @@ class Hitbox:
   def getCollisionDirection(self, hitbox):
     dY = self.y - hitbox.getY()
     dX = self.x - hitbox.getX()
-    print(f'Self: Y = {self.y}, X = {self.x}, Width = {self.width}, Height = {self.height}')
-    print(f'Enemy: Y = {hitbox.getY()}, X = {hitbox.getX()}, Width = {hitbox.getWidth()}, Height = {hitbox.getHeight()}')
     if self.y < ((hitbox.getY() - self.height) + 10):
       return "Up"
     elif (self.y - hitbox.getHeight()) > (hitbox.getY() - 10):
@@ -41,7 +39,6 @@ class Hitbox:
       return "Left"
     elif (self.x - hitbox.getWidth()) > (hitbox.getX() - 10):
       return "Right"
-    print("failed")
 
   def setX(self, x):
     self.x = x
