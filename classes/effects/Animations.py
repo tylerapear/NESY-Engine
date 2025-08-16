@@ -10,6 +10,7 @@ class Animations:
     self.phase = 0
     self.frame_count = 0
     self.animations = self.load_animations(spritePath)
+    self.current_animation = "Idle"
     self.image = pygame.image.load(self.animations["Idle"][self.phase])
     self.image = pygame.transform.scale(self.image, (self.width, self.height))
 
@@ -28,6 +29,26 @@ class Animations:
     return animations
 
 
+  def getNextImage(self, entity, immunity_count = 0):
+    if entity.current_animation != self.current_animation:
+      self.phase = 0
+      self.frame_count = self.speed - 1
+      self.current_animation = entity.current_animation
+
+    self.frame_count += 1
+
+    if self.frame_count >= self.speed:
+      self.frame_count = 0
+      self.image = pygame.image.load(self.animations[self.current_animation][self.phase])
+      self.image = pygame.transform.scale(self.image, (self.width, self.height))
+      if self.phase >= len(self.animations[self.current_animation]) - 1:
+          self.phase = 0
+      else:
+        self.phase += 1
+      
+    return self.image
+
+  '''
   def getNextImage(self, animation, startOver = False, damageImage = False):
     if startOver:
       self.phase = 0
@@ -53,3 +74,4 @@ class Animations:
           self.phase += 1
       
     return self.image
+    '''

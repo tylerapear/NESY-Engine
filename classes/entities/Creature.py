@@ -23,12 +23,13 @@ class Creature:
     self.width = width
     self.height = height
     self.direction = "Down"
+    self.moving = False
     self.animationPhase = 0
     self.frame_count = 0
     self.immunity_count = 0
 
     self.animations = Animations(spritePath, animationSpeed, width, height)
-    self.image = self.animations.getNextImage("Idle")
+    self.current_animation = "IdleDown"
 
     self.hitbox = Hitbox(hitbox_dimentions, hitbox_visible)
 
@@ -46,8 +47,10 @@ class Creature:
   def update(self, dt):
     if self.immunity_count > 0:
       self.immunity_count -= 1
-      if self.immunity_count > 18:
-        self.getKnockedBack(dt, self.damage_direction, 600)
+      if self.immunity_count > 23:
+        self.getKnockedBack(dt, self.damage_direction, 1000)
+    
+    self.image = self.animations.getNextImage(self, self.immunity_count)
 
   def draw(self, surface):
     if self.display_health:
@@ -60,43 +63,24 @@ class Creature:
       self.hitbox.draw(surface) 
 
   def moveDirection(self, dt, direction, speed):
+    self.moving = True
+    self.direction = direction
     if self.immunity_count < 18:
       if direction == "Up":
         self.y -= speed * dt
         self.hitbox.setY(self.hitbox.getY() - (speed * dt))
-        if not self.direction == direction:
-          self.image = self.animations.getNextImage(direction, True)
-          self.direction = direction
-        else:
-          self.image = self.animations.getNextImage(direction)
       elif direction == "Down":
         self.y += speed * dt
         self.hitbox.setY(self.hitbox.getY() + (speed * dt))
-        if not self.direction == direction:
-          self.image = self.animations.getNextImage(direction, True)
-          self.direction = direction
-        else:
-          self.image = self.animations.getNextImage(direction)
       elif direction == "Left":
         self.x -= speed * dt
         self.hitbox.setX(self.hitbox.getX() - (speed * dt))
-        if not self.direction == direction:
-          self.image = self.animations.getNextImage(direction, True)
-          self.direction = direction
-        else:
-          self.image = self.animations.getNextImage(direction)
       elif direction == "Right":
         self.x += speed * dt
         self.hitbox.setX(self.hitbox.getX() + (speed * dt))
-        if not self.direction == direction:
-          self.image = self.animations.getNextImage(direction, True)
-          self.direction = direction
-        else:
-          self.image = self.animations.getNextImage(direction)
 
   def getKnockedBack(self, dt, direction, speed):
     if direction == "Up":
-      print(f'Moving player up {speed * dt}')
       self.y -= speed * dt
       self.hitbox.setY(self.hitbox.getY() - (speed * dt))
     elif direction == "Down":

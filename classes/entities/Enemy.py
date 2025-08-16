@@ -10,7 +10,6 @@ class Enemy(Creature):
 
   def update(self, dt, weapon):
     super().update(dt)
-    self.image = self.animations.getNextImage("Idle")
     if weapon.active and self.immunity_count <= 0:
       self.checkForDamage(weapon)
     

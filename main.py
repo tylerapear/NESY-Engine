@@ -40,13 +40,6 @@ chuchus = [
   )
 ]
 
-print(chuchus[0].hitbox.getX())
-
-  #hitbox_dimentions_down = {"x": 310, "y": 260, "width": 18, "height": 60},
-  #hitbox_dimentions_up = {"x": 309, "y": 114, "width": 18, "height": 65},
-  #hitbox_dimentions_left = {"x": 215, "y": 215, "width": 65, "height": 18},
-  #itbox_dimentions_right = {"x": 370, "y": 215, "width": 65, "height": 18},
-
 player.inventory.append(
   Sword(
     player = player,

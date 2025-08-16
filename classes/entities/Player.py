@@ -37,9 +37,9 @@ class Player(Creature):
 
   def attack(self, direction, weapon):
     if self.attack_cooldown <= 0:
-      self.attack_cooldown = 20
+      self.attack_cooldown = 15
       self.attacking = True
-      self.image = self.animations.getNextImage("Attack" + direction, True)
+      self.current_animation = "Attack" + direction
       weapon.active = True
 
   def checkForDamage(self, enemies):
@@ -48,7 +48,6 @@ class Player(Creature):
         self.damage_direction = self.hitbox.getCollisionDirection(enemy.hitbox)
         self.takeDamage(10)
         self.immunity_count = 30
-        self.image = self.animations.getNextImage(self.direction, False, True)
         if self.health <= 0:
           self.alive = False
 
@@ -69,25 +68,35 @@ class Player(Creature):
   def update(self, dt, surface, enemies, weapon):
     super().update(dt)
 
+    ### UPDATE INVENTORY ITEMS ###
     for item in self.inventory:
       item.update(self)
 
+    ### CHECK FOR DAMAGE ###
     self.checkForDamage(enemies)
 
+    ### HANDLE ATTACKING ###
     if self.attacking:
       self.frame_count += 1
       if self.frame_count >= 10:
         self.frame_count = 0
         self.attacking = False
-        self.image = self.animations.getNextImage(self.direction, True)
         weapon.active = False
 
+    if self.attack_cooldown > 0:
+      self.attack_cooldown -= 1
+      if self.attack_cooldown < 5:
+        self.attacking = False
+        self.current_animation = self.direction
+
+    ### HANDLE MOVEMENT ###
     keys = pygame.key.get_pressed()
 
     if keys[pygame.K_j]:
       self.attack(self.direction, weapon)
 
-    if self.attacking == False:
+    self.moving = False
+    if not self.attacking:
       if keys[pygame.K_s]:
         self.moveDirection(dt, "Down", 200)
       elif keys[pygame.K_w]:
@@ -97,8 +106,12 @@ class Player(Creature):
       elif keys[pygame.K_d]:
         self.moveDirection(dt, "Right", 200)
 
-    if self.attack_cooldown > 0:
-      self.attack_cooldown -= 1
+    ### Update Animation ###
+    self.current_animation = "Idle" + self.direction
+    if self.moving:
+      self.current_animation = self.direction
+    if self.attacking:
+      self.current_animation = "Attack" + self.direction
 
   def draw(self, surface):
     super().draw(surface)
