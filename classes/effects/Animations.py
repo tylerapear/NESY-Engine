@@ -3,16 +3,84 @@ import os
 
 class Animations:
   def __init__(self, spritePath, speed, width, height):
-    self.spritePath = spritePath
-    self.speed = speed
-    self.width = width
-    self.height = height
-    self.phase = 0
-    self.frame_count = 0
-    self.animations = self.load_animations(spritePath)
-    self.current_animation = "Idle"
-    self.image = pygame.image.load(self.animations["Idle"][self.phase])
-    self.image = pygame.transform.scale(self.image, (self.width, self.height))
+    self._spritePath = spritePath
+    self._speed = speed
+    self._width = width
+    self._height = height
+    self._phase = 0
+    self._frame_count = 0
+    self._animations = self.load_animations(spritePath)
+    self._current_animation = "Idle"
+    self._image = pygame.image.load(self.animations["Idle"][self.phase])
+    self._image = pygame.transform.scale(self.image, (self.width, self.height))
+
+### PROPERTIES ###
+
+  @property
+  def spritePath(self):
+    return self._spritePath
+
+  @spritePath.setter
+  def spritePath(self, path):
+    self._spritePath = path
+
+  @property
+  def speed(self):
+    return self._speed
+
+  @speed.setter
+  def speed(self, speed):
+    self._speed = speed
+
+  @property
+  def width(self):
+    return self._width
+
+  @width.setter
+  def width(self, width):
+    self._width = width
+
+  @property
+  def height(self):
+    return self._height
+
+  @height.setter
+  def height(self, height):
+    self._height = height
+
+  @property
+  def phase(self):
+    return self._phase
+
+  @phase.setter
+  def phase(self, phase):
+    self._phase = phase
+
+  @property
+  def animations(self):
+    return self._animations
+
+  @animations.setter
+  def animations(self, animations):
+    self._animations = animations
+
+  @property
+  def current_animation(self):
+    return self._current_animation
+
+  @current_animation.setter
+  def current_animation(self, current_animation):
+    self._current_animation = current_animation
+
+  @property
+  def image(self):
+    return self._image
+
+  @image.setter
+  def image(self, image):
+    self._image = image
+
+### METHODS ###
 
   def load_animations(self, root_dir):
     directions = ["Up", "Down", "Left", "Right"]
@@ -27,7 +95,6 @@ class Animations:
       animations[folder] = files
 
     return animations
-
 
   def getNextImage(self, entity, immunity_count = 0):
     if entity.current_animation != self.current_animation:
