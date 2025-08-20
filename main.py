@@ -1,5 +1,4 @@
-import pygame
-import sys
+import pygame, sys, asyncio
 from classes.entities.Player import Player
 from classes.entities.Enemy import Enemy
 from classes.effects.Animations import Animations
@@ -50,32 +49,36 @@ player.inventory.append(
 
 # Main loop
 
-running = True
-while running:
-  dt = clock.tick(60) / 1000
+async def main():
 
-  for event in pygame.event.get():
-    if event.type == pygame.QUIT:
-      running = False
+  running = True
+  while running:
+    dt = clock.tick(60) / 1000
 
-  player.update(dt, screen, chuchus, player.inventory[0])
-  for chuchu in chuchus:
-    chuchu.update(dt, player.inventory[0])
+    for event in pygame.event.get():
+      if event.type == pygame.QUIT:
+        running = False
 
-  # Fill the screen with a color
-  screen.fill((10,10,10))
+    player.update(dt, screen, chuchus, player.inventory[0])
+    for chuchu in chuchus:
+      chuchu.update(dt, player.inventory[0])
 
-  if player.checkForGameOver():
-    gameover_surface = font.render("GAME OVER", True, (255,255,255))
-    screen.blit(gameover_surface, (300,20))
+    # Fill the screen with a color
+    screen.fill((10,10,10))
 
-  player.draw(screen)
-  player.inventory[0].drawHitbox(screen)
-  for chuchu in chuchus:
-    chuchu.draw(screen)
+    if player.checkForGameOver():
+      gameover_surface = font.render("GAME OVER", True, (255,255,255))
+      screen.blit(gameover_surface, (300,20))
 
-  pygame.display.flip()
-  #print("frame")
+    player.draw(screen)
+    player.inventory[0].drawHitbox(screen)
+    for chuchu in chuchus:
+      chuchu.draw(screen)
+
+    pygame.display.flip()
+    await asyncio.sleep(0)
+
+asyncio.run(main())
 
 pygame.quit()
 sys.exit()
