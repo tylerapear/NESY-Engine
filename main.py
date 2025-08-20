@@ -14,7 +14,7 @@ icon = pygame.transform.scale(pygame.image.load('./assets/Icons/GameIcon.png'), 
 pygame.display.set_icon(icon)
 font = pygame.font.Font(None, 36)
 clock = pygame.time.Clock()
-hitboxes_visible = False
+hitboxes_visible = True
 
 player = Player(
   spritePath = './assets/Sprites/Link', 
@@ -80,5 +80,5 @@ async def main():
 
 asyncio.run(main())
 
-pygame.quit()
-sys.exit()
+#pygame.quit()
+#sys.exit()
