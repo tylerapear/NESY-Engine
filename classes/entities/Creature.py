@@ -184,7 +184,7 @@ class Creature:
       pygame.init()
       font = pygame.font.Font(None, 24)
       text_surface = font.render(str(self.health), True, (255,255,255))
-      surface.blit(text_surface, (self.hitbox.getX() - 20, self.hitbox.getY() - 20))
+      surface.blit(text_surface, (self.hitbox.x - 20, self.hitbox.y - 20))
 
     if self.hitbox.visible:
       self.hitbox.draw(surface) 
@@ -195,30 +195,30 @@ class Creature:
     if self.immunity_count < 18:
       if direction == "Up":
         self.y -= speed * dt
-        self.hitbox.setY(self.hitbox.getY() - (speed * dt))
+        self.hitbox.y = self.hitbox.y - (speed * dt)
       elif direction == "Down":
         self.y += speed * dt
-        self.hitbox.setY(self.hitbox.getY() + (speed * dt))
+        self.hitbox.y = self.hitbox.y + (speed * dt)
       elif direction == "Left":
         self.x -= speed * dt
-        self.hitbox.setX(self.hitbox.getX() - (speed * dt))
+        self.hitbox.x = self.hitbox.x - (speed * dt)
       elif direction == "Right":
         self.x += speed * dt
-        self.hitbox.setX(self.hitbox.getX() + (speed * dt))
+        self.hitbox.x = self.hitbox.x + (speed * dt)
 
   def getKnockedBack(self, dt, direction, speed):
     if direction == "Up":
       self.y -= speed * dt
-      self.hitbox.setY(self.hitbox.getY() - (speed * dt))
+      self.hitbox.y = self.hitbox.y - (speed * dt)
     elif direction == "Down":
       self.y += speed * dt
-      self.hitbox.setY(self.hitbox.getY() + (speed * dt))
+      self.hitbox.y = self.hitbox.y + (speed * dt)
     elif direction == "Left":
       self.x -= speed * dt
-      self.hitbox.setX(self.hitbox.getX() - (speed * dt))
+      self.hitbox.x = self.hitbox.x - (speed * dt)
     elif direction == "Right":
       self.x += speed * dt
-      self.hitbox.setX(self.hitbox.getX() + (speed * dt))
+      self.hitbox.x = self.hitbox.x + (speed * dt)
 
   def takeDamage(self, damage):
     if self.health > 0:

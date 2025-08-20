@@ -86,10 +86,10 @@ class Sword(Item):
       self.hitbox.draw(surface)
 
   def setHitbox(self, dimentions):
-    self.hitbox.setX(dimentions["x"])
-    self.hitbox.setY(dimentions["y"])
-    self.hitbox.setWidth(dimentions["width"])
-    self.hitbox.setHeight(dimentions["height"])
+    self.hitbox.x = dimentions["x"]
+    self.hitbox.y = dimentions["y"]
+    self.hitbox.width = dimentions["width"]
+    self.hitbox.height = dimentions["height"]
 
   def moveHitbox(self, player):
     self.hitbox_down = {"x": player.x + 110, "y": player.y + 160, "width": 18, "height": 60}
