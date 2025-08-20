@@ -12,14 +12,71 @@ class Sword(Item):
     damage = 100
   ):
     super().__init__()
-    self.hitbox_down = {}
-    self.hitbox_up = {}
-    self.hitbox_left = {}
-    self.hitbox_right = {}
-    self.hitbox = Hitbox({"x": 0, "y": 0, "width": 0, "height": 0}, hitbox_visible)
+    self._item_type = "Sword"
+    self._damage = 10
+    self._hitbox_down = {}
+    self._hitbox_up = {}
+    self._hitbox_left = {}
+    self._hitbox_right = {}
+    self._hitbox = Hitbox({"x": 0, "y": 0, "width": 0, "height": 0}, hitbox_visible)
+
     self.moveHitbox(player)
-    self.damage = 10
-    self.type = "Sword"
+
+### PROPERTIES ###
+
+  @property
+  def item_type(self):
+    return self._item_type
+
+  @item_type.setter
+  def item_type(self, item_type):
+    self._item_type = item_type
+
+  @property
+  def damage(self):
+    return self._damage
+
+  @damage.setter
+  def damage(self, damage):
+    self._damage = damage
+
+  @property
+  def hitbox_down(self):
+    return self._hitbox_down
+
+  @hitbox_down.setter
+  def hitbox_down(self, hitbox_down):
+    self._hitbox_down = hitbox_down
+
+  @property
+  def hitbox_up(self):
+    return self._hitbox_up
+
+  @hitbox_up.setter
+  def hitbox_up(self, hitbox_up):
+    self._hitbox_up = hitbox_up
+
+  @property
+  def hitbox_left(self):
+    return self._hitbox_left
+
+  @hitbox_left.setter
+  def hitbox_left(self, hitbox_left):
+    self._hitbox_left = hitbox_left
+
+  @property
+  def hitbox_right(self):
+    return self._hitbox_right
+
+  @hitbox_right.setter
+  def hitbox_right(self, hitbox_right):
+    self._hitbox_right = hitbox_right
+
+  @property
+  def hitbox(self):
+    return self._hitbox
+
+### METHODS ###
 
   def update(self, player):
     super().update(player)
