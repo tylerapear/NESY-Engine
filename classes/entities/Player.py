@@ -31,39 +31,37 @@ class Player(Creature):
       health,
       display_health
     )
-    self.attacking = False
-    self.attack_cooldown = 0
-    self.inventory = inventory
+    self._attacking = False
+    self._attack_cooldown = 0
+    self._inventory = inventory
 
-  def attack(self, direction, weapon):
-    if self.attack_cooldown <= 0:
-      self.attack_cooldown = 15
-      self.attacking = True
-      self.current_animation = "Attack" + direction
-      weapon.active = True
+### PROPERTIES ###
 
-  def checkForDamage(self, enemies):
-    for enemy in enemies:
-      if self.hitbox.collides(enemy.hitbox) and self.immunity_count <= 0:
-        self.damage_direction = self.hitbox.getCollisionDirection(enemy.hitbox)
-        self.takeDamage(10)
-        self.immunity_count = 30
-        if self.health <= 0:
-          self.alive = False
+  @property
+  def attacking(self):
+    return self._attacking
 
-  def getKnockedBack(self, dt, direction, speed):
-    super().getKnockedBack(dt, direction, speed)
-    for item in self.inventory:
-      item.moveHitbox(self)
+  @attacking.setter
+  def attacking(self, attacking):
+    self._attacking = attacking
 
-  def checkForGameOver(self):
-    if not self.alive:
-      return True
+  @property
+  def attack_cooldown(self):
+    return self._attack_cooldown
 
-  def moveDirection(self, dt, direction, speed):
-    super().moveDirection(dt, direction, speed)
-    for item in self.inventory:
-      item.moveHitbox(self)
+  @attack_cooldown.setter
+  def attack_cooldown(self, attack_cooldown):
+    self._attack_cooldown = attack_cooldown
+
+  @property
+  def inventory(self):
+    return self._inventory
+
+  @inventory.setter
+  def inventory(self, inventory):
+    self._inventory = inventory
+
+### METHODS ###
 
   def update(self, dt, surface, enemies, weapon):
     super().update(dt)
@@ -118,3 +116,35 @@ class Player(Creature):
     surface.blit(self.image, (self.x, self.y))
     for item in self.inventory:
       item.drawHitbox(surface)
+
+  def attack(self, direction, weapon):
+    if self.attack_cooldown <= 0:
+      self.attack_cooldown = 15
+      self.attacking = True
+      self.current_animation = "Attack" + direction
+      weapon.active = True
+
+  def checkForDamage(self, enemies):
+    for enemy in enemies:
+      if self.hitbox.collides(enemy.hitbox) and self.immunity_count <= 0:
+        self.damage_direction = self.hitbox.getCollisionDirection(enemy.hitbox)
+        self.takeDamage(10)
+        self.immunity_count = 30
+        if self.health <= 0:
+          self.alive = False
+
+  def getKnockedBack(self, dt, direction, speed):
+    super().getKnockedBack(dt, direction, speed)
+    for item in self.inventory:
+      item.moveHitbox(self)
+
+  def checkForGameOver(self):
+    if not self.alive:
+      return True
+
+  def moveDirection(self, dt, direction, speed):
+    super().moveDirection(dt, direction, speed)
+    for item in self.inventory:
+      item.moveHitbox(self)
+
+
