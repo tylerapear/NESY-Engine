@@ -15,6 +15,7 @@ icon = pygame.transform.scale(pygame.image.load('./assets/Icons/GameIcon.png'), 
 pygame.display.set_icon(icon)
 font = pygame.font.Font(None, 36)
 clock = pygame.time.Clock()
+hitboxes_visible = False
 
 player = Player(
   spritePath = './assets/Sprites/Link', 
@@ -24,7 +25,7 @@ player = Player(
   x = 200, 
   y = 100,
   hitbox_dimentions = {"x": 288, "y": 188, "width": 75, "height": 75},
-  hitbox_visible = False
+  hitbox_visible = hitboxes_visible
 )
 
 chuchus = [
@@ -36,14 +37,14 @@ chuchus = [
     x = 400, 
     y = 400,
     hitbox_dimentions = {"x": 410, "y": 415, "width": 85, "height": 80}, 
-    hitbox_visible = False
+    hitbox_visible = hitboxes_visible
   )
 ]
 
 player.inventory.append(
   Sword(
     player = player,
-    hitbox_visible = False
+    hitbox_visible = hitboxes_visible
   )
 )
 
