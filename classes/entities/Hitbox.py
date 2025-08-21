@@ -70,7 +70,6 @@ class Hitbox:
       self.y < hitbox.y + hitbox.height and #BOTTOM SIDE OF HITBOX
       self.y + self.height > hitbox.y
     ):
-      print("collide!")
       return True
 
   def getCollisionDirection(self, hitbox):
