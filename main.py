@@ -66,24 +66,25 @@ async def main():
       if event.type == pygame.QUIT: 
         running = False 
           
-    # UPDATE ENTITIES #
-    player.update(dt, logical_surface.surface, chuchus, player.inventory[0]) 
-    for chuchu in chuchus: 
-      chuchu.update(dt, player.inventory[0]) 
+    if player.alive:
+      # UPDATE ENTITIES #
+      player.update(dt, logical_surface.surface, chuchus, player.inventory[0]) 
+      for chuchu in chuchus: 
+        chuchu.update(dt, player.inventory[0]) 
+        
+      # FILL THE SCREEN BACKGROUND COLOR #
+      logical_surface.surface.fill((10,10,10)) 
       
-    # FILL THE SCREEN BACKGROUND COLOR #
-    logical_surface.surface.fill((10,10,10)) 
-    
-    # CHECK FOR GAME OVER #
-    if player.checkForGameOver(): 
-      gameover_surface = game_over_font.render("GAME OVER", True, (255,255,255)) 
-      logical_surface.surface.blit(gameover_surface, (300,20)) 
-    
-    # DRAW ENTITIES #
-    player.draw(logical_surface.surface) 
-    player.inventory[0].drawHitbox(logical_surface.surface) 
-    for chuchu in chuchus: 
-      chuchu.draw(logical_surface.surface) 
+      # CHECK FOR GAME OVER #
+      if player.checkForGameOver(): 
+        gameover_surface = game_over_font.render("GAME OVER", True, (255,255,255)) 
+        logical_surface.surface.blit(gameover_surface, (300,20)) 
+      
+      # DRAW ENTITIES #
+      player.draw(logical_surface.surface) 
+      player.inventory[0].drawHitbox(logical_surface.surface) 
+      for chuchu in chuchus: 
+        chuchu.draw(logical_surface.surface) 
     
     # DRAW RESIZED LOGICAL SCREEN ON WINDOW #
     #blit_logical_to_window()
