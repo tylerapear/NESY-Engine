@@ -4,6 +4,8 @@ from classes.entities.Enemy import Enemy
 from classes.effects.Animations import Animations 
 from classes.entities.items.Sword import Sword
 from classes.entities.LogicalSurface import LogicalSurface
+from classes.entities.Tile import Tile
+from classes.entities.Screen import Screen
 
 async def main(): 
   
@@ -55,6 +57,12 @@ async def main():
     ) 
   ) 
   
+  tiles = []
+  for i in range(9):
+    tiles.append(Tile(10,10,'./assets/Tiles/sand.png'))
+  
+  screen = Screen(LOGICAL_W, LOGICAL_H, 3, 3, tiles)
+  
   # Main Loop 
   
   running = True 
@@ -81,6 +89,7 @@ async def main():
         logical_surface.surface.blit(gameover_surface, (300,20)) 
       
       # DRAW ENTITIES #
+      screen.draw(logical_surface.surface)
       player.draw(logical_surface.surface) 
       player.inventory[0].drawHitbox(logical_surface.surface) 
       for chuchu in chuchus: 
