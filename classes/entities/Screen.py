@@ -21,7 +21,8 @@ class Screen():
         tile = self._tiles[tile_index]
         tile.draw_background(self, surface, draw_position[0], draw_position[1])
         draw_position[0] += self._tile_width
-        tile_index += 1
+        if tile_index < len(self._tiles) - 1:
+          tile_index += 1
       draw_position[0] = 0
       draw_position[1] += self._tile_height
       
@@ -32,7 +33,8 @@ class Screen():
         tile = self._tiles[tile_index]
         tile.draw_foreground(self, surface, draw_position[0], draw_position[1])
         draw_position[0] += self._tile_width
-        tile_index += 1
+        if tile_index < len(self._tiles) - 1:
+          tile_index += 1
       draw_position[0] = 0
       draw_position[1] += self._tile_height
         

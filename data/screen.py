@@ -3,7 +3,7 @@ from classes.entities.Tile import Tile
 tiles = [
   
   #Row 1
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
   Tile('./assets/Tiles/sand.png'),
   Tile('./assets/Tiles/sand.png'),
   Tile('./assets/Tiles/sand.png'),
@@ -21,7 +21,7 @@ tiles = [
   Tile('./assets/Tiles/sand.png'),
   
   #Row 2
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
   Tile('./assets/Tiles/sand.png'),
   Tile('./assets/Tiles/sand.png'),
   Tile('./assets/Tiles/sand.png'),
@@ -39,7 +39,7 @@ tiles = [
   Tile('./assets/Tiles/sand.png'),
   
   #Row 3
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
   Tile('./assets/Tiles/sand.png'),
   Tile('./assets/Tiles/sand.png'),
   Tile('./assets/Tiles/sand.png'),
@@ -57,7 +57,7 @@ tiles = [
   Tile('./assets/Tiles/sand.png'),
   
   #Row 4
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
   Tile('./assets/Tiles/sand.png'),
   Tile('./assets/Tiles/sand.png'),
   Tile('./assets/Tiles/sand.png'),
@@ -75,7 +75,7 @@ tiles = [
   Tile('./assets/Tiles/sand.png'),
   
   #Row 5
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
   Tile('./assets/Tiles/sand.png'),
   Tile('./assets/Tiles/sand.png'),
   Tile('./assets/Tiles/sand.png'),
@@ -93,7 +93,7 @@ tiles = [
   Tile('./assets/Tiles/sand.png'),
   
   #Row 6
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
   Tile('./assets/Tiles/sand.png'),
   Tile('./assets/Tiles/sand.png'),
   Tile('./assets/Tiles/sand.png'),
@@ -111,7 +111,7 @@ tiles = [
   Tile('./assets/Tiles/sand.png'),
   
   #Row 7
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
   Tile('./assets/Tiles/sand.png'),
   Tile('./assets/Tiles/sand.png'),
   Tile('./assets/Tiles/sand.png'),
@@ -129,7 +129,7 @@ tiles = [
   Tile('./assets/Tiles/sand.png'),
   
   #Row 8
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
   Tile('./assets/Tiles/sand.png'),
   Tile('./assets/Tiles/sand.png'),
   Tile('./assets/Tiles/sand.png'),
@@ -147,20 +147,20 @@ tiles = [
   Tile('./assets/Tiles/sand.png'),
   
   #Row 9
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png'),
-  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png')
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', True, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, True)
 ]
