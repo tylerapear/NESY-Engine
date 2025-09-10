@@ -37,6 +37,11 @@ class Creature:
     self._health = health
     self._display_health = display_health
     self._damage_direction = "Down"
+    
+    self._up_speed = 1
+    self._down_speed = 1
+    self._left_speed = 1
+    self._right_speed = 1
 
 ### PROPERTIES ###
 
@@ -167,10 +172,59 @@ class Creature:
   @damage_direction.setter
   def damage_direction(self, damage_direction):
     self._damage_direction = damage_direction
+    
+  @property
+  def up_speed(self):
+    return self._up_speed
+
+  @up_speed.setter
+  def up_speed(self, up_speed):
+    self._up_speed = up_speed
+    
+  @property
+  def down_speed(self):
+    return self._down_speed
+
+  @down_speed.setter
+  def down_speed(self, down_speed):
+    self._down_speed = down_speed
+    
+  @property
+  def left_speed(self):
+    return self._left_speed
+
+  @left_speed.setter
+  def left_speed(self, left_speed):
+    self._left_speed = left_speed
+    
+  @property
+  def right_speed(self):
+    return self._right_speed
+
+  @right_speed.setter
+  def right_speed(self, right_speed):
+    self._right_speed = right_speed
 
 ### METHODS ###
 
-  def update(self, dt):
+  def update(self, dt, screen):
+    
+    self.up_speed = 1
+    if self.hitbox.y <= 0:
+      self.handleBorderCollision("Up")
+      
+    self.left_speed = 1
+    if self.hitbox.x <= 0:
+      self.handleBorderCollision("Left")
+      
+    self.down_speed = 1
+    if self.hitbox.y + self.hitbox.height >= screen._height:
+      self.handleBorderCollision("Down")
+      
+    self.right_speed = 1
+    if self.hitbox.x + self.hitbox.width >= screen._width:
+      self.handleBorderCollision("Right")
+    
     if self.immunity_count > 0:
       self.immunity_count -= 1
       if self.immunity_count > 23:
@@ -224,3 +278,14 @@ class Creature:
     if self.health > 0:
       self.health -= damage
     self.immunity_count = 30
+    
+  def handleBorderCollision(self, direction):
+    if direction == "Up":
+      self.up_speed = 0
+    if direction == "Down":
+      self.down_speed = 0
+    if direction == "Left":
+      self.left_speed = 0
+    if direction == "Right":
+      self.right_speed = 0
+      

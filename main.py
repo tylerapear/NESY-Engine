@@ -58,10 +58,10 @@ async def main():
   ) 
   
   tiles = []
-  for i in range(9):
-    tiles.append(Tile(10,10,'./assets/Tiles/sand.png'))
+  for i in range(144):
+    tiles.append(Tile('./assets/Tiles/sand.png'))
   
-  screen = Screen(LOGICAL_W, LOGICAL_H, 3, 3, tiles)
+  screen = Screen(LOGICAL_W, LOGICAL_H, 16, 9, tiles)
   
   # Main Loop 
   
@@ -76,9 +76,9 @@ async def main():
           
     if player.alive:
       # UPDATE ENTITIES #
-      player.update(dt, logical_surface.surface, chuchus, player.inventory[0]) 
+      player.update(dt, screen, logical_surface.surface, chuchus, player.inventory[0]) 
       for chuchu in chuchus: 
-        chuchu.update(dt, player.inventory[0]) 
+        chuchu.update(dt, screen, player.inventory[0]) 
         
       # FILL THE SCREEN BACKGROUND COLOR #
       logical_surface.surface.fill((10,10,10)) 

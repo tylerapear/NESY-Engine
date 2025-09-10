@@ -7,8 +7,8 @@ class Enemy(Creature):
 
 ### METHODS ###
 
-  def update(self, dt, weapon):
-    super().update(dt)
+  def update(self, dt, screen, weapon):
+    super().update(dt, screen)
     if weapon.active and self.immunity_count <= 0:
       self.checkForDamage(weapon)
     

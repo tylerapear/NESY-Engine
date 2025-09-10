@@ -63,8 +63,8 @@ class Player(Creature):
 
 ### METHODS ###
 
-  def update(self, dt, surface, enemies, weapon):
-    super().update(dt)
+  def update(self, dt, screen, surface, enemies, weapon):
+    super().update(dt, screen)
 
     ### UPDATE INVENTORY ITEMS ###
     for item in self.inventory:
@@ -96,13 +96,13 @@ class Player(Creature):
     self.moving = False
     if not self.attacking:
       if keys[pygame.K_s]:
-        self.moveDirection(dt, "Down", 200)
+        self.moveDirection(dt, "Down", 200 * self.down_speed)
       elif keys[pygame.K_w]:
-        self.moveDirection(dt, "Up", 200)
+        self.moveDirection(dt, "Up", 200 * self.up_speed)
       elif keys[pygame.K_a]:
-        self.moveDirection(dt, "Left", 200)
+        self.moveDirection(dt, "Left", 200 * self.left_speed)
       elif keys[pygame.K_d]:
-        self.moveDirection(dt, "Right", 200)
+        self.moveDirection(dt, "Right", 200 * self.right_speed)
 
     ### Update Animation ###
     self.current_animation = "Idle" + self.direction
