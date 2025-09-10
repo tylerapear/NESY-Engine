@@ -224,6 +224,11 @@ class Creature:
     self.right_speed = 1
     if self.hitbox.x + self.hitbox.width >= screen._width:
       self.handleBorderCollision("Right")
+
+    for tile in screen._tiles:
+      if tile._hitbox_active and self.hitbox.collides(tile._hitbox):
+        collision_direction = self.hitbox.getReverseCollisionDirection(tile._hitbox)
+        self.handleBorderCollision(collision_direction)
     
     if self.immunity_count > 0:
       self.immunity_count -= 1

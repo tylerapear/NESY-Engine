@@ -83,3 +83,15 @@ class Hitbox:
       return "Left"
     elif (self.x - hitbox.width) > (hitbox.x - 10):
       return "Right"
+
+  def getReverseCollisionDirection(self, hitbox):
+    dY = self.y - hitbox.y
+    dX = self.x - hitbox.x
+    if self.y < ((hitbox.y - self.height) + 10):
+      return "Down"
+    elif (self.y - hitbox.height) > (hitbox.y - 10):
+      return "Up"
+    elif self.x < ((hitbox.x - self.width) + 10):
+      return "Right"
+    elif (self.x - hitbox.width) > (hitbox.x - 10):
+      return "Left"

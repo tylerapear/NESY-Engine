@@ -23,7 +23,7 @@ async def main():
   
   # SET OTHER PROPERTIES #
   clock = pygame.time.Clock() 
-  hitboxes_visible = False     
+  hitboxes_visible = False    
   game_over_font = pygame.font.SysFont(None, 36, bold=False)
 
   # DEFINE ENTITIES # 
