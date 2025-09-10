@@ -19,11 +19,20 @@ class Screen():
     for vertical_tile in range(self._tiles_high):
       for horizontal_tile in range(self._tiles_wide):
         tile = self._tiles[tile_index]
-        scaled_image = pygame.transform.scale(
-          tile._background_image, (self._tile_width, self._tile_height)
-        )
-        surface.blit(scaled_image, (draw_position[0], draw_position[1]))
+        tile.draw_background(self, surface, draw_position[0], draw_position[1])
         draw_position[0] += self._tile_width
+        tile_index += 1
+      draw_position[0] = 0
+      draw_position[1] += self._tile_height
+      
+    draw_position = [0,0]
+    tile_index = 0
+    for vertical_tile in range(self._tiles_high):
+      for horizontal_tile in range(self._tiles_wide):
+        tile = self._tiles[tile_index]
+        tile.draw_foreground(self, surface, draw_position[0], draw_position[1])
+        draw_position[0] += self._tile_width
+        tile_index += 1
       draw_position[0] = 0
       draw_position[1] += self._tile_height
         

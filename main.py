@@ -7,6 +7,8 @@ from classes.entities.LogicalSurface import LogicalSurface
 from classes.entities.Tile import Tile
 from classes.entities.Screen import Screen
 
+from data.screen import tiles
+
 async def main(): 
   
   pygame.init() 
@@ -56,10 +58,6 @@ async def main():
       hitbox_visible = hitboxes_visible 
     ) 
   ) 
-  
-  tiles = []
-  for i in range(144):
-    tiles.append(Tile('./assets/Tiles/sand.png'))
   
   screen = Screen(LOGICAL_W, LOGICAL_H, 16, 9, tiles)
   
