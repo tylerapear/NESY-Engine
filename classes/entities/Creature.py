@@ -267,17 +267,17 @@ class Creature:
 
   def getKnockedBack(self, dt, direction, speed):
     if direction == "Up":
-      self.y -= speed * dt
-      self.hitbox.y = self.hitbox.y - (speed * dt)
+      self.y -= speed * dt * self.up_speed
+      self.hitbox.y = self.hitbox.y - ((speed * dt) * self.up_speed)
     elif direction == "Down":
-      self.y += speed * dt
-      self.hitbox.y = self.hitbox.y + (speed * dt)
+      self.y += speed * dt * self.down_speed
+      self.hitbox.y = self.hitbox.y + ((speed * dt) * self.down_speed)
     elif direction == "Left":
-      self.x -= speed * dt
-      self.hitbox.x = self.hitbox.x - (speed * dt)
+      self.x -= speed * dt * self.left_speed
+      self.hitbox.x = self.hitbox.x - ((speed * dt) * self.left_speed)
     elif direction == "Right":
-      self.x += speed * dt
-      self.hitbox.x = self.hitbox.x + (speed * dt)
+      self.x += speed * dt * self.right_speed
+      self.hitbox.x = self.hitbox.x + ((speed * dt) * self.right_speed)
 
   def takeDamage(self, damage):
     if self.health > 0:
@@ -293,4 +293,5 @@ class Creature:
       self.left_speed = 0
     if direction == "Right":
       self.right_speed = 0
+
       

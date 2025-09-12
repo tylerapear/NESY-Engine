@@ -73,25 +73,41 @@ class Hitbox:
       return True
 
   def getCollisionDirection(self, hitbox):
-    dY = self.y - hitbox.y
-    dX = self.x - hitbox.x
-    if self.y < ((hitbox.y - self.height) + 10):
-      return "Up"
-    elif (self.y - hitbox.height) > (hitbox.y - 10):
-      return "Down"
-    elif self.x < ((hitbox.x - self.width) + 10):
-      return "Left"
-    elif (self.x - hitbox.width) > (hitbox.x - 10):
-      return "Right"
+    dx_left = abs((self.x + self.width) - hitbox.x)
+    dx_right = abs(self.x - (hitbox.x + hitbox.width))
+    dy_top = abs((self.y + self.height) - hitbox.y)
+    dy_bottom = abs(self.y - (hitbox.y + hitbox.height))
+    
+    min_dx = min(dx_left, dx_right)
+    min_dy = min(dy_top, dy_bottom)
+    
+    if min_dx < min_dy:
+      if dx_left < dx_right:
+        return "Left"
+      else:
+        return "Right"
+    else:
+      if dy_top < dy_bottom:
+        return "Up"
+      else:
+        return "Down"
 
   def getReverseCollisionDirection(self, hitbox):
-    dY = self.y - hitbox.y
-    dX = self.x - hitbox.x
-    if self.y < ((hitbox.y - self.height) + 10):
-      return "Down"
-    elif (self.y - hitbox.height) > (hitbox.y - 10):
-      return "Up"
-    elif self.x < ((hitbox.x - self.width) + 10):
-      return "Right"
-    elif (self.x - hitbox.width) > (hitbox.x - 10):
-      return "Left"
+    dx_left = abs((self.x + self.width) - hitbox.x)
+    dx_right = abs(self.x - (hitbox.x + hitbox.width))
+    dy_top = abs((self.y + self.height) - hitbox.y)
+    dy_bottom = abs(self.y - (hitbox.y + hitbox.height))
+    
+    min_dx = min(dx_left, dx_right)
+    min_dy = min(dy_top, dy_bottom)
+    
+    if min_dx < min_dy:
+      if dx_left < dx_right:
+        return "Right"
+      else:
+        return "Left"
+    else:
+      if dy_top < dy_bottom:
+        return "Down"
+      else:
+        return "Up"
