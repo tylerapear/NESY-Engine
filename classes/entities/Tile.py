@@ -31,14 +31,14 @@ class Tile():
   def draw_foreground(self, screen, surface, x, y):
     if self._foreground_image:
       scaled_foreground_image = pygame.transform.scale(
-        self._foreground_image, (screen._tile_width, screen._tile_height + 15)
+        self._foreground_image, (screen._tile_width, screen._tile_height + 0)
       )
-      surface.blit(scaled_foreground_image, (x, y - 15))
+      surface.blit(scaled_foreground_image, (x, y - 0))
 
     self._hitbox.x = x + screen._tile_width * self._hitbox.offset["x"]
-    self._hitbox.y = y + (screen._tile_height * self._hitbox.offset["y"]) - 15
+    self._hitbox.y = y + (screen._tile_height * self._hitbox.offset["y"]) - 0
     self._hitbox.width = screen._tile_width * self._hitbox.offset["width"]
-    self._hitbox.height = (screen._tile_height + 15) * self._hitbox.offset["height"]
+    self._hitbox.height = (screen._tile_height + 0) * self._hitbox.offset["height"]
     self._hitbox.draw(surface)
 
     
