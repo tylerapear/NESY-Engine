@@ -8,8 +8,12 @@ A simple 2D NES-Like game engine with assets, data, and a main.py file for demon
 
 To contribute, follow these steps:
 
-1) Make a fork
-2) Clone your fork to your machine:
+1) Make a fork:
+
+    <img width="564" height="54" alt="Screenshot 2025-09-13 131755" src="https://github.com/user-attachments/assets/0ca947f7-b7a7-482c-b92d-389f6e5bebae" />
+
+
+3) Clone your fork to your machine:
 
     ```bash
     git clone https://<your-name>/NESY-Engine.git
@@ -21,7 +25,7 @@ To contribute, follow these steps:
     cd NESY-Engine
     ```
    
-5) Ensure you have a Python3 environment set up on your machine with pip
+5) Ensure you have a [Python3 environment](https://docs.python.org/3/using/index.html) set up on your machine with pip
 6) Install requirements:
 
     ```bash
