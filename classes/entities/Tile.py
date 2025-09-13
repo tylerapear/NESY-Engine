@@ -22,24 +22,84 @@ class Tile():
     self._hitbox = Hitbox(hitbox_dimentions, hitbox_visible)
     self._hitbox.offset = hitbox_offset
     
+### PROPERTIES ###
+
+  @property
+  def background_img_path(self):
+    return self._background_img_path
+  
+  @background_img_path.setter
+  def background_img_path(background_img_path):
+    self._background_img_path = background_img_path
+    
+  @property
+  def background_image(self):
+    return self._background_image
+  
+  @background_image.setter
+  def background_image(background_image):
+    self._background_image = background_image
+    
+  @property
+  def foreground_img_path(self):
+    return self._foreground_img_path
+  
+  @foreground_img_path.setter
+  def foreground_img_path(foreground_img_path):
+    self._foreground_img_path = foreground_img_path
+    
+  @property
+  def foreground_image(self):
+    return self._foreground_image
+  
+  @foreground_image.setter
+  def foreground_image(foreground_image):
+    self._foreground_image = foreground_image
+    
+  @property
+  def hitbox_active(self):
+    return self._hitbox_active
+  
+  @hitbox_active.setter
+  def hitbox_active(hitbox_active):
+    self._hitbox_active = hitbox_active
+    
+  @property
+  def hitbox(self):
+    return self._hitbox
+  
+  @hitbox.setter
+  def hitbox(hitbox):
+    self._hitbox = hitbox
+    
+  @property
+  def prop1(self):
+    return self._prop1
+  
+  @prop1.setter
+  def prop1(prop1):
+    self._prop1 = prop1
+
+### METHODS ### 
+    
   def draw_background(self, screen, surface, x, y):
     scaled_background_image = pygame.transform.scale(
-      self._background_image, (screen._tile_width, screen._tile_height)
+      self.background_image, (screen.tile_width, screen.tile_height)
     )
     surface.blit(scaled_background_image, (x, y))
     
   def draw_foreground(self, screen, surface, x, y):
-    if self._foreground_image:
+    if self.foreground_image:
       scaled_foreground_image = pygame.transform.scale(
-        self._foreground_image, (screen._tile_width, screen._tile_height + 0)
+        self.foreground_image, (screen.tile_width, screen.tile_height + 0)
       )
       surface.blit(scaled_foreground_image, (x, y - 0))
 
-    self._hitbox.x = x + screen._tile_width * self._hitbox.offset["x"]
-    self._hitbox.y = y + (screen._tile_height * self._hitbox.offset["y"]) - 0
-    self._hitbox.width = screen._tile_width * self._hitbox.offset["width"]
-    self._hitbox.height = (screen._tile_height + 0) * self._hitbox.offset["height"]
-    self._hitbox.draw(surface)
+    self.hitbox.x = x + screen.tile_width * self.hitbox.offset["x"]
+    self.hitbox.y = y + (screen.tile_height * self.hitbox.offset["y"]) - 0
+    self.hitbox.width = screen.tile_width * self.hitbox.offset["width"]
+    self.hitbox.height = (screen.tile_height + 0) * self.hitbox.offset["height"]
+    self.hitbox.draw(surface)
 
     
     
