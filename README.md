@@ -1,6 +1,6 @@
 # NESY Engine
 
-A simple 2D NES-Like game engine with assets, data, and a main.py file for demonstration. Uses Python and Pygame. The goal of this project is to release a package called "NESY Engine" that can be used to create NES-style games. The data directory, assets directory, are part of a demonstration game, inspired by _The Legend of Zelda (1986)_. These exist for development purposes and will not be part of the finished package.
+A simple 2D NES-Like game engine with assets, data, and a main.py file for demonstration. Uses Python and Pygame. The goal of this project is to release a package called "NESY Engine" that can be used to create NES-style games. The data directory, assets directory, and main.py file are part of a demonstration game, inspired by _The Legend of Zelda (1986)_. These exist for development purposes and will not be part of the finished package.
 
 <p align="center">
 <img width="75%" height="75%" alt="Screenshot 2025-09-13 132204" src="https://github.com/user-attachments/assets/201b4c27-2753-4d7c-bf52-ecb218c0fc12" />
