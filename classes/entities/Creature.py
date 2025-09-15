@@ -207,28 +207,28 @@ class Creature:
 
 ### METHODS ###
 
-  def update(self, dt, screen):
+  def update(self, dt, world_map):
     
     self.up_speed = 1
     if self.hitbox.y <= 0:
-      self.handleBorderCollision("Up")
+      self.handleBorderCollision(world_map, "Up")
       
     self.left_speed = 1
     if self.hitbox.x <= 0:
-      self.handleBorderCollision("Left")
+      self.handleBorderCollision(world_map, "Left")
       
     self.down_speed = 1
-    if self.hitbox.y + self.hitbox.height >= screen._height:
-      self.handleBorderCollision("Down")
+    if self.hitbox.y + self.hitbox.height >= world_map.current_screen.height:
+      self.handleBorderCollision(world_map, "Down")
       
     self.right_speed = 1
-    if self.hitbox.x + self.hitbox.width >= screen._width:
-      self.handleBorderCollision("Right")
+    if self.hitbox.x + self.hitbox.width >= world_map.current_screen.width:
+      self.handleBorderCollision(world_map, "Right")
 
-    for tile in screen._tiles:
-      if tile._hitbox_active and self.hitbox.collides(tile._hitbox):
-        collision_direction = self.hitbox.getReverseCollisionDirection(tile._hitbox)
-        self.handleBorderCollision(collision_direction)
+    for tile in world_map.current_screen.tiles:
+      if tile.hitbox_active and self.hitbox.collides(tile.hitbox):
+        collision_direction = self.hitbox.getReverseCollisionDirection(tile.hitbox)
+        self.handleTileCollision(collision_direction)
     
     if self.immunity_count > 0:
       self.immunity_count -= 1
@@ -284,7 +284,17 @@ class Creature:
       self.health -= damage
     self.immunity_count = 30
     
-  def handleBorderCollision(self, direction):
+  def handleBorderCollision(self, world_map, direction):
+    if direction == "Up":
+      self.up_speed = 0
+    if direction == "Down":
+      self.down_speed = 0
+    if direction == "Left":
+      self.left_speed = 0
+    if direction == "Right":
+      self.right_speed = 0
+      
+  def handleTileCollision(self, direction):
     if direction == "Up":
       self.up_speed = 0
     if direction == "Down":

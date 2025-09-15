@@ -1,9 +1,11 @@
 from classes.entities.Tile import Tile
+from classes.entities.Screen import Screen
 
 hitbox_active = True
 hitbox_visible = False
+LOGICAL_W, LOGICAL_H = 1280, 720
 
-tiles = [
+tiles1 = [
   
   #Row 1
   Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
@@ -167,3 +169,171 @@ tiles = [
   Tile('./assets/Tiles/sand.png', './assets/Tiles/mountainPeak.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
   Tile('./assets/Tiles/sand.png', './assets/Tiles/mountainPeak.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible)
 ]
+
+tiles2 = [
+  
+  #Row 1
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  
+  #Row 2
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  
+  #Row 3
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  
+  #Row 4
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  
+  #Row 5
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountainPeak.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountainPeak.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  
+  #Row 6
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  
+  #Row 7
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountainPeak.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  
+  #Row 8
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  
+  #Row 9
+  Tile('./assets/Tiles/sand.png', './assets/Tiles/mountain.png', hitbox_active, {"x": 0, "y": 0, "width": 50, "height": 50}, {"x": 0, "y": 0, "width": 1, "height": 1}, hitbox_visible),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+  Tile('./assets/Tiles/sand.png'),
+]
+
+screen1 = Screen(LOGICAL_W, LOGICAL_H, 16, 9, tiles1)
+screen2 = Screen(LOGICAL_W, LOGICAL_H, 16, 9, tiles2)

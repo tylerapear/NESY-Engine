@@ -147,4 +147,19 @@ class Player(Creature):
     for item in self.inventory:
       item.moveHitbox(self)
 
+  def moveToNextScreen(self, world_map, direction):
+    if direction == "Up":
+      self.y = world_map.current_screen.height - self.height + 100
+    elif direction == "Down":
+      self.y = 100
+    elif direction == "Left":
+      self.x = world_map.current_screen.width - self.width + 100
+    elif direction == "Right":
+      self.x = 100
+    world_map.setNextScreen(direction)
 
+  def handleBorderCollision(self, world_map, direction):
+    super().handleBorderCollision(world_map, direction)
+    #print(f'moving screen {direction}')
+    #print(self.y)
+    #self.moveToNextScreen(world_map, direction)
