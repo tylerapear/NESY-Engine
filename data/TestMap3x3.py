@@ -37,7 +37,7 @@ layouts = {
         "SMSSSMMSSMSSSSSS",
         "MSSSSSSSSSSSMSSS",
     ]
-    #can add more layouts for screens as needed
+    #can add more screens for layouts as needed
 }
 
 screens = []
