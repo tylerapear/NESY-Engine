@@ -6,8 +6,9 @@ from classes.entities.items.Sword import Sword
 from classes.entities.LogicalSurface import LogicalSurface
 from classes.entities.Tile import Tile
 from classes.entities.Screen import Screen
+from classes.entities.WorldMap import WorldMap
 
-from data.screen import tiles
+from data.worldMap4x4 import screens
 
 async def main(): 
   
@@ -36,8 +37,8 @@ async def main():
     height = 250, 
     x = 200, 
     y = 100, 
-    hitbox_dimentions = {"x": 288, "y": 188, "width": 75, "height": 75}, 
-    hitbox_visible = hitboxes_visible 
+    hitbox_offset_dimentions = {"x": 88, "y": 88, "width": 75, "height": 75}, 
+    hitbox_visible = hitboxes_visible
   ) 
   chuchus = [ 
     Enemy( 
@@ -47,7 +48,7 @@ async def main():
       height = 100, 
       x = 400, 
       y = 400, 
-      hitbox_dimentions = {"x": 410, "y": 415, "width": 85, "height": 80}, 
+      hitbox_offset_dimentions = {"x": 10, "y": 15, "width": 85, "height": 80}, 
       hitbox_visible = hitboxes_visible 
     ) 
   ] 
@@ -59,7 +60,7 @@ async def main():
     ) 
   ) 
   
-  screen = Screen(LOGICAL_W, LOGICAL_H, 16, 9, tiles)
+  world_map = WorldMap(2, 2, screens, 2)
   
   # Main Loop 
   
@@ -74,9 +75,9 @@ async def main():
           
     if player.alive:
       # UPDATE ENTITIES #
-      player.update(dt, screen, logical_surface.surface, chuchus, player.inventory[0]) 
+      player.update(dt, world_map, logical_surface.surface, chuchus, player.inventory[0]) 
       for chuchu in chuchus: 
-        chuchu.update(dt, screen, player.inventory[0]) 
+        chuchu.update(dt, world_map, player.inventory[0]) 
         
       # FILL THE SCREEN BACKGROUND COLOR #
       logical_surface.surface.fill((10,10,10)) 
@@ -87,7 +88,7 @@ async def main():
         logical_surface.surface.blit(gameover_surface, (300,20)) 
       
       # DRAW ENTITIES #
-      screen.draw(logical_surface.surface)
+      world_map.current_screen.draw(logical_surface.surface)
       player.draw(logical_surface.surface) 
       player.inventory[0].drawHitbox(logical_surface.surface) 
       for chuchu in chuchus: 

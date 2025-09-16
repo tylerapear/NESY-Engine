@@ -12,7 +12,7 @@ class Creature:
     height = 50, 
     x = 0, 
     y = 0, 
-    hitbox_dimentions = {"x": 0, "y": 0, "width": 0, "height": 0},
+    hitbox_offset_dimentions = {"x-offset": 0, "y-offset": 0, "width": 0, "height": 0},
     hitbox_visible = False,
     alive = True,
     health = 100,
@@ -31,7 +31,16 @@ class Creature:
     self._animations = Animations(spritePath, animationSpeed, width, height)
     self._current_animation = "IdleDown"
 
-    self._hitbox = Hitbox(hitbox_dimentions, hitbox_visible)
+    self._hitbox_offset_dimentions = hitbox_offset_dimentions
+    self._hitbox = Hitbox(
+      {
+        "x": x + hitbox_offset_dimentions["x"], 
+        "y": y + hitbox_offset_dimentions["y"], 
+        "width": hitbox_offset_dimentions["width"], 
+        "height": hitbox_offset_dimentions["height"]
+      }, 
+      hitbox_visible
+    )
 
     self._alive = alive
     self._health = health
@@ -134,6 +143,14 @@ class Creature:
     self._current_animation = current_animation
 
   @property
+  def hitbox_offset_dimentions(self):
+    return self._hitbox_offset_dimentions
+
+  @hitbox_offset_dimentions.setter
+  def hitbox_offset_dimentions(self, hitbox_offset_dimentions, visible = False):
+    self._hitbox_offset_dimentions = hitbox_offset_dimentions
+
+  @property
   def hitbox(self):
     return self._hitbox
 
@@ -207,28 +224,28 @@ class Creature:
 
 ### METHODS ###
 
-  def update(self, dt, screen):
+  def update(self, dt, world_map):
     
     self.up_speed = 1
     if self.hitbox.y <= 0:
-      self.handleBorderCollision("Up")
+      self.handleBorderCollision(world_map, "Up")
       
     self.left_speed = 1
     if self.hitbox.x <= 0:
-      self.handleBorderCollision("Left")
+      self.handleBorderCollision(world_map, "Left")
       
     self.down_speed = 1
-    if self.hitbox.y + self.hitbox.height >= screen._height:
-      self.handleBorderCollision("Down")
+    if self.hitbox.y + self.hitbox.height >= world_map.current_screen.height:
+      self.handleBorderCollision(world_map, "Down")
       
     self.right_speed = 1
-    if self.hitbox.x + self.hitbox.width >= screen._width:
-      self.handleBorderCollision("Right")
+    if self.hitbox.x + self.hitbox.width >= world_map.current_screen.width:
+      self.handleBorderCollision(world_map, "Right")
 
-    for tile in screen._tiles:
-      if tile._hitbox_active and self.hitbox.collides(tile._hitbox):
-        collision_direction = self.hitbox.getReverseCollisionDirection(tile._hitbox)
-        self.handleBorderCollision(collision_direction)
+    for tile in world_map.current_screen.tiles:
+      if tile.hitbox_active and self.hitbox.collides(tile.hitbox):
+        collision_direction = self.hitbox.getReverseCollisionDirection(tile.hitbox)
+        self.handleTileCollision(collision_direction)
     
     if self.immunity_count > 0:
       self.immunity_count -= 1
@@ -265,6 +282,12 @@ class Creature:
         self.x += speed * dt
         self.hitbox.x = self.hitbox.x + (speed * dt)
 
+  def moveTo(self, x, y):
+    self.x = x
+    self.hitbox.x = self.x + self.hitbox_offset_dimentions["x"]
+    self.y = y
+    self.hitbox.y = self.y + self.hitbox_offset_dimentions["y"]
+
   def getKnockedBack(self, dt, direction, speed):
     if direction == "Up":
       self.y -= speed * dt * self.up_speed
@@ -284,7 +307,17 @@ class Creature:
       self.health -= damage
     self.immunity_count = 30
     
-  def handleBorderCollision(self, direction):
+  def handleBorderCollision(self, world_map, direction):
+    if direction == "Up":
+      self.up_speed = 0
+    if direction == "Down":
+      self.down_speed = 0
+    if direction == "Left":
+      self.left_speed = 0
+    if direction == "Right":
+      self.right_speed = 0
+      
+  def handleTileCollision(self, direction):
     if direction == "Up":
       self.up_speed = 0
     if direction == "Down":

@@ -11,7 +11,7 @@ class Player(Creature):
     height = 50, 
     x = 0, 
     y = 0,
-    hitbox_dimentions = {"x": 0, "y": 0, "width": 0, "height": 0},
+    hitbox_offset_dimentions = {"x": 0, "y": 0, "width": 0, "height": 0},
     hitbox_visible = False,
     alive = True,
     health = 100,
@@ -25,7 +25,7 @@ class Player(Creature):
       height, 
       x, 
       y, 
-      hitbox_dimentions,
+      hitbox_offset_dimentions,
       hitbox_visible,
       alive,
       health,
@@ -147,4 +147,20 @@ class Player(Creature):
     for item in self.inventory:
       item.moveHitbox(self)
 
+  def moveToNextScreen(self, world_map, direction):
+    HITBOX_BUFFER_PIXELS = 3
+    if world_map.setNextScreen(direction):
+      if direction == "Up":
+        self.moveTo(self.x, world_map.current_screen.height - self.height + self.hitbox_offset_dimentions["y"] - HITBOX_BUFFER_PIXELS)
+      elif direction == "Down":
+        self.moveTo(self.x, -self.hitbox_offset_dimentions["y"] - HITBOX_BUFFER_PIXELS)      
+      elif direction == "Left":
+        self.moveTo(world_map.current_screen.width - self.width + self.hitbox_offset_dimentions["x"] - HITBOX_BUFFER_PIXELS, self.y)
+      elif direction == "Right":
+        self.moveTo(-self.hitbox_offset_dimentions["x"] - HITBOX_BUFFER_PIXELS, self.y)
+    else:
+      super().handleBorderCollision(world_map, direction)
 
+
+  def handleBorderCollision(self, world_map, direction):
+    self.moveToNextScreen(world_map, direction)
