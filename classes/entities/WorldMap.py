@@ -53,14 +53,30 @@ class WorldMap():
 ### METHODS ###
 
   def setNextScreen(self, direction):
-    self.current_screen = self.getNextScreenIndex(direction)
+    next_screen = self.getNextScreen(direction)
+    if next_screen:
+      self.current_screen = self.getNextScreen(direction)
+    return next_screen
   
-  def getNextScreenIndex(self, direction):
+  def getScreenIfExists(self, screen_index):
+    if screen_index < len(self.screens):
+      return self.screens[screen_index]
+    return None
+  
+  def getNextScreen(self, direction):
     if direction == "Up":
-      return self.screens[self.screens.index(self.current_screen) - self.screens_wide]
+      if self.screens.index(self.current_screen) + 1 <= self.screens_wide:
+        return None
+      return self.getScreenIfExists(self.screens.index(self.current_screen) - self.screens_wide)
     elif direction == "Down":
-      return self.screens[self.screens.index(self.current_screen) + self.screens_wide]
+      if self.screens.index(self.current_screen) + 1 > len(self.screens) - self.screens_wide:
+        return None
+      return self.getScreenIfExists(self.screens.index(self.current_screen) + self.screens_wide)
     elif direction == "Left":
-      return self.screens[self.screens.index(self.current_screen) - 1]
+      if (self.screens.index(self.current_screen) + 1) % self.screens_wide == 1:
+        return None
+      return self.getScreenIfExists(self.screens.index(self.current_screen) - 1)
     elif direction == "Right":
-      return self.screens[self.screens.index(self.current_screen) + 1]
+      if (self.screens.index(self.current_screen) + 1) % self.screens_wide == 0:
+        return None
+      return self.getScreenIfExists(self.screens.index(self.current_screen) + 1)

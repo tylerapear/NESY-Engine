@@ -8,7 +8,7 @@ from classes.entities.Tile import Tile
 from classes.entities.Screen import Screen
 from classes.entities.WorldMap import WorldMap
 
-from data.screen import screen1, screen2
+from data.worldMap4x4 import screens
 
 async def main(): 
   
@@ -24,7 +24,7 @@ async def main():
   
   # SET OTHER PROPERTIES #
   clock = pygame.time.Clock() 
-  hitboxes_visible = True    
+  hitboxes_visible = False    
   game_over_font = pygame.font.SysFont(None, 36, bold=False)
 
   # DEFINE ENTITIES # 
@@ -38,7 +38,7 @@ async def main():
     x = 200, 
     y = 100, 
     hitbox_offset_dimentions = {"x": 88, "y": 88, "width": 75, "height": 75}, 
-    hitbox_visible = hitboxes_visible 
+    hitbox_visible = hitboxes_visible
   ) 
   chuchus = [ 
     Enemy( 
@@ -60,7 +60,7 @@ async def main():
     ) 
   ) 
   
-  world_map = WorldMap(1, 2, [screen2, screen1], 1)
+  world_map = WorldMap(2, 2, screens, 2)
   
   # Main Loop 
   
