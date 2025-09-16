@@ -8,8 +8,8 @@ from classes.entities.Tile import Tile
 from classes.entities.Screen import Screen
 from classes.entities.WorldMap import WorldMap
 
-from data.worldMap2x2 import screens
-#from data.TestMap3x3 import screens
+#from data.worldMap2x2 import screens
+from data.TestMap3x3 import screens
 
 async def main(): 
   
@@ -61,7 +61,7 @@ async def main():
     ) 
   ) 
   
-  world_map = WorldMap(2, 2, screens, 2)
+  world_map = WorldMap(2, 2, screens, 0)
   #world_map = WorldMap(3,3, screens, 0)
   
   # Main Loop 
