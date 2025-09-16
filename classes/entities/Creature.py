@@ -12,7 +12,7 @@ class Creature:
     height = 50, 
     x = 0, 
     y = 0, 
-    hitbox_dimentions = {"x": 0, "y": 0, "width": 0, "height": 0},
+    hitbox_offset_dimentions = {"x-offset": 0, "y-offset": 0, "width": 0, "height": 0},
     hitbox_visible = False,
     alive = True,
     health = 100,
@@ -31,7 +31,16 @@ class Creature:
     self._animations = Animations(spritePath, animationSpeed, width, height)
     self._current_animation = "IdleDown"
 
-    self._hitbox = Hitbox(hitbox_dimentions, hitbox_visible)
+    self._hitbox_offset_dimentions = hitbox_offset_dimentions
+    self._hitbox = Hitbox(
+      {
+        "x": x + hitbox_offset_dimentions["x"], 
+        "y": y + hitbox_offset_dimentions["y"], 
+        "width": hitbox_offset_dimentions["width"], 
+        "height": hitbox_offset_dimentions["height"]
+      }, 
+      hitbox_visible
+    )
 
     self._alive = alive
     self._health = health
@@ -132,6 +141,14 @@ class Creature:
   @current_animation.setter
   def current_animation(self, current_animation):
     self._current_animation = current_animation
+
+  @property
+  def hitbox_offset_dimentions(self):
+    return self._hitbox_offset_dimentions
+
+  @hitbox_offset_dimentions.setter
+  def hitbox_offset_dimentions(self, hitbox_offset_dimentions, visible = False):
+    self._hitbox_offset_dimentions = hitbox_offset_dimentions
 
   @property
   def hitbox(self):
@@ -264,6 +281,12 @@ class Creature:
       elif direction == "Right":
         self.x += speed * dt
         self.hitbox.x = self.hitbox.x + (speed * dt)
+
+  def moveTo(self, x, y):
+    self.x = x
+    self.hitbox.x = self.x + self.hitbox_offset_dimentions["x"]
+    self.y = y
+    self.hitbox.y = self.y + self.hitbox_offset_dimentions["y"]
 
   def getKnockedBack(self, dt, direction, speed):
     if direction == "Up":

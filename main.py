@@ -24,7 +24,7 @@ async def main():
   
   # SET OTHER PROPERTIES #
   clock = pygame.time.Clock() 
-  hitboxes_visible = False    
+  hitboxes_visible = True    
   game_over_font = pygame.font.SysFont(None, 36, bold=False)
 
   # DEFINE ENTITIES # 
@@ -37,7 +37,7 @@ async def main():
     height = 250, 
     x = 200, 
     y = 100, 
-    hitbox_dimentions = {"x": 288, "y": 188, "width": 75, "height": 75}, 
+    hitbox_offset_dimentions = {"x": 88, "y": 88, "width": 75, "height": 75}, 
     hitbox_visible = hitboxes_visible 
   ) 
   chuchus = [ 
@@ -48,7 +48,7 @@ async def main():
       height = 100, 
       x = 400, 
       y = 400, 
-      hitbox_dimentions = {"x": 410, "y": 415, "width": 85, "height": 80}, 
+      hitbox_offset_dimentions = {"x": 10, "y": 15, "width": 85, "height": 80}, 
       hitbox_visible = hitboxes_visible 
     ) 
   ] 
@@ -89,7 +89,6 @@ async def main():
       
       # DRAW ENTITIES #
       world_map.current_screen.draw(logical_surface.surface)
-      print(world_map.screens.index(world_map.current_screen))
       player.draw(logical_surface.surface) 
       player.inventory[0].drawHitbox(logical_surface.surface) 
       for chuchu in chuchus: 
