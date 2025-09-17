@@ -9,6 +9,8 @@ class Enemy(Creature):
 
   def update(self, dt, screen, weapon):
     super().update(dt, screen)
+    if not self.alive:
+      return #their update logic wont run if the enemies die
     if weapon.active and self.immunity_count <= 0:
       self.checkForDamage(weapon)
     

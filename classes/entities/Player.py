@@ -127,6 +127,8 @@ class Player(Creature):
   def checkForDamage(self, enemies):
     for enemy in enemies:
       if self.hitbox.collides(enemy.hitbox) and self.immunity_count <= 0:
+        if not enemy.alive: #skip dead enemies
+          continue
         self.damage_direction = self.hitbox.getCollisionDirection(enemy.hitbox)
         self.takeDamage(10)
         self.immunity_count = 30
