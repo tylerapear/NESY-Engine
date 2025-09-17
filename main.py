@@ -48,7 +48,8 @@ async def main():
       width = 100, 
       height = 100, 
       x = 400, 
-      y = 400, 
+      y = 400,
+      health = 100,
       hitbox_offset_dimentions = {"x": 10, "y": 15, "width": 85, "height": 80}, 
       hitbox_visible = hitboxes_visible 
     ) 
@@ -80,6 +81,7 @@ async def main():
       player.update(dt, world_map, logical_surface.surface, chuchus, player.inventory[0]) 
       for chuchu in chuchus: 
         chuchu.update(dt, world_map, player.inventory[0]) 
+      chuchus = [enemy for enemy in chuchus if enemy.alive] #removes dead enemies
         
       # FILL THE SCREEN BACKGROUND COLOR #
       logical_surface.surface.fill((10,10,10)) 
