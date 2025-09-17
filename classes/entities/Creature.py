@@ -303,8 +303,10 @@ class Creature:
       self.hitbox.x = self.hitbox.x + ((speed * dt) * self.right_speed)
 
   def takeDamage(self, damage):
-    if self.health > 0:
-      self.health -= damage
+    self.health -= damage
+    if self.health <= 0:
+      self.alive = False
+      self.health = 0 #avoid neg hp
     self.immunity_count = 30
     
   def handleBorderCollision(self, world_map, direction):
