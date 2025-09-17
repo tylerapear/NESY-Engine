@@ -61,8 +61,8 @@ async def main():
     ) 
   ) 
   
-  world_map = WorldMap(2, 2, screens, 0)
-  #world_map = WorldMap(3,3, screens, 0)
+  #world_map = WorldMap(2, 2, screens, 0) #used for worldMap2x2
+  world_map = WorldMap(3,3, screens, 0) #used for TestMap3x3
   
   # Main Loop 
   
