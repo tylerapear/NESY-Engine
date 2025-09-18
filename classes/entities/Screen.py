@@ -3,7 +3,7 @@ import pygame
 
 class Screen():
   
-  def __init__(self, width, height, tiles_wide, tiles_high, tiles):
+  def __init__(self, width, height, tiles_wide, tiles_high, tiles, creatures):
     self._width = width
     self._height = height
     self._tiles_wide = tiles_wide
@@ -12,6 +12,7 @@ class Screen():
     self._tile_height = height // tiles_high
     self._tiles = tiles
     self._active = False
+    self._creatures = creatures
     
 ### PROPERTIES ###
   
@@ -78,6 +79,14 @@ class Screen():
   @active.setter
   def active(active):
     self._active = active
+  
+  @property
+  def creatures(self):
+    return self._creatures
+  
+  @creatures.setter
+  def creatures(creatures):
+    self._creatures = creatures
   
 ### METHODS ###
     
