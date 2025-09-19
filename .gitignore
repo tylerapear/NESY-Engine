@@ -1,3 +1,45 @@
-venv
-**/__pycache__/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Virtual environments
+venv/
+.venv/
+ENV/
+.env/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Pygame assets (if generated)
+*.bmp
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Pip
+pip-selfcheck.json
+
+# Test and coverage
+htmlcov/
+.coverage
+coverage.xml
+*.cover
+
+# Build
 build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
+
+# Misc
+*.swp
+*.swo
