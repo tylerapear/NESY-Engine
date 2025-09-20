@@ -6,39 +6,62 @@ class TextSurface:
     A class that allows developers to overlay text on the screen with customizable properties.
     """
     
-    def __init__(self):
-        # Surface properties (private)
-        self._width = 200
-        self._height = 100
-        self._x_position = 0
-        self._y_position = 0
-        self._background_color = (255, 255, 255)  # White
-        self._opacity = 255
-        self._visible = True
-        
-        # Border properties (private)
-        self._border_color = (0, 0, 0)  # Black
-        self._border_thickness = 1
-        self._border_opacity = 255
-        
-        # Padding properties (private)
-        self._padding_top = 10
-        self._padding_bottom = 10
-        self._padding_left = 10
-        self._padding_right = 10
-        
-        # Text properties (private)
-        self._font_name = "Arial"
-        self._font_size = 16
-        self._font_weight = "normal"  # "normal", "bold"
-        self._text_color = (0, 0, 0)  # Black
-        self._horizontal_alignment = "left"  # "left", "center", "right"
-        self._text_content = ""
-        
-        # Internal surface
-        self._surface = None
-        self._font = None
-        self._update_font()
+    def __init__(
+      self,
+      width = 200,
+      height = 100,
+      x_position = 0,
+      y_position = 0,
+      background_color = (255, 255, 255),
+      opacity = 255,
+      visible = True,
+      border_color = (0, 0, 0),
+      border_thickness = 1,
+      border_opacity = 255,
+      padding_top = 10,
+      padding_bottom = 10,
+      padding_left = 10,
+      padding_right = 10,
+      font_name = "Arial",
+      font_size = 16,
+      font_weight = "normal", # "normal", "bold"
+      text_color = (0, 0, 0), # Black
+      horizontal_alignment = "left",  # "left", "center", "right"
+      text_content = "",
+      surface = None
+    ):
+      # Surface properties (private)
+      self._width = width
+      self._height = height
+      self._x_position = x_position
+      self._y_position = y_position
+      self._background_color = background_color
+      self._opacity = opacity
+      self._visible = visible
+      
+      # Border properties (private)
+      self._border_color = border_color
+      self._border_thickness = border_thickness
+      self._border_opacity = border_opacity
+      
+      # Padding properties (private)
+      self._padding_top = padding_top
+      self._padding_bottom = padding_bottom
+      self._padding_left = padding_left
+      self._padding_right = padding_right
+      
+      # Text properties (private)
+      self._font_name = font_name
+      self._font_size = font_size
+      self._font_weight = font_weight
+      self._text_color = text_color
+      self._horizontal_alignment = horizontal_alignment
+      self._text_content = text_content
+      
+      # Internal surface
+      self._surface = None
+      self._font = None
+      self._update_font()
     
     def _update_font(self):
         """Update the pygame font object when font properties change."""
