@@ -90,7 +90,12 @@ class Screen():
   
 ### METHODS ###
     
-  def draw(self, surface):
+  def update(self, surface, *args, **kwargs):
+    for creature in self.creatures:
+      if creature.alive:
+        creature.update(surface, *args, **kwargs)
+    
+  def draw(self, surface, *args, **kwargs):
     draw_position = [0,0]
     tile_index = 0
     for vertical_tile in range(self.tiles_high):
@@ -114,4 +119,8 @@ class Screen():
           tile_index += 1
       draw_position[0] = 0
       draw_position[1] += self.tile_height
+      
+    for creature in self.creatures:
+      if creature.alive:
+        creature.draw(surface, *args, **kwargs)
         

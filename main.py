@@ -74,15 +74,22 @@ async def main():
     # CHECK FOR WINDOW EVENTS #
     for event in pygame.event.get(): 
       if event.type == pygame.QUIT: 
-        running = False 
+        running = False
+        
+    active_enemies = [creature for creature in world_map.current_screen.creatures if creature.alive]
           
     if player.alive:
       # UPDATE ENTITIES #
-      player.update(dt, world_map, logical_surface.surface, chuchus, player.inventory[0]) 
+      player.update(dt, world_map, logical_surface.surface, active_enemies, player.inventory[0])
+      
+      world_map.current_screen.update(dt, world_map, player.inventory[0])
+      
+      '''
       for chuchu in chuchus: 
         chuchu.update(dt, world_map, player.inventory[0]) 
       chuchus = [enemy for enemy in chuchus if enemy.alive] #removes dead enemies
-        
+      '''  
+      
       # FILL THE SCREEN BACKGROUND COLOR #
       logical_surface.surface.fill((10,10,10)) 
       
@@ -92,11 +99,13 @@ async def main():
         logical_surface.surface.blit(gameover_surface, (300,20)) 
       
       # DRAW ENTITIES #
-      world_map.current_screen.draw(logical_surface.surface)
+      world_map.current_screen.draw(logical_surface.surface, )
       player.draw(logical_surface.surface) 
       player.inventory[0].drawHitbox(logical_surface.surface) 
+      '''
       for chuchu in chuchus: 
         chuchu.draw(logical_surface.surface) 
+      '''
     
     # DRAW RESIZED LOGICAL SCREEN ON WINDOW #
     #blit_logical_to_window()

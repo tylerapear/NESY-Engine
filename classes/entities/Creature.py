@@ -30,6 +30,7 @@ class Creature:
 
     self._animations = Animations(spritePath, animationSpeed, width, height)
     self._current_animation = "IdleDown"
+    self.image = self.animations.getNextImage(self, 0)
 
     self._hitbox_offset_dimentions = hitbox_offset_dimentions
     self._hitbox = Hitbox(
