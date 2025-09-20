@@ -1,21 +1,15 @@
-import pygame, sys, asyncio, math 
+import pygame, sys, asyncio, math, copy
 
 pygame.init() 
 
-from classes.effects.Animations import Animations
 from classes.effects.TextSurface import TextSurface
 from classes.entities.Player import Player 
-from classes.entities.Enemy import Enemy 
 from classes.entities.items.Sword import Sword
 from classes.entities.LogicalSurface import LogicalSurface
-from classes.entities.Tile import Tile
-from classes.entities.Screen import Screen
 from classes.entities.WorldMap import WorldMap
-from classes.effects.text import textSurface, drawTextSurface
-from classes.entities.WanderingEnemy import WanderingEnemy
 
 
-from data.worldMap2x2 import screens
+from data.worldMap2x2 import buildMap
 # from data.TestMap3x3 import screens
 
 async def main(): 
@@ -87,7 +81,7 @@ async def main():
     if first_frame:
       first_frame = False
       
-      world_map = WorldMap(2, 2, screens, 0) #used for worldMap2x2
+      world_map = buildMap() #used for worldMap2x2
       #world_map = WorldMap(3,3, screens, 0) #used for TestMap3x3
       
       player = Player( 
@@ -95,6 +89,7 @@ async def main():
         animationSpeed = 10, 
         width = 250, 
         height = 250, 
+        health = 60,
         x = 200, 
         y = 100, 
         hitbox_offset_dimentions = {"x": 88, "y": 88, "width": 75, "height": 75}, 
@@ -144,6 +139,5 @@ async def main():
     # UPDATE WINDOW #
     pygame.display.flip() 
     await asyncio.sleep(0) 
-    
     
 asyncio.run(main()) 
