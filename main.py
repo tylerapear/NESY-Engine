@@ -84,12 +84,6 @@ async def main():
       
       world_map.current_screen.update(dt, world_map, player.inventory[0])
       
-      '''
-      for chuchu in chuchus: 
-        chuchu.update(dt, world_map, player.inventory[0]) 
-      chuchus = [enemy for enemy in chuchus if enemy.alive] #removes dead enemies
-      '''  
-      
       # FILL THE SCREEN BACKGROUND COLOR #
       logical_surface.surface.fill((10,10,10)) 
       
@@ -102,10 +96,6 @@ async def main():
       world_map.current_screen.draw(logical_surface.surface, )
       player.draw(logical_surface.surface) 
       player.inventory[0].drawHitbox(logical_surface.surface) 
-      '''
-      for chuchu in chuchus: 
-        chuchu.draw(logical_surface.surface) 
-      '''
     
     # DRAW RESIZED LOGICAL SCREEN ON WINDOW #
     #blit_logical_to_window()
