@@ -1,20 +1,15 @@
-import pygame, sys, asyncio, math 
+import pygame, sys, asyncio, math, copy
 
 pygame.init() 
 
+from classes.effects.TextSurface import TextSurface
 from classes.entities.Player import Player 
-from classes.entities.Enemy import Enemy 
-from classes.effects.Animations import Animations 
 from classes.entities.items.Sword import Sword
 from classes.entities.LogicalSurface import LogicalSurface
-from classes.entities.Tile import Tile
-from classes.entities.Screen import Screen
 from classes.entities.WorldMap import WorldMap
-from classes.effects.text import textSurface, drawTextSurface
-from classes.entities.WanderingEnemy import WanderingEnemy
 
 
-from data.worldMap2x2 import screens
+from data.worldMap2x2 import buildMap
 # from data.TestMap3x3 import screens
 
 async def main(): 
@@ -35,55 +30,45 @@ async def main():
   # DEFINE ENTITIES # 
   logical_surface = LogicalSurface(LOGICAL_W, LOGICAL_H, BACKGROUND_COLOR)     
   
-  player = Player( 
-    spritePath = './assets/Sprites/Link', 
-    animationSpeed = 10, 
-    width = 250, 
-    height = 250, 
-    x = 200, 
-    y = 100, 
-    hitbox_offset_dimentions = {"x": 88, "y": 88, "width": 75, "height": 75}, 
-    hitbox_visible = hitboxes_visible
-  ) 
-  chuchus = [ 
-    Enemy( 
-      spritePath = './assets/Sprites/Enemies/ChuChu', 
-      animationSpeed = 25, 
-      width = 100, 
-      height = 100, 
-      x = 400, 
-      y = 400,
-      health = 100,
-      hitbox_offset_dimentions = {"x": 10, "y": 15, "width": 85, "height": 80}, 
-      hitbox_visible = hitboxes_visible 
-    ) 
-  ] 
+  def drawGameoverScreen():
+    TextSurface(
+        background_color = (0,0,0),
+        width = LOGICAL_W,
+        height = LOGICAL_H
+    ).draw(logical_surface.surface)
+
+    TextSurface(
+      text_content = "GAME OVER",
+      background_color = (15,15,15),
+      opacity = 0,
+      border_thickness = 0,
+      text_color = (255,0,0),
+      x_position = 20,
+      y_position = 120,
+      width = LOGICAL_W - 40,
+      height = LOGICAL_H / 4,
+      horizontal_alignment = "center",
+      font_size = 128
+    ).draw(logical_surface.surface)
+    
+    TextSurface(
+      text_content = "Press 'Y' to play again",
+      background_color = (15,15,15),
+      opacity = 0,
+      border_thickness = 0,
+      text_color = (255,255,255),
+      x_position = 20,
+      y_position = 350,
+      width = LOGICAL_W - 40,
+      height = LOGICAL_H / 4,
+      horizontal_alignment = "center",
+      font_size = 48
+    ).draw(logical_surface.surface)
   
-  player.inventory.append( 
-    Sword( 
-      player = player, 
-      hitbox_visible = hitboxes_visible 
-    ) 
-  ) 
-  
-  world_map = WorldMap(2, 2, screens, 0) # used for worldMap2x2
-  # world_map = WorldMap(3,3, screens, 0) # used for TestMap3x3
-  
-  wanderer = WanderingEnemy(
-  spritePath='./assets/Sprites/Enemies/ChuChu',
-  animationSpeed=25,
-  width=100,
-  height=100,
-  x=600,
-  y=300,
-  health=100,
-  hitbox_offset_dimentions={"x": 10, "y": 15, "width": 85, "height": 80},
-  hitbox_visible=False
-)
-  world_map.current_screen.creatures.append(wanderer)
   # Main Loop 
   
   running = True 
+  first_frame = True
   while running: 
     dt = clock.tick(60) / 1000 
     
@@ -91,6 +76,32 @@ async def main():
     for event in pygame.event.get(): 
       if event.type == pygame.QUIT: 
         running = False
+        
+    # IF FIRST FRAME, SET UP MAP AND PLAYER
+    if first_frame:
+      first_frame = False
+      
+      world_map = buildMap() #used for worldMap2x2
+      #world_map = WorldMap(3,3, screens, 0) #used for TestMap3x3
+      
+      player = Player( 
+        spritePath = './assets/Sprites/Link', 
+        animationSpeed = 10, 
+        width = 250, 
+        height = 250, 
+        health = 60,
+        x = 200, 
+        y = 100, 
+        hitbox_offset_dimentions = {"x": 88, "y": 88, "width": 75, "height": 75}, 
+        hitbox_visible = hitboxes_visible
+      ) 
+  
+      player.inventory.append( 
+        Sword( 
+          player = player, 
+          hitbox_visible = hitboxes_visible 
+        ) 
+      ) 
         
     active_enemies = [creature for creature in world_map.current_screen.creatures if creature.alive]
           
@@ -111,10 +122,16 @@ async def main():
       # DRAW ENTITIES #
       world_map.current_screen.draw(logical_surface.surface)
       player.draw(logical_surface.surface) 
-      player.inventory[0].drawHitbox(logical_surface.surface) 
+      player.inventory[0].drawHitbox(logical_surface.surface)
       
-      # Draw the text overlay correctly
-      drawTextSurface(logical_surface.surface, textSurface)
+      #drawTextSurface(logical_surface.surface, textSurface)
+      
+    else:
+      #GAME OVER
+      drawGameoverScreen()
+      keys = pygame.key.get_pressed()
+      if keys[pygame.K_y]:
+        first_frame = True
     
     # DRAW RESIZED LOGICAL SCREEN ON WINDOW #
     logical_surface.blit(pygame.display.get_surface())
