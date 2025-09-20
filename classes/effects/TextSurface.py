@@ -227,7 +227,7 @@ class TextSurface:
     def visible(self, value: bool):
         self._visible = value
     
-    def render(self, screen: pygame.Surface):
+    def draw(self, screen: pygame.Surface):
         """
         Render the text surface onto the given screen.
         

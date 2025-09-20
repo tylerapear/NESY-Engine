@@ -1,4 +1,7 @@
 import pygame, sys, asyncio, math 
+
+pygame.init() 
+
 from classes.entities.Player import Player 
 from classes.entities.Enemy import Enemy 
 from classes.effects.Animations import Animations 
@@ -7,13 +10,12 @@ from classes.entities.LogicalSurface import LogicalSurface
 from classes.entities.Tile import Tile
 from classes.entities.Screen import Screen
 from classes.entities.WorldMap import WorldMap
+from classes.effects.text import textSurface, drawTextSurface
 
 from data.worldMap2x2 import screens
 #from data.TestMap3x3 import screens
 
 async def main(): 
-  
-  pygame.init() 
     
   # SET WINDOW PROPERTIES #
   LOGICAL_W, LOGICAL_H = 1280, 720 
@@ -96,6 +98,9 @@ async def main():
       world_map.current_screen.draw(logical_surface.surface, )
       player.draw(logical_surface.surface) 
       player.inventory[0].drawHitbox(logical_surface.surface) 
+      
+      #drawTextSurface(logical_surface.surface, textSurface)
+      textSurface.render(logical_surface.surface)
     
     # DRAW RESIZED LOGICAL SCREEN ON WINDOW #
     #blit_logical_to_window()
