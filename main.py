@@ -11,9 +11,11 @@ from classes.entities.Tile import Tile
 from classes.entities.Screen import Screen
 from classes.entities.WorldMap import WorldMap
 from classes.effects.text import textSurface, drawTextSurface
+from classes.entities.WanderingEnemy import WanderingEnemy
+
 
 from data.worldMap2x2 import screens
-#from data.TestMap3x3 import screens
+# from data.TestMap3x3 import screens
 
 async def main(): 
     
@@ -64,9 +66,21 @@ async def main():
     ) 
   ) 
   
-  world_map = WorldMap(2, 2, screens, 0) #used for worldMap2x2
-  #world_map = WorldMap(3,3, screens, 0) #used for TestMap3x3
+  world_map = WorldMap(2, 2, screens, 0) # used for worldMap2x2
+  # world_map = WorldMap(3,3, screens, 0) # used for TestMap3x3
   
+  wanderer = WanderingEnemy(
+  spritePath='./assets/Sprites/Enemies/ChuChu',
+  animationSpeed=25,
+  width=100,
+  height=100,
+  x=600,
+  y=300,
+  health=100,
+  hitbox_offset_dimentions={"x": 10, "y": 15, "width": 85, "height": 80},
+  hitbox_visible=False
+)
+  world_map.current_screen.creatures.append(wanderer)
   # Main Loop 
   
   running = True 
@@ -95,15 +109,14 @@ async def main():
         logical_surface.surface.blit(gameover_surface, (300,20)) 
       
       # DRAW ENTITIES #
-      world_map.current_screen.draw(logical_surface.surface, )
+      world_map.current_screen.draw(logical_surface.surface)
       player.draw(logical_surface.surface) 
       player.inventory[0].drawHitbox(logical_surface.surface) 
       
-      #drawTextSurface(logical_surface.surface, textSurface)
-      textSurface.render(logical_surface.surface)
+      # Draw the text overlay correctly
+      drawTextSurface(logical_surface.surface, textSurface)
     
     # DRAW RESIZED LOGICAL SCREEN ON WINDOW #
-    #blit_logical_to_window()
     logical_surface.blit(pygame.display.get_surface())
     
     # UPDATE WINDOW #
