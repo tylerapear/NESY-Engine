@@ -21,7 +21,7 @@ class Screen():
     return self._width
   
   @width.setter
-  def width(width):
+  def width(self, width):
     self._width = width
     
   @property
@@ -29,7 +29,7 @@ class Screen():
     return self._height
   
   @height.setter
-  def height(height):
+  def height(self, height):
     self._height = height
     
   @property
@@ -37,7 +37,7 @@ class Screen():
     return self._tiles_wide
   
   @tiles_wide.setter
-  def tiles_wide(tiles_wide):
+  def tiles_wide(self, tiles_wide):
     self._tiles_wide = tiles_wide
     
   @property
@@ -45,7 +45,7 @@ class Screen():
     return self._tiles_high
   
   @tiles_high.setter
-  def tiles_high(tiles_high):
+  def tiles_high(self, tiles_high):
     self._tiles_high = tiles_high
     
   @property
@@ -53,7 +53,7 @@ class Screen():
     return self._tile_width
   
   @tile_width.setter
-  def tile_width(tile_width):
+  def tile_width(self, tile_width):
     self._tile_width = tile_width
     
   @property
@@ -61,7 +61,7 @@ class Screen():
     return self._tile_height
   
   @tile_height.setter
-  def tile_height(tile_height):
+  def tile_height(self, tile_height):
     self._tile_height = tile_height
     
   @property
@@ -69,7 +69,7 @@ class Screen():
     return self._tiles
   
   @tiles.setter
-  def tiles(tiles):
+  def tiles(self, tiles):
     self._tiles = tiles
     
   @property
@@ -77,7 +77,7 @@ class Screen():
     return self._active
   
   @active.setter
-  def active(active):
+  def active(self, active):
     self._active = active
   
   @property
@@ -85,15 +85,20 @@ class Screen():
     return self._creatures
   
   @creatures.setter
-  def creatures(creatures):
+  def creatures(self, creatures):
     self._creatures = creatures
   
 ### METHODS ###
     
-  def update(self, surface, *args, **kwargs):
+  def update(self, dt, world_map, weapon):
+    # Forward updates to creatures. Enemies take (dt, world_map, weapon).
+    # Some creatures (e.g., NPCs or simple tiles-as-creatures) might only take (dt, world_map).
     for creature in self.creatures:
       if creature.alive:
-        creature.update(surface, *args, **kwargs)
+        try:
+          creature.update(dt, world_map, weapon)
+        except TypeError:
+          creature.update(dt, world_map)
     
   def draw(self, surface, *args, **kwargs):
     draw_position = [0,0]
@@ -123,4 +128,3 @@ class Screen():
     for creature in self.creatures:
       if creature.alive:
         creature.draw(surface, *args, **kwargs)
-        

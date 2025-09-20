@@ -11,9 +11,12 @@ from classes.entities.LogicalSurface import LogicalSurface
 from classes.entities.Tile import Tile
 from classes.entities.Screen import Screen
 from classes.entities.WorldMap import WorldMap
+from classes.effects.text import textSurface, drawTextSurface
+from classes.entities.WanderingEnemy import WanderingEnemy
+
 
 from data.worldMap2x2 import screens
-#from data.TestMap3x3 import screens
+# from data.TestMap3x3 import screens
 
 async def main(): 
     
@@ -122,7 +125,7 @@ async def main():
         logical_surface.surface.blit(gameover_surface, (300,20)) 
       
       # DRAW ENTITIES #
-      world_map.current_screen.draw(logical_surface.surface, )
+      world_map.current_screen.draw(logical_surface.surface)
       player.draw(logical_surface.surface) 
       player.inventory[0].drawHitbox(logical_surface.surface)
       
@@ -136,7 +139,6 @@ async def main():
         first_frame = True
     
     # DRAW RESIZED LOGICAL SCREEN ON WINDOW #
-    #blit_logical_to_window()
     logical_surface.blit(pygame.display.get_surface())
     
     # UPDATE WINDOW #
