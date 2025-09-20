@@ -7,8 +7,8 @@ class Enemy(Creature):
 
 ### METHODS ###
 
-  def update(self, dt, screen, weapon):
-    super().update(dt, screen)
+  def update(self, dt, world_map, weapon):
+    super().update(dt, world_map)
     if not self.alive:
       return #their update logic wont run if the enemies die
     if weapon.active and self.immunity_count <= 0:

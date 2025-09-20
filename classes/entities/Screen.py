@@ -3,7 +3,7 @@ import pygame
 
 class Screen():
   
-  def __init__(self, width, height, tiles_wide, tiles_high, tiles):
+  def __init__(self, width, height, tiles_wide, tiles_high, tiles, creatures):
     self._width = width
     self._height = height
     self._tiles_wide = tiles_wide
@@ -12,6 +12,7 @@ class Screen():
     self._tile_height = height // tiles_high
     self._tiles = tiles
     self._active = False
+    self._creatures = creatures
     
 ### PROPERTIES ###
   
@@ -79,9 +80,22 @@ class Screen():
   def active(active):
     self._active = active
   
+  @property
+  def creatures(self):
+    return self._creatures
+  
+  @creatures.setter
+  def creatures(creatures):
+    self._creatures = creatures
+  
 ### METHODS ###
     
-  def draw(self, surface):
+  def update(self, surface, *args, **kwargs):
+    for creature in self.creatures:
+      if creature.alive:
+        creature.update(surface, *args, **kwargs)
+    
+  def draw(self, surface, *args, **kwargs):
     draw_position = [0,0]
     tile_index = 0
     for vertical_tile in range(self.tiles_high):
@@ -105,4 +119,8 @@ class Screen():
           tile_index += 1
       draw_position[0] = 0
       draw_position[1] += self.tile_height
+      
+    for creature in self.creatures:
+      if creature.alive:
+        creature.draw(surface, *args, **kwargs)
         
