@@ -45,6 +45,7 @@ class Creature:
 
     self._alive = alive
     self._health = health
+    self.max_health = health
     self._display_health = display_health
     self._damage_direction = "Down"
     
