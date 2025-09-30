@@ -1,4 +1,5 @@
 import pygame, sys, asyncio, math, copy
+from classes.UI.HUD import HUD
 
 pygame.init() 
 
@@ -17,7 +18,7 @@ async def main():
   # SET WINDOW PROPERTIES #
   LOGICAL_W, LOGICAL_H = 1280, 720 
   BACKGROUND_COLOR = (24,26,32) 
-  window = pygame.display.set_mode((LOGICAL_W, LOGICAL_H), pygame.RESIZABLE) 
+  pygame.display.set_mode((LOGICAL_W, LOGICAL_H), pygame.RESIZABLE) 
   icon = pygame.transform.scale(pygame.image.load('./assets/Icons/GameIcon.png'), (132,132)) 
   pygame.display.set_icon(icon)  
   pygame.display.set_caption("The Legend of Xelda") 
@@ -95,6 +96,8 @@ async def main():
         hitbox_offset_dimentions = {"x": 88, "y": 88, "width": 75, "height": 75}, 
         hitbox_visible = hitboxes_visible
       ) 
+
+      hud = HUD(player, screen_size = (LOGICAL_W, LOGICAL_H))
   
       player.inventory.append( 
         Sword( 
@@ -134,7 +137,10 @@ async def main():
         first_frame = True
     
     # DRAW RESIZED LOGICAL SCREEN ON WINDOW #
-    logical_surface.blit(pygame.display.get_surface())
+    #logical_surface.blit(pygame.display.get_surface())
+
+    hud.draw(logical_surface.surface)
+    pygame.display.get_surface().blit(logical_surface.surface, (0,0))
     
     # UPDATE WINDOW #
     pygame.display.flip() 
