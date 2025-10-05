@@ -78,10 +78,10 @@ class HUD:
         wasd_center = (gray_left + 250, gray_center_y)
 
         keys = { #left aligning keys relative to grey bar
-            "W": (wasd_center[0], wasd_center[1] - (key_size + gap)),
-            "A":(wasd_center[0] - (key_size + gap), wasd_center[1]),
-            "S": (wasd_center[0], wasd_center[1]),
-            "D": (wasd_center[0] + (key_size + gap), wasd_center[1]),
+            "W": (wasd_center[0] + 320, wasd_center[1] - (key_size + gap)),
+            "A":(wasd_center[0] - (key_size + gap) +320, wasd_center[1]),
+            "S": (wasd_center[0] + 320, wasd_center[1]),
+            "D": (wasd_center[0] + (key_size + gap) + 320, wasd_center[1]),
         }
 
         for k, (kx, ky) in keys.items():
@@ -92,7 +92,7 @@ class HUD:
             surface.blit(text, text_rect)
     #320
         label_text = self.font.render("Movement Keys", True, (255, 255, 255))
-        label_rect = label_text.get_rect(center=(wasd_center[0], wasd_center[1] - key_size - 25))
+        label_rect = label_text.get_rect(center=(wasd_center[0] + 340, wasd_center[1] - key_size - 20))
         surface.blit(label_text, label_rect)
 
         #j key
