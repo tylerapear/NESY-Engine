@@ -28,8 +28,20 @@ async def main():
   hitboxes_visible = False    
   game_over_font = pygame.font.SysFont(None, 36, bold=False)
 
-  # DEFINE ENTITIES # 
-  logical_surface = LogicalSurface(LOGICAL_W, LOGICAL_H, BACKGROUND_COLOR)     
+  # DEFINE ENTITIES #
+  player = Player( 
+  spritePath = './assets/Sprites/Link', 
+  animationSpeed = 10, 
+  width = 250, 
+  height = 250, 
+  health = 60,
+  x = 200, 
+  y = 100, 
+  hitbox_offset_dimentions = {"x": 88, "y": 88, "width": 75, "height": 75}, 
+  hitbox_visible = hitboxes_visible
+)
+  logical_surface = LogicalSurface(LOGICAL_W, LOGICAL_H, BACKGROUND_COLOR) 
+  hud = HUD(player, screen_size=(LOGICAL_W, LOGICAL_H))    
   
   def drawGameoverScreen():
     TextSurface(
@@ -74,9 +86,12 @@ async def main():
     dt = clock.tick(60) / 1000 
     
     # CHECK FOR WINDOW EVENTS #
-    for event in pygame.event.get(): 
+    events = pygame.event.get()
+    for event in events: 
       if event.type == pygame.QUIT: 
         running = False
+    
+    hud.update(events, dt)
         
     # IF FIRST FRAME, SET UP MAP AND PLAYER
     if first_frame:
@@ -85,19 +100,7 @@ async def main():
       world_map = buildMap() #used for worldMap2x2
       #world_map = WorldMap(3,3, screens, 0) #used for TestMap3x3
       
-      player = Player( 
-        spritePath = './assets/Sprites/Link', 
-        animationSpeed = 10, 
-        width = 250, 
-        height = 250, 
-        health = 60,
-        x = 200, 
-        y = 100, 
-        hitbox_offset_dimentions = {"x": 88, "y": 88, "width": 75, "height": 75}, 
-        hitbox_visible = hitboxes_visible
-      ) 
 
-      hud = HUD(player, screen_size = (LOGICAL_W, LOGICAL_H))
   
       player.inventory.append( 
         Sword( 
