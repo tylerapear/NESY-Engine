@@ -90,7 +90,7 @@ class HUD:
             text = self.font.render(k, True, (0, 0, 0))
             text_rect = text.get_rect(center=rect.center)
             surface.blit(text, text_rect)
-    #320
+            
         label_text = self.font.render("Movement Keys", True, (255, 255, 255))
         label_rect = label_text.get_rect(center=(wasd_center[0] + 340, wasd_center[1] - key_size - 20))
         surface.blit(label_text, label_rect)
