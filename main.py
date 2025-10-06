@@ -29,19 +29,25 @@ async def main():
   game_over_font = pygame.font.SysFont(None, 36, bold=False)
 
   # DEFINE ENTITIES #
-  player = Player( 
-  spritePath = './assets/Sprites/Link', 
-  animationSpeed = 10, 
-  width = 250, 
-  height = 250, 
-  health = 60,
-  x = 200, 
-  y = 100, 
-  hitbox_offset_dimentions = {"x": 88, "y": 88, "width": 75, "height": 75}, 
-  hitbox_visible = hitboxes_visible
-)
-  logical_surface = LogicalSurface(LOGICAL_W, LOGICAL_H, BACKGROUND_COLOR) 
-  hud = HUD(player, screen_size=(LOGICAL_W, LOGICAL_H))    
+
+  logical_surface = LogicalSurface(LOGICAL_W, LOGICAL_H, BACKGROUND_COLOR)
+
+  def init_game():
+    player = Player( 
+      spritePath = './assets/Sprites/Link', 
+      animationSpeed = 10, 
+      width = 250, 
+      height = 250, 
+      health = 60,
+      x = 200, 
+      y = 100, 
+      hitbox_offset_dimentions = {"x": 88, "y": 88, "width": 75, "height": 75}, 
+      hitbox_visible = hitboxes_visible
+    )
+
+    hud = HUD(player, screen_size=(LOGICAL_W, LOGICAL_H))
+    return player, hud
+
   
   def drawGameoverScreen():
     TextSurface(
@@ -80,7 +86,8 @@ async def main():
   
   # Main Loop 
   
-  running = True 
+  running = True
+  player, hud = init_game()
   first_frame = True
   while running: 
     dt = clock.tick(60) / 1000 
@@ -90,8 +97,6 @@ async def main():
     for event in events: 
       if event.type == pygame.QUIT: 
         running = False
-    
-    hud.update(events, dt)
         
     # IF FIRST FRAME, SET UP MAP AND PLAYER
     if first_frame:
@@ -100,8 +105,6 @@ async def main():
       world_map = buildMap() #used for worldMap2x2
       #world_map = WorldMap(3,3, screens, 0) #used for TestMap3x3
       
-
-  
       player.inventory.append( 
         Sword( 
           player = player, 
@@ -116,7 +119,7 @@ async def main():
       player.update(dt, world_map, logical_surface.surface, active_enemies, player.inventory[0])
       
       world_map.current_screen.update(dt, world_map, player.inventory[0])
-      
+
       # FILL THE SCREEN BACKGROUND COLOR #
       logical_surface.surface.fill((10,10,10)) 
       
@@ -137,12 +140,17 @@ async def main():
       drawGameoverScreen()
       keys = pygame.key.get_pressed()
       if keys[pygame.K_y]:
+        player, hud = init_game()
         first_frame = True
+        continue
+
     
     # DRAW RESIZED LOGICAL SCREEN ON WINDOW #
     #logical_surface.blit(pygame.display.get_surface())
-
-    hud.draw(logical_surface.surface)
+    if player.alive:
+      hud.update(events, dt)
+      hud.draw(logical_surface.surface)
+    
     pygame.display.get_surface().blit(logical_surface.surface, (0,0))
     
     # UPDATE WINDOW #
