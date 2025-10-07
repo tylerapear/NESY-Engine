@@ -15,12 +15,12 @@ Animations(spritePath, speed, width, height)
 
 ### Parameters
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `spritePath` | str | Path to the directory containing sprite subfolders for each animation state |
-| `speed` | int | Number of frames before switching to the next image (higher = slower animation) |
-| `width` | int | Width to scale each loaded image to |
-| `height` | int | Height to scale each loaded image to |
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| `spritePath` | str | Yes | N/A | Path to the directory containing sprite subfolders for each animation state |
+| `speed` | int | Yes | N/A | Number of frames before switching to the next image (higher = slower animation) |
+| `width` | int | Yes | N/A | Width to scale each loaded image to |
+| `height` | int | Yes | N/A | Height to scale each loaded image to |
 
 ### Example
 
