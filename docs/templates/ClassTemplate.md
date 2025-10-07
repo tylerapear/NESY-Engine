@@ -12,9 +12,9 @@ ClassName(args)
 
 ### Parameters
 
-| Parameter | Type | Required | Description |
-|------------|-------|-----------|--------------|
-| `[parameter name]` | [the parameter's type] | [Yes/No] | [parameter description] | 
+| Parameter | Type | Required | Default | Description |
+|------------|-------|-----------|--------|--------------|
+| `[parameter name]` | [parameter type] | [Yes/No] | [Defualt value or 'N/A'] | [parameter description] | 
 
 ### Example
 
