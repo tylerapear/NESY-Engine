@@ -5,7 +5,7 @@ from classes.entities.WorldMap import WorldMap
 from classes.entities.WanderingEnemy import WanderingEnemy
 
 hitbox_active = True
-hitbox_visible = False
+hitbox_visible = True
 LOGICAL_W, LOGICAL_H = 1280, 720
 
 #base + overlay mapping
@@ -196,7 +196,7 @@ def buildMap():
                       mapping["base"],
                       mapping["overlay"],
                       hitbox_active,
-                      hitbox, #collision hitbox
+                      #hitbox, #collision hitbox
                       {"x": 0, "y": 0, "width": 1, "height": 1}, #dev hitbox
                       hitbox_visible
                   )
