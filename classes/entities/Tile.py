@@ -71,14 +71,6 @@ class Tile():
   @hitbox.setter
   def hitbox(hitbox):
     self._hitbox = hitbox
-    
-  @property
-  def prop1(self):
-    return self._prop1
-  
-  @prop1.setter
-  def prop1(prop1):
-    self._prop1 = prop1
 
 ### METHODS ### 
     
