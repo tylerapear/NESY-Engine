@@ -279,7 +279,7 @@ for screen_name, screen in screen_details.items():
                     mapping["base"],
                     mapping["overlay"],
                     hitbox_active,
-                    hitbox, #collision hitbox
+                    #hitbox, #collision hitbox
                     {"x": 0, "y": 0, "width": 1, "height": 1}, #dev hitbox
                     hitbox_visible
                 )

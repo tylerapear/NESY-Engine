@@ -8,7 +8,7 @@ class Tile():
       background_img_path, 
       foreground_img_path = "", 
       hitbox_active = False, 
-      hitbox_dimentions = {"x": 0, "y": 0, "width": 0, "height": 0},
+      #hitbox_dimentions = {"x": 0, "y": 0, "width": 0, "height": 0},
       hitbox_offset = {"x": 0, "y": 0, "width": 0, "height": 0},
       hitbox_visible = False
     ):
@@ -19,7 +19,7 @@ class Tile():
     if foreground_img_path:
       self._foreground_image = pygame.image.load(foreground_img_path)
     self._hitbox_active = hitbox_active
-    self._hitbox = Hitbox(hitbox_dimentions, hitbox_visible)
+    self._hitbox = Hitbox({"x": 0, "y": 0, "width": 0, "height": 0}, hitbox_visible) #Hitbox(hitbox_dimentions, hitbox_visible)
     self._hitbox.offset = hitbox_offset
     
 ### PROPERTIES ###
