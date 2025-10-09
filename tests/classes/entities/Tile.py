@@ -32,7 +32,7 @@ class TestTile(unittest.TestCase):
         """Set up test fixtures"""
         self.bg_path = "assets/Tiles/mountain.png"
         self.fg_path = "assets/Tiles/sand.png"
-        self.title = Tile(
+        self.tile = Tile(
             background_img_path="assets/Tiles/mountain.png",
             foreground_img_path="assets/Tiles/sand.png",
             hitbox_active=True,
@@ -43,28 +43,28 @@ class TestTile(unittest.TestCase):
 
     def test_init(self):
         """Test Tile initialization"""
-        self.assertEqual(self.title.background_img_path, "assets/Tiles/mountain.png")
-        self.assertIsNotNone(self.title.background_image)
-        self.assertEqual(self.title.foreground_img_path, "assets/Tiles/sand.png")
-        self.assertIsNotNone(self.title.foreground_image)
-        self.assertTrue(self.title.hitbox_active)
-        self.assertIsNotNone(self.title.hitbox)
-        self.assertEqual(self.title.hitbox.offset, {"x": 5, "y": 5, "width": 0, "height": 0})
+        self.assertEqual(self.tile.background_img_path, "assets/Tiles/mountain.png")
+        self.assertIsNotNone(self.tile.background_image)
+        self.assertEqual(self.tile.foreground_img_path, "assets/Tiles/sand.png")
+        self.assertIsNotNone(self.tile.foreground_image)
+        self.assertTrue(self.tile.hitbox_active)
+        self.assertIsNotNone(self.tile.hitbox)
+        self.assertEqual(self.tile.hitbox.offset, {"x": 5, "y": 5, "width": 0, "height": 0})
 
     def test_property_setters_getters(self):
         """Test Tile property setters and getters"""
-        self.title.background_img_path = "assets/Tiles/sand.png"
-        self.assertEqual(self.title.background_img_path, "assets/Tiles/sand.png")
+        self.tile.background_img_path = "assets/Tiles/sand.png"
+        self.assertEqual(self.tile.background_img_path, "assets/Tiles/sand.png")
 
-        self.title.foreground_img_path = "assets/Tiles/mountain.png"
-        self.assertEqual(self.title.foreground_img_path, "assets/Tiles/mountain.png")
+        self.tile.foreground_img_path = "assets/Tiles/mountain.png"
+        self.assertEqual(self.tile.foreground_img_path, "assets/Tiles/mountain.png")
 
-        self.title.hitbox_active = False
-        self.assertFalse(self.title.hitbox_active)
+        self.tile.hitbox_active = False
+        self.assertFalse(self.tile.hitbox_active)
 
         new_hitbox = MagicMock()
-        self.title.hitbox = new_hitbox
-        self.assertEqual(self.title.hitbox, new_hitbox)
+        self.tile.hitbox = new_hitbox
+        self.assertEqual(self.tile.hitbox, new_hitbox)
 
     def test_init_no_foreground(self):
         """Test Tile initialization with no foreground image"""

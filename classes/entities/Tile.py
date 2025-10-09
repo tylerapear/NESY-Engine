@@ -67,21 +67,10 @@ class Tile():
   @property
   def hitbox(self):
     return self._hitbox
-  
-  @hitbox.setter
-  def hitbox(self, hitbox):
-    self._hitbox = hitbox
-<<<<<<< Updated upstream
-=======
     
   @property
   def prop1(self):
     return self._prop1
-  
-  @prop1.setter
-  def prop1(self, prop1):
-    self._prop1 = prop1
->>>>>>> Stashed changes
 
 ### METHODS ### 
     
