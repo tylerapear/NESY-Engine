@@ -29,7 +29,7 @@ class Tile():
     return self._background_img_path
   
   @background_img_path.setter
-  def background_img_path(background_img_path):
+  def background_img_path(self, background_img_path):
     self._background_img_path = background_img_path
     
   @property
@@ -37,7 +37,7 @@ class Tile():
     return self._background_image
   
   @background_image.setter
-  def background_image(background_image):
+  def background_image(self, background_image):
     self._background_image = background_image
     
   @property
@@ -45,7 +45,7 @@ class Tile():
     return self._foreground_img_path
   
   @foreground_img_path.setter
-  def foreground_img_path(foreground_img_path):
+  def foreground_img_path(self, foreground_img_path):
     self._foreground_img_path = foreground_img_path
     
   @property
@@ -53,7 +53,7 @@ class Tile():
     return self._foreground_image
   
   @foreground_image.setter
-  def foreground_image(foreground_image):
+  def foreground_image(self, foreground_image):
     self._foreground_image = foreground_image
     
   @property
@@ -61,7 +61,7 @@ class Tile():
     return self._hitbox_active
   
   @hitbox_active.setter
-  def hitbox_active(hitbox_active):
+  def hitbox_active(self, hitbox_active):
     self._hitbox_active = hitbox_active
     
   @property
@@ -69,8 +69,19 @@ class Tile():
     return self._hitbox
   
   @hitbox.setter
-  def hitbox(hitbox):
+  def hitbox(self, hitbox):
     self._hitbox = hitbox
+<<<<<<< Updated upstream
+=======
+    
+  @property
+  def prop1(self):
+    return self._prop1
+  
+  @prop1.setter
+  def prop1(self, prop1):
+    self._prop1 = prop1
+>>>>>>> Stashed changes
 
 ### METHODS ### 
     
@@ -78,6 +89,7 @@ class Tile():
     scaled_background_image = pygame.transform.scale(
       self.background_image, (screen.tile_width, screen.tile_height)
     )
+    print(scaled_background_image.get_size())
     surface.blit(scaled_background_image, (x, y))
     
   def draw_foreground(self, screen, surface, x, y):
