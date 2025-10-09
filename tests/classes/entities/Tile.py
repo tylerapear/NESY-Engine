@@ -36,7 +36,6 @@ class TestTile(unittest.TestCase):
             background_img_path="assets/Tiles/mountain.png",
             foreground_img_path="assets/Tiles/sand.png",
             hitbox_active=True,
-            hitbox_dimentions={"x": 0, "y": 0, "width": 50, "height": 50},
             hitbox_offset={"x": 5, "y": 5, "width": 0, "height": 0},
             hitbox_visible=False
         )
@@ -72,7 +71,6 @@ class TestTile(unittest.TestCase):
             background_img_path="assets/Tiles/mountain.png",
             foreground_img_path="",
             hitbox_active=True,
-            hitbox_dimentions={"x": 0, "y": 0, "width": 10, "height": 10},
             hitbox_offset={"x": 1, "y": 1, "width": 1, "height": 1},
             hitbox_visible=False
         )
@@ -90,7 +88,6 @@ class TestTile(unittest.TestCase):
             background_img_path="assets/Tiles/mountain.png",
             foreground_img_path="assets/Tiles/sand.png",
             hitbox_active=True,
-            hitbox_dimentions={"x": 0, "y": 0, "width": 10, "height": 10},
             hitbox_offset={"x": 1, "y": 1, "width": 1, "height": 1},
             hitbox_visible=False
         )
@@ -142,7 +139,7 @@ class TestTile(unittest.TestCase):
         mock_scale.return_value = MagicMock()
         mock_hitbox = get_hitbox_mock(0.5, 0.25, 0.5, 0.5)
         mock_hitbox_cls.return_value = mock_hitbox
-        tile = Tile(self.bg_path, self.fg_path, hitbox_active=True, hitbox_dimentions={"x":0,"y":0,"width":10,"height":10}, hitbox_offset=mock_hitbox.offset)
+        tile = Tile(self.bg_path, self.fg_path, hitbox_active=True, hitbox_offset=mock_hitbox.offset)
         screen = get_screen_mock(40, 20)
         surface = MagicMock()
         x, y = 100, 200
