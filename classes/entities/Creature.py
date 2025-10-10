@@ -177,6 +177,22 @@ class Creature:
   @alive.setter
   def alive(self, alive):
     self._alive = alive
+    
+  @property
+  def movement_locked(self):
+    return self._movement_locked
+
+  @movement_locked.setter
+  def movement_locked(self, movement_locked):
+    self._movement_locked = movement_locked
+    
+  @property
+  def dying(self):
+    return self._dying
+
+  @dying.setter
+  def dying(self, dying):
+    self._dying = dying
 
   @property
   def health(self):
@@ -281,7 +297,7 @@ class Creature:
       self.hitbox.draw(surface) 
 
   def moveDirection(self, dt, direction, speed):
-    if not self._movement_locked:
+    if not self.movement_locked:
       self.moving = True
       self.direction = direction
       if self.immunity_count < 18:
@@ -345,9 +361,9 @@ class Creature:
       self.right_speed = 0
 
   def progress_death(self):
-    if not self._dying:
-      self._dying = True
-      self._movement_locked = True
+    if not self.dying:
+      self.dying = True
+      self.movement_locked = True
       self.animationPhase = 0
     elif self.animations.phase == len(self.animations.animations[self.current_animation]) - 1:
       self.alive = False
