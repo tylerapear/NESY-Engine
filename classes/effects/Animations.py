@@ -96,7 +96,7 @@ class Animations:
 
     return animations
 
-  def getNextImage(self, entity, immunity_count = 0):
+  def getNextImage(self, entity, immunity_count = 0): 
     if entity.current_animation != self.current_animation:
       self.phase = 0
       self.frame_count = self.speed - 1

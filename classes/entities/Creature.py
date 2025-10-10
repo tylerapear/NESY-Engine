@@ -44,6 +44,8 @@ class Creature:
     )
 
     self._alive = alive
+    self._movement_locked = False
+    self._dying = False
     self._health = health
     self.max_health = health
     self._display_health = display_health
@@ -235,7 +237,10 @@ class Creature:
 ### METHODS ###
 
   def update(self, dt, world_map):
-    
+
+    if self.health <= 0:
+      self.progress_death()
+      
     self.up_speed = 1
     if self.hitbox.y <= 0:
       self.handleBorderCollision(world_map, "Up")
@@ -261,7 +266,7 @@ class Creature:
       self.immunity_count -= 1
       if self.immunity_count > 23:
         self.getKnockedBack(dt, self.damage_direction, 1000)
-    
+      
     self.image = self.animations.getNextImage(self, self.immunity_count)
 
   def draw(self, surface):
@@ -276,21 +281,22 @@ class Creature:
       self.hitbox.draw(surface) 
 
   def moveDirection(self, dt, direction, speed):
-    self.moving = True
-    self.direction = direction
-    if self.immunity_count < 18:
-      if direction == "Up":
-        self.y -= speed * dt
-        self.hitbox.y = self.hitbox.y - (speed * dt)
-      elif direction == "Down":
-        self.y += speed * dt
-        self.hitbox.y = self.hitbox.y + (speed * dt)
-      elif direction == "Left":
-        self.x -= speed * dt
-        self.hitbox.x = self.hitbox.x - (speed * dt)
-      elif direction == "Right":
-        self.x += speed * dt
-        self.hitbox.x = self.hitbox.x + (speed * dt)
+    if not self._movement_locked:
+      self.moving = True
+      self.direction = direction
+      if self.immunity_count < 18:
+        if direction == "Up":
+          self.y -= speed * dt
+          self.hitbox.y = self.hitbox.y - (speed * dt)
+        elif direction == "Down":
+          self.y += speed * dt
+          self.hitbox.y = self.hitbox.y + (speed * dt)
+        elif direction == "Left":
+          self.x -= speed * dt
+          self.hitbox.x = self.hitbox.x - (speed * dt)
+        elif direction == "Right":
+          self.x += speed * dt
+          self.hitbox.x = self.hitbox.x + (speed * dt)
 
   def moveTo(self, x, y):
     self.x = x
@@ -315,7 +321,6 @@ class Creature:
   def takeDamage(self, damage):
     self.health -= damage
     if self.health <= 0:
-      self.alive = False
       self.health = 0 #avoid neg hp
     self.immunity_count = 30
     
@@ -339,4 +344,11 @@ class Creature:
     if direction == "Right":
       self.right_speed = 0
 
+  def progress_death(self):
+    if not self._dying:
+      self._dying = True
+      self._movement_locked = True
+      self.animationPhase = 0
+    elif self.animations.phase == len(self.animations.animations[self.current_animation]) - 1:
+      self.alive = False
       
