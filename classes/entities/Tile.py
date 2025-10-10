@@ -79,7 +79,6 @@ class Tile():
     scaled_background_image = pygame.transform.scale(
       self.background_image, (screen.tile_width, screen.tile_height)
     )
-    print(scaled_background_image.get_size())
     surface.blit(scaled_background_image, (x, y))
     
   def draw_foreground(self, screen, surface, x, y):

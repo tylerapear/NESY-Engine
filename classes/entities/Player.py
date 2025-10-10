@@ -34,6 +34,7 @@ class Player(Creature):
     self._attacking = False
     self._attack_cooldown = 0
     self._inventory = inventory
+    self._gameover_countdown = 30
 
 ### PROPERTIES ###
 
@@ -110,6 +111,8 @@ class Player(Creature):
       self.current_animation = self.direction
     if self.attacking:
       self.current_animation = "Attack" + self.direction
+    if self._dying:
+      self.current_animation = "Death"
 
   def draw(self, surface):
     super().draw(surface)
@@ -132,8 +135,6 @@ class Player(Creature):
         self.damage_direction = self.hitbox.getCollisionDirection(enemy.hitbox)
         self.takeDamage(10)
         self.immunity_count = 30
-        if self.health <= 0:
-          self.alive = False
 
   def getKnockedBack(self, dt, direction, speed):
     super().getKnockedBack(dt, direction, speed)
