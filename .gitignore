@@ -17,11 +17,7 @@ ENV/
 .DS_Store
 
 # Pygame assets (if generated)
-*.bmp
-*.png
-*.jpg
-*.jpeg
-*.gif
+
 
 # Pip
 pip-selfcheck.json
