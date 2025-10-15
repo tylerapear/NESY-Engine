@@ -104,15 +104,24 @@ class Animations:
 
     self.frame_count += 1
 
-    if self.frame_count >= self.speed:
-      self.frame_count = 0
-      self.image = pygame.image.load(self.animations[self.current_animation][self.phase])
-      self.image = pygame.transform.scale(self.image, (self.width, self.height))
-      if self.phase >= len(self.animations[self.current_animation]) - 1:
-          self.phase = 0
-      else:
-        self.phase += 1
+    if "Death" in self.current_animation:
+        if self.frame_count >= self.speed:
+            self.frame_count = 0
+            self.image = pygame.image.load(self.animations[self.current_animation][self.phase])
+            self.image = pygame.transform.scale(self.image, (self.width, self.height))
+            if self.phase < len(self.animations[self.current_animation]) - 1:
+                self.phase += 1
+    else:
+        if self.frame_count >= self.speed:
+            self.frame_count = 0
+            self.image = pygame.image.load(self.animations[self.current_animation][self.phase])
+            self.image = pygame.transform.scale(self.image, (self.width, self.height))
+            if self.phase >= len(self.animations[self.current_animation]) - 1:
+                self.phase = 0
+            else:
+                self.phase += 1
 
+#flash red when taking damage
     if immunity_count > 15:
       image = self.image
       damage_image = image.copy()
