@@ -255,35 +255,44 @@ class Creature:
   def update(self, dt, world_map):
 
     if self.health <= 0:
-      self.progress_death()
-      
-    self.up_speed = 1
-    if self.hitbox.y <= 0:
-      self.handleBorderCollision(world_map, "Up")
-      
-    self.left_speed = 1
-    if self.hitbox.x <= 0:
-      self.handleBorderCollision(world_map, "Left")
-      
-    self.down_speed = 1
-    if self.hitbox.y + self.hitbox.height >= world_map.current_screen.height:
-      self.handleBorderCollision(world_map, "Down")
-      
-    self.right_speed = 1
-    if self.hitbox.x + self.hitbox.width >= world_map.current_screen.width:
-      self.handleBorderCollision(world_map, "Right")
+      if not self.dying:
+        self.progress_death()
+      elif self.dying:
+        self.current_animation = "Death"
 
-    for tile in world_map.current_screen.tiles:
-      if tile.hitbox_active and self.hitbox.collides(tile.hitbox):
-        collision_direction = self.hitbox.getReverseCollisionDirection(tile.hitbox)
-        self.handleTileCollision(collision_direction)
-    
-    if self.immunity_count > 0:
-      self.immunity_count -= 1
-      if self.immunity_count > 23:
-        self.getKnockedBack(dt, self.damage_direction, 1000)
+    else:  
+      self.up_speed = 1
+      if self.hitbox.y <= 0:
+        self.handleBorderCollision(world_map, "Up")
+        
+      self.left_speed = 1
+      if self.hitbox.x <= 0:
+        self.handleBorderCollision(world_map, "Left")
+        
+      self.down_speed = 1
+      if self.hitbox.y + self.hitbox.height >= world_map.current_screen.height:
+        self.handleBorderCollision(world_map, "Down")
+        
+      self.right_speed = 1
+      if self.hitbox.x + self.hitbox.width >= world_map.current_screen.width:
+        self.handleBorderCollision(world_map, "Right")
+
+      for tile in world_map.current_screen.tiles:
+        if tile.hitbox_active and self.hitbox.collides(tile.hitbox):
+          collision_direction = self.hitbox.getReverseCollisionDirection(tile.hitbox)
+          self.handleTileCollision(collision_direction)
+      
+      if self.immunity_count > 0:
+        self.immunity_count -= 1
+        if self.immunity_count > 23:
+          self.getKnockedBack(dt, self.damage_direction, 1000)
       
     self.image = self.animations.getNextImage(self, self.immunity_count)
+    if self.dying and self.current_animation == "Death":
+      last_frame_index = len(self.animations.animations["Death"]) - 1
+      if self.animations.phase == last_frame_index:
+        #waiting a few ticks for the last frame
+        self.alive = False
 
   def draw(self, surface):
     surface.blit(self.image, (self.x, self.y))
@@ -365,6 +374,14 @@ class Creature:
       self.dying = True
       self.movement_locked = True
       self.animationPhase = 0
-    elif self.animations.phase == len(self.animations.animations[self.current_animation]) - 1:
+      print("phase:", self.animations.phase, "dying:", self.dying, "alive:", self.alive)
+      if "Death" in self.animations.animations:
+        self.current_animation = "Death"
+      else:
+        self.animationPhase = 0
+    elif self.animations.phase < len(self.animations.animations.get(self.current_animation, [])) - 1:
+        pass
+    
+    else:
       self.alive = False
       
