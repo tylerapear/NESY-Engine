@@ -1,4 +1,3 @@
-import pygame
 from classes.entities.Creature import Creature
 
 class Enemy(Creature):
