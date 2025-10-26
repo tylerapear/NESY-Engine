@@ -18,6 +18,8 @@ class Enemy(Creature):
     surface.blit(self.image, (self.x, self.y))
 
   def checkForDamage(self, weapon):
+    if self.immunity_count > 0:
+      return
     if self.hitbox.collides(weapon.hitbox):
       self.damage_direction = weapon.direction
       self.takeDamage(weapon.damage)
