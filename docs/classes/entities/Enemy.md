@@ -57,6 +57,8 @@ See properties of [Creature.py](Creature.md)
 
 ## Methods
 
+See methods of [Creature.py](Creature.md), and:
+
 ### `update(dt, world_map, weapon)`
 
 This method is meant to be called each frame to update the enemy's state. It calls the update() method of [Creature.py](Creature.md), then handles damage checking.
