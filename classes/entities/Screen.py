@@ -1,5 +1,3 @@
-from classes.entities.Tile import Tile
-import pygame
 
 class Screen():
   
