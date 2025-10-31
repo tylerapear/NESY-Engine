@@ -1,4 +1,4 @@
-# [Player] Class
+# Player Class
 
 ## Summary
 The Player class represents the user-controlled character. It inherits from the Creature class and adds player-specific functionalities such as attacking, inventory management, and processing keyboard input. It also overrides the border collision logic to allow for screen transitions.
@@ -44,7 +44,7 @@ Player(
 
 ```python
 import pygame
-from classes.entities.Player import Player
+from classes.entities.Player import Player 
 from classes.items.Sword import Sword # Example item
 
 # Create a basic player
@@ -105,11 +105,11 @@ print(f"Current inventory: {player.inventory}")
 Executes the player's main update logic every frame. Handles input processing, state management, collision detection, animation updates, and more.
 
 **Parameters:**
--`dt`: float - Delta time (time gap since the last frame).
--`screen`: pygame.Surface - (Used by parent class) The main game screen.
--`surface`: pygame.Surface - (Not used) The surface where the game is drawn.
--`enemies`: list - A list of enemy objects. Passed to the checkForDamage method.
--`weapon`: Weapon - The player's currently active weapon object.
+- `dt`: float - Delta time (time gap since the last frame).
+- `screen`: pygame.Surface - (Used by parent class) The main game screen.
+- `surface`: pygame.Surface - (Not used) The surface where the game is drawn.
+- `enemies`: list - A list of enemy objects. Passed to the checkForDamage method.
+- `weapon`: Weapon - The player's currently active weapon object.
 
 **Returns:**
 -`None`: The method returns None
@@ -129,10 +129,10 @@ player.update(dt, main_screen_surface, game_surface, all_enemies, player_sword)
 Draws the player's current sprite (animation) and inventory items (their hitboxes) onto the specified surface.
 
 **Parameters:**
--`surface`: pygame.Surface - The surface where game elements will be drawn.
+- `surface`: pygame.Surface - The surface where game elements will be drawn.
 
 **Returns:**
--`None`: The method returns None
+- `None`: The method returns None
 
 **Example:**
 ```python
@@ -147,8 +147,8 @@ pygame.display.flip()
 Initiates the player's attack if the attack cooldown is 0 or less.
 
 **Parameters:**
--`direction`: str - The direction the player is facing (e.g., "Up", "Down", "Left", "Right").
--`weapon`: Weapon - The weapon object to be activated.
+- `direction`: str - The direction the player is facing (e.g., "Up", "Down", "Left", "Right").
+- `weapon`: Weapon - The weapon object to be activated.
 
 **Returns:**
 -`None`: The method returns None
@@ -165,10 +165,10 @@ if keys[pygame.K_j]: # When 'j' key is pressed
 Iterates through the list of enemies and detects collisions with the player's hitbox. If a collision occurs, it calls the takeDamage method and sets an immunity timer.
 
 **Parameters:**
--`enemies`: list - A list of enemy objects to check for collisions.
+- `enemies`: list - A list of enemy objects to check for collisions.
 
 **Returns:**
--`None`: The method returns None
+- `None`: The method returns None
 
 **Example:**
 ```python
@@ -181,9 +181,9 @@ Iterates through the list of enemies and detects collisions with the player's hi
 Overrides the getKnockedBack method from the parent class (Creature). Knocks back the player and also moves any inventory items along with them.
 
 **Parameters:**
--`dt`: float - Delta time.
--`direction`: str - The direction of the knockback.
--`speed`: int or float - The speed of the knockback.
+- `dt`: float - Delta time.
+- `direction`: str - The direction of the knockback.
+- `speed`: int or float - The speed of the knockback.
 
 **Returns:**
 -`None`: The method returns None
@@ -199,10 +199,10 @@ Overrides the getKnockedBack method from the parent class (Creature). Knocks bac
 Checks the player's alive attribute to determine if it's a game-over state.
 
 **Parameters:**
--`Parameters`: None
+- `Parameters`: None
 
 **Returns:**
--`bool`: True if the player is dead (alive == False), otherwise False.
+- `bool`: True if the player is dead (alive == False), otherwise False.
 
 **Example:**
 ```python
@@ -216,12 +216,12 @@ if player.checkForGameOver():
 Overrides the moveDirection method from the parent class (Creature). Moves the player and also moves any inventory items along with them.
 
 **Parameters:**
--`dt`: float - Delta time.
--`direction`: str - The direction to move (e.g., "Up", "Down").
--`speed`: int or float - The movement speed.
+- `dt`: float - Delta time.
+- `direction`: str - The direction to move (e.g., "Up", "Down").
+- `speed`: int or float - The movement speed.
 
 **Returns:**
--`None`: The method returns None
+- `None`: The method returns None
 
 **Example:**
 ```python
@@ -235,11 +235,11 @@ if keys[pygame.K_w]:
 Attempts to transition to the next screen in the world_map. If successful, it resets the player's position to an appropriate location on the new screen.
 
 **Parameters:**
--`world_map`: WorldMap - The game's world map object.
--`direction`: str - The direction of the screen to move to.
+- `world_map`: WorldMap - The game's world map object.
+- `direction`: str - The direction of the screen to move to.
 
 **Returns:**
--`None`: The method returns None
+- `None`: The method returns None
 
 **Example:**
 ```python
@@ -252,11 +252,11 @@ Attempts to transition to the next screen in the world_map. If successful, it re
 Overrides the handleBorderCollision method from the parent class (Creature). When the player hits a screen border, it calls moveToNextScreen to attempt a screen transition instead of just stopping.
 
 **Parameters:**
--`world_map`: WorldMap - The game's world map object.
--`direction`: str - The direction of the border that was hit.
+- `world_map`: WorldMap - The game's world map object.
+- `direction`: str - The direction of the border that was hit.
 
 **Returns:**
--`None`: The method returns None
+- `None`: The method returns None
 
 **Example:**
 ```python
@@ -264,8 +264,8 @@ Overrides the handleBorderCollision method from the parent class (Creature). Whe
 ```
 
 ## Dependencies
--`pygame`: Used for keyboard input (pygame.key.get_pressed()) and core game engine functionalities.
--`classes.entities.Creature`: The parent class from which Player inherits core attributes and methods like health, position, animation, basic movement, and damage handling.
+- `pygame`: Used for keyboard input (pygame.key.get_pressed()) and core game engine functionalities.
+- `Creature`: The parent class from which Player inherits core attributes and methods like health, position, animation, basic movement, and damage handling.
 
 
 ## Notes
