@@ -19,7 +19,7 @@ Player(
   alive = True,
   health = 100,
   display_health = True,
-  inventory = []
+  inventory = [ ]
 )
 ```
 
@@ -31,8 +31,8 @@ Player(
 | `animationSpeed` | float | Yes | N/A | The playback speed of the animations (e.g., 0.1). | 
 | `width` | int | No | 50 | The width of the player object. | 
 | `height` | int | No | 50 | The height of the player object. | 
-| `x` | [int] | [No] | [0] | The initial x-coordinate of the player. | 
-| `y` | [int] | [No] | [0] | The initial y-coordinate of the player. | 
+| `x` | int | No | 0 | The initial x-coordinate of the player. | 
+| `y` | int | No | 0 | The initial y-coordinate of the player. | 
 | `hitbox_offset_dimentions` | dict | No | {"x": 0, "y": 0, "width": 0, "height": 0} | A dictionary for the hitbox's position and size offset relative to the sprite. | 
 | `hitbox_visible` | bool | No | False | If set to True, draws the hitbox on the screen for debugging. | 
 | `alive` | bool | No | True | The initial survival state of the player. | 
@@ -69,7 +69,7 @@ advanced_player = Player(
 
 ### `attacking`
 - **Type:** `bool`
-- **Description:** [Manages the player's current attack state. If True, the attack animation is playing.]
+- **Description:** Manages the player's current attack state. If True, the attack animation is playing.
 
 ```python
 if not player.attacking:
@@ -78,7 +78,7 @@ if not player.attacking:
 
 ### `attack_cooldown`
 - **Type:** `int`
-- **Description:** [A frame counter for the attack delay. If this value is greater than 0, the player cannot attack.]
+- **Description:** A frame counter for the attack delay. If this value is greater than 0, the player cannot attack.
 
 ```python
 if player.attack_cooldown <= 0:
@@ -88,7 +88,7 @@ if player.attack_cooldown <= 0:
 
 ### `inventory`
 - **Type:** `list`
-- **Description:** [A list containing the item objects possessed by the player.]
+- **Description:** A list containing the item objects possessed by the player.
 
 ```python
 new_item = Potion() # A hypothetical potion item
@@ -102,7 +102,7 @@ print(f"Current inventory: {player.inventory}")
 
 ### `update(dt, screen, surface, enemies, weapon)`
 
-[Executes the player's main update logic every frame. Handles input processing, state management, collision detection, animation updates, and more.]
+Executes the player's main update logic every frame. Handles input processing, state management, collision detection, animation updates, and more.
 
 **Parameters:**
 -`dt`: float - Delta time (time gap since the last frame).
@@ -162,10 +162,10 @@ if keys[pygame.K_j]: # When 'j' key is pressed
 
 ### `checkForDamage(enemies)`
 
-[Iterates through the list of enemies and detects collisions with the player's hitbox. If a collision occurs, it calls the takeDamage method and sets an immunity timer.]
+Iterates through the list of enemies and detects collisions with the player's hitbox. If a collision occurs, it calls the takeDamage method and sets an immunity timer.
 
 **Parameters:**
--`enemies`: [list - A list of enemy objects to check for collisions.]
+-`enemies`: list - A list of enemy objects to check for collisions.
 
 **Returns:**
 -`None`: The method returns None
@@ -178,7 +178,7 @@ if keys[pygame.K_j]: # When 'j' key is pressed
 
 ### `getKnockedBack(dt, direction, speed)`
 
-[Overrides the getKnockedBack method from the parent class (Creature). Knocks back the player and also moves any inventory items along with them.]
+Overrides the getKnockedBack method from the parent class (Creature). Knocks back the player and also moves any inventory items along with them.
 
 **Parameters:**
 -`dt`: float - Delta time.
@@ -213,7 +213,7 @@ if player.checkForGameOver():
 
 ### `moveDirection(dt, direction, speed)`
 
-[Overrides the moveDirection method from the parent class (Creature). Moves the player and also moves any inventory items along with them.]
+Overrides the moveDirection method from the parent class (Creature). Moves the player and also moves any inventory items along with them.
 
 **Parameters:**
 -`dt`: float - Delta time.
@@ -232,7 +232,7 @@ if keys[pygame.K_w]:
 
 ### `moveToNextScreen(world_map, direction)`
 
-[Attempts to transition to the next screen in the world_map. If successful, it resets the player's position to an appropriate location on the new screen.]
+Attempts to transition to the next screen in the world_map. If successful, it resets the player's position to an appropriate location on the new screen.
 
 **Parameters:**
 -`world_map`: WorldMap - The game's world map object.
