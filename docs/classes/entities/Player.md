@@ -27,18 +27,18 @@ Player(
 
 | Parameter | Type | Required | Default | Description |
 |------------|-------|-----------|--------|--------------|
-| `[spritePath]` | [str] | [Yes] | [N/A] | [The file path to the sprite sheet or image directory for player animations.] |
-| `[animationSpeed]` | [float] | [Yes] | [N/A] | [The playback speed of the animations (e.g., 0.1).] | 
-| `[width]` | [int] | [No] | [50] | [The width of the player object.] | 
-| `[height]` | [int] | [No] | [50] | [The height of the player object.] | 
-| `[x]` | [int] | [No] | [0] | [The initial x-coordinate of the player.] | 
-| `[y]` | [int] | [No] | [0] | [The initial y-coordinate of the player.] | 
-| `[hitbox_offset_dimentions]` | [dict] | [No] | [{"x": 0, "y": 0, "width": 0, "height": 0}] | [A dictionary for the hitbox's position and size offset relative to the sprite.] | 
-| `[hitbox_visible]` | [bool] | [No] | [False] | [If set to True, draws the hitbox on the screen for debugging.] | 
-| `[alive]` | [bool] | [No] | [True] | [The initial survival state of the player.] | 
-| `[health]` | [int] | [No] | [100] | [The initial health of the player.] | 
-| `[display_health]` | [bool] | [No] | [True] | [If set to True, displays a health bar above the player.] | 
-| `[inventory]` | [list] | [No] | [ [] ] | [A list to hold items (like weapons) possessed by the player.] | 
+| `spritePath` | str | Yes | N/A | The file path to the sprite sheet or image directory for player animations. |
+| `animationSpeed` | float | Yes | N/A | The playback speed of the animations (e.g., 0.1). | 
+| `width` | int | No | 50 | The width of the player object. | 
+| `height` | int | No | 50 | The height of the player object. | 
+| `x` | [int] | [No] | [0] | The initial x-coordinate of the player. | 
+| `y` | [int] | [No] | [0] | The initial y-coordinate of the player. | 
+| `hitbox_offset_dimentions` | dict | No | {"x": 0, "y": 0, "width": 0, "height": 0} | A dictionary for the hitbox's position and size offset relative to the sprite. | 
+| `hitbox_visible` | bool | No | False | If set to True, draws the hitbox on the screen for debugging. | 
+| `alive` | bool | No | True | The initial survival state of the player. | 
+| `health` | int | No | 100 | The initial health of the player. | 
+| `display_health` | bool | No | True | If set to True, displays a health bar above the player. | 
+| `inventory` | list | No | [] | A list to hold items (like weapons) possessed by the player. | 
 
 ### Example
 
@@ -68,7 +68,7 @@ advanced_player = Player(
 ## Properties
 
 ### `attacking`
-- **Type:** `[bool]`
+- **Type:** `bool`
 - **Description:** [Manages the player's current attack state. If True, the attack animation is playing.]
 
 ```python
@@ -77,7 +77,7 @@ if not player.attacking:
 ```
 
 ### `attack_cooldown`
-- **Type:** `[int]`
+- **Type:** `int`
 - **Description:** [A frame counter for the attack delay. If this value is greater than 0, the player cannot attack.]
 
 ```python
@@ -87,7 +87,7 @@ if player.attack_cooldown <= 0:
 ```
 
 ### `inventory`
-- **Type:** `[list]`
+- **Type:** `list`
 - **Description:** [A list containing the item objects possessed by the player.]
 
 ```python
@@ -105,14 +105,14 @@ print(f"Current inventory: {player.inventory}")
 [Executes the player's main update logic every frame. Handles input processing, state management, collision detection, animation updates, and more.]
 
 **Parameters:**
--`[dt]`: [float - Delta time (time gap since the last frame).]
--`[screen]`: [pygame.Surface - (Used by parent class) The main game screen.]
--`[surface]`: [pygame.Surface - (Not used) The surface where the game is drawn.]
--`[enemies]`: [list - A list of enemy objects. Passed to the checkForDamage method.]
--`[weapon]`: [Weapon - The player's currently active weapon object.]
+-`dt`: float - Delta time (time gap since the last frame).
+-`screen`: pygame.Surface - (Used by parent class) The main game screen.
+-`surface`: pygame.Surface - (Not used) The surface where the game is drawn.
+-`enemies`: list - A list of enemy objects. Passed to the checkForDamage method.
+-`weapon`: Weapon - The player's currently active weapon object.
 
 **Returns:**
--`[Return type]`: [None]
+-`None`: The method returns None
 
 **Example:**
 ```python
@@ -126,13 +126,13 @@ player.update(dt, main_screen_surface, game_surface, all_enemies, player_sword)
 
 ### `draw(surface)`
 
-[Draws the player's current sprite (animation) and inventory items (their hitboxes) onto the specified surface.]
+Draws the player's current sprite (animation) and inventory items (their hitboxes) onto the specified surface.
 
 **Parameters:**
--`[surface]`: [pygame.Surface - The surface where game elements will be drawn.]
+-`surface`: pygame.Surface - The surface where game elements will be drawn.
 
 **Returns:**
--`[Return type]`: [None]
+-`None`: The method returns None
 
 **Example:**
 ```python
@@ -144,14 +144,14 @@ pygame.display.flip()
 
 ### `attack(direction, weapon)`
 
-[Initiates the player's attack if the attack cooldown is 0 or less.]
+Initiates the player's attack if the attack cooldown is 0 or less.
 
 **Parameters:**
--`[direction]`: [str - The direction the player is facing (e.g., "Up", "Down", "Left", "Right").]
--`[weapon]`: [Weapon - The weapon object to be activated.]
+-`direction`: str - The direction the player is facing (e.g., "Up", "Down", "Left", "Right").
+-`weapon`: Weapon - The weapon object to be activated.
 
 **Returns:**
--`[Return type]`: [None]
+-`None`: The method returns None
 
 **Example:**
 ```python
@@ -165,10 +165,10 @@ if keys[pygame.K_j]: # When 'j' key is pressed
 [Iterates through the list of enemies and detects collisions with the player's hitbox. If a collision occurs, it calls the takeDamage method and sets an immunity timer.]
 
 **Parameters:**
--`[enemies]`: [list - A list of enemy objects to check for collisions.]
+-`enemies`: [list - A list of enemy objects to check for collisions.]
 
 **Returns:**
--`[Return type]`: [None]
+-`None`: The method returns None
 
 **Example:**
 ```python
@@ -181,12 +181,12 @@ if keys[pygame.K_j]: # When 'j' key is pressed
 [Overrides the getKnockedBack method from the parent class (Creature). Knocks back the player and also moves any inventory items along with them.]
 
 **Parameters:**
--`[dt]`: [float - Delta time.]
--`[direction]`: [str - The direction of the knockback.]
--`[speed]`: [int or float - The speed of the knockback.]
+-`dt`: float - Delta time.
+-`direction`: str - The direction of the knockback.
+-`speed`: int or float - The speed of the knockback.
 
 **Returns:**
--`[Return type]`: [None]
+-`None`: The method returns None
 
 **Example:**
 ```python
@@ -196,13 +196,13 @@ if keys[pygame.K_j]: # When 'j' key is pressed
 
 ### `checkForGameOver()`
 
-[Checks the player's alive attribute to determine if it's a game-over state.]
+Checks the player's alive attribute to determine if it's a game-over state.
 
 **Parameters:**
--`[Parameters]`: [None]
+-`Parameters`: None
 
 **Returns:**
--`[bool]`: [True if the player is dead (alive == False), otherwise False.]
+-`bool`: True if the player is dead (alive == False), otherwise False.
 
 **Example:**
 ```python
@@ -216,12 +216,12 @@ if player.checkForGameOver():
 [Overrides the moveDirection method from the parent class (Creature). Moves the player and also moves any inventory items along with them.]
 
 **Parameters:**
--`[dt]`: [float - Delta time.]
--`[direction]`: [str - The direction to move (e.g., "Up", "Down").]
--`[speed]`: [int or float - The movement speed.]
+-`dt`: float - Delta time.
+-`direction`: str - The direction to move (e.g., "Up", "Down").
+-`speed`: int or float - The movement speed.
 
 **Returns:**
--`[Return type]`: [None]
+-`None`: The method returns None
 
 **Example:**
 ```python
@@ -235,11 +235,11 @@ if keys[pygame.K_w]:
 [Attempts to transition to the next screen in the world_map. If successful, it resets the player's position to an appropriate location on the new screen.]
 
 **Parameters:**
--`[world_map]`: [WorldMap - The game's world map object.]
--`[direction]`: [str - The direction of the screen to move to.]
+-`world_map`: WorldMap - The game's world map object.
+-`direction`: str - The direction of the screen to move to.
 
 **Returns:**
--`[Return type]`: [None]
+-`None`: The method returns None
 
 **Example:**
 ```python
@@ -249,14 +249,14 @@ if keys[pygame.K_w]:
 
 ### `handleBorderCollision(world_map, direction)`
 
-[Overrides the handleBorderCollision method from the parent class (Creature). When the player hits a screen border, it calls moveToNextScreen to attempt a screen transition instead of just stopping.]
+Overrides the handleBorderCollision method from the parent class (Creature). When the player hits a screen border, it calls moveToNextScreen to attempt a screen transition instead of just stopping.
 
 **Parameters:**
--`[world_map]`: [WorldMap - The game's world map object.]
--`[direction]`: [str - The direction of the border that was hit.]
+-`world_map`: WorldMap - The game's world map object.
+-`direction`: str - The direction of the border that was hit.
 
 **Returns:**
--`[Return type]`: [None]
+-`None`: The method returns None
 
 **Example:**
 ```python
@@ -264,12 +264,10 @@ if keys[pygame.K_w]:
 ```
 
 ## Dependencies
--`[pygame]`: [Used for keyboard input (pygame.key.get_pressed()) and core game engine functionalities.]
--`[classes.entities.Creature]`: [The parent class from which Player inherits core attributes and methods like health, position, animation, basic movement, and damage handling.]
+-`pygame`: Used for keyboard input (pygame.key.get_pressed()) and core game engine functionalities.
+-`classes.entities.Creature`: The parent class from which Player inherits core attributes and methods like health, position, animation, basic movement, and damage handling.
 
-## [Any other relevant class-specific relevant sections]
 
 ## Notes
-[The Player class relies heavily on the base logic from its parent class, Creature, for movement (moveDirection), damage (takeDamage), and knockback (getKnockedBack).
-
-Movement (WASD) and attack (J) logic are handled directly within the update method through pygame's key input events.]
+The Player class relies heavily on the base logic from its parent class, Creature, for movement (moveDirection), damage (takeDamage), and knockback (getKnockedBack).
+Movement (WASD) and attack (J) logic are handled directly within the update method through pygame's key input events.
