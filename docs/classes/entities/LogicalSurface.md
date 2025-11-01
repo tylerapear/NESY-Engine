@@ -81,16 +81,16 @@ print(f"Background color : {color}") # Background color : (255,255,255)
 Calculates the scale, offsets, and render dimensions required to fit the logical surface onto a destination surface while maintaining the aspect ratio.
 
 **Parameters:**
--`dst_w` (int): The width of the destination surface. 
--`dst_h` (int): The height of the destination surface.
+- `dst_w` (`int`): The width of the destination surface. 
+- `dst_h` (`int`): The height of the destination surface.
 
 **Returns:**
 - `tuple` : A tuple containing `(scale, x_off, y_off, render_w, render_h)`
-    - `scale` (float): The scaling ratio to be applied.
-    - `x_off` (int): The X-axis offset on the destination surface (for centering).
-    - `y_off` (int): The Y-axis offset on the destination surface (for centering).
-    - `render_w` (int): The final rendered width after scaling.
-    - `render_h` (int): The final rendered height after scaling.
+    - `scale` (`float`): The scaling ratio to be applied.
+    - `x_off` (`int`): The X-axis offset on the destination surface (for centering).
+    - `y_off` (`int`): The Y-axis offset on the destination surface (for centering).
+    - `render_w` (`int`): The final rendered width after scaling.
+    - `render_h` (`int`): The final rendered height after scaling.
 
 **Example:**
 ```python
@@ -104,7 +104,7 @@ print(f"Scale: {scale}, Offset: ({x_off}, {y_off}), Render Size: ({render_w}, {r
 Renders (blits) the logical surface onto a target `pygame.Surface`. This method first fills the target surface with the background_color, then draws the scaled logical surface onto the center of the target.
 
 **Parameters:**
--`surface` (pygame.Surface): The destination surface to draw onto.
+- `surface` (`pygame.Surface`): The destination surface to draw onto.
 
 **Returns:**
 - `None`.
