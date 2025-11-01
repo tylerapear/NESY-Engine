@@ -123,7 +123,7 @@ pygame.display.flip()
 ```
 
 ## Dependencies
--`pygame`: Used for Surface creation, scaling and rendering.
+- `pygame`: Used for Surface creation, scaling and rendering.
 
 ## Notes
 - This class is a wrapper to simplify resolution-independent rendering.
