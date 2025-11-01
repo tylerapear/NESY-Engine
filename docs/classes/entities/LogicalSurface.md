@@ -94,6 +94,7 @@ Calculates the scale, offsets, and render dimensions required to fit the logical
 
 **Example:**
 ```python
+# Compute the optimal scaling and centering values for a 1920x1080 display.
 scale, x_off, y_off, render_w, render_h = logical_surface.compute_fit(1920,1080)
 print(f"Scale: {scale}, Offset: ({x_off}, {y_off}), Render Size: ({render_w}, {render_h})")
 ```
@@ -112,8 +113,10 @@ Renders (blits) the logical surface onto a target `pygame.Surface`. This method 
 ```python
 # Create the main display surface.
 screen = pygame.display.set_mode((1280, 720))
+
 # Draw a blue rectangle on the logical surface.
 pygame.draw.rect(logical_surface.surface, (0, 0, 255), (100, 100, 50, 50))
+
 # Render (blit) the logical surface to the display.
 logical_surface.blit(screen)
 pygame.display.flip()
