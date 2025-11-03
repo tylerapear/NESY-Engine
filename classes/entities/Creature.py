@@ -12,7 +12,7 @@ class Creature:
     height = 50, 
     x = 0, 
     y = 0, 
-    hitbox_offset_dimentions = {"x-offset": 0, "y-offset": 0, "width": 0, "height": 0},
+    hitbox_offset_dimentions = {"x": 0, "y": 0, "width": 0, "height": 0},
     hitbox_visible = False,
     alive = True,
     health = 100,
