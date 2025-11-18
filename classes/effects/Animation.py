@@ -1,7 +1,7 @@
 import pygame
 import os
 
-class Animations:
+class Animation:
   def __init__(self, spritePath, speed, width, height):
     self._spritePath = spritePath
     self._speed = speed
@@ -9,10 +9,10 @@ class Animations:
     self._height = height
     self._phase = 0
     self._frame_count = 0
-    self._animations = self.load_animations(spritePath)
-    self._current_animation = "Idle"
-    self._image = pygame.image.load(self.animations["Idle"][self.phase])
-    self._image = pygame.transform.scale(self.image, (self.width, self.height))
+    self._images = self.load_images(spritePath)
+    self._current_image_path = self._images[0]
+    self._current_image = pygame.image.load(self._current_image_path)
+    self._current_image = pygame.transform.scale(self._current_image, (self.width, self.height))
 
 ### PROPERTIES ###
 
@@ -57,44 +57,31 @@ class Animations:
     self._phase = phase
 
   @property
-  def animations(self):
-    return self._animations
+  def images(self):
+    return self._images
 
-  @animations.setter
-  def animations(self, animations):
-    self._animations = animations
-
-  @property
-  def current_animation(self):
-    return self._current_animation
-
-  @current_animation.setter
-  def current_animation(self, current_animation):
-    self._current_animation = current_animation
+  @images.setter
+  def images(self, images):
+    self._images = images
 
   @property
-  def image(self):
-    return self._image
+  def current_image(self):
+    return self._current_image
 
-  @image.setter
-  def image(self, image):
-    self._image = image
+  @current_image.setter
+  def current_image(self, current_image):
+    self._current_image = current_image
 
 ### METHODS ###
 
-  def load_animations(self, root_dir):
-    directions = ["Up", "Down", "Left", "Right"]
-    animations = {}
+  def load_images(self, root_dir):
 
-    for folder in os.listdir(root_dir):
-      dir_path = os.path.join(root_dir, folder)
-      files = sorted([
-        os.path.join(dir_path, f)
-        for f in os.listdir(dir_path)
-      ])
-      animations[folder] = files
+    files = sorted([
+      os.path.join(root_dir, f)
+      for f in os.listdir(root_dir)
+    ])
 
-    return animations
+    return files
 
   def getNextImage(self, entity, immunity_count = 0): 
     if entity.current_animation != self.current_animation:
@@ -136,3 +123,9 @@ class Animations:
       self.image = damage_image
       
     return self.image
+  
+  def update(self):
+    # set current image
+    self.current_image_path = self._images[0]
+    self.current_image = pygame.image.load(self.current_image_path)
+    self.current_image = pygame.transform.scale(self.current_image, (self.width, self.height))
