@@ -3,10 +3,15 @@ from classes.entities.Tile import Tile
 from classes.entities.Screen import Screen
 from classes.entities.WorldMap import WorldMap
 from classes.entities.WanderingEnemy import WanderingEnemy
+from classes.effects.Animation import Animation
 
 hitbox_active = True
 hitbox_visible = False
 LOGICAL_W, LOGICAL_H = 1280, 720
+
+enemy_animations = {
+    "Idle": Animation("./assets/Sprites/Enemies/ChuChu/Idle", 10, 250, 250)
+}
 
 #base + overlay mapping
 tile_mapping = {"S": {"base": "assets/Tiles/sand.png", "overlay": None, "hitbox": None},
@@ -34,9 +39,9 @@ def buildMap():
         "MSSSSSSSSSSSSSSS",
       ],
       "creatures": [
-        WanderingEnemy( 
-          spritePath = './assets/Sprites/Enemies/ChuChu', 
-          animationSpeed = 25, 
+        WanderingEnemy(  
+          animationSpeed = 25,
+          animations = enemy_animations,
           width = 100, 
           height = 100,
           health = 30,
@@ -46,8 +51,8 @@ def buildMap():
           hitbox_visible = hitbox_visible 
         ),
         WanderingEnemy( 
-          spritePath = './assets/Sprites/Enemies/ChuChu', 
-          animationSpeed = 25, 
+          animationSpeed = 25,
+          animations = enemy_animations,
           width = 100, 
           height = 100,
           health = 30, 
@@ -72,8 +77,8 @@ def buildMap():
       ],
       "creatures": [
         WanderingEnemy( 
-          spritePath = './assets/Sprites/Enemies/ChuChu', 
-          animationSpeed = 25, 
+          animationSpeed = 25,
+          animations = enemy_animations,
           width = 100, 
           height = 100,
           health = 30, 
@@ -83,8 +88,8 @@ def buildMap():
           hitbox_visible = hitbox_visible 
         ),
         WanderingEnemy( 
-          spritePath = './assets/Sprites/Enemies/ChuChu', 
-          animationSpeed = 25, 
+          animationSpeed = 25,
+          animations = enemy_animations,
           width = 100, 
           height = 100,
           health = 30,
@@ -109,8 +114,8 @@ def buildMap():
       ],
       "creatures": [
         WanderingEnemy( 
-          spritePath = './assets/Sprites/Enemies/ChuChu', 
-          animationSpeed = 25, 
+          animationSpeed = 25,
+          animations = enemy_animations,
           width = 100, 
           height = 100,
           health = 30,
@@ -119,9 +124,9 @@ def buildMap():
           hitbox_offset_dimentions = {"x": 10, "y": 15, "width": 85, "height": 80}, 
           hitbox_visible = hitbox_visible 
         ),
-        WanderingEnemy( 
-          spritePath = './assets/Sprites/Enemies/ChuChu', 
-          animationSpeed = 25, 
+        WanderingEnemy(  
+          animationSpeed = 25,
+          animations = enemy_animations,
           width = 100, 
           height = 100,
           health = 30,
@@ -146,8 +151,8 @@ def buildMap():
       ],
       "creatures": [
         WanderingEnemy( 
-          spritePath = './assets/Sprites/Enemies/ChuChu', 
-          animationSpeed = 25, 
+          animationSpeed = 25,
+          animations = enemy_animations,
           width = 100, 
           height = 100,
           health = 30,
@@ -157,8 +162,8 @@ def buildMap():
           hitbox_visible = hitbox_visible 
         ),
         WanderingEnemy( 
-          spritePath = './assets/Sprites/Enemies/ChuChu', 
-          animationSpeed = 25, 
+          animationSpeed = 25,
+          animations = enemy_animations,
           width = 100, 
           height = 100,
           health = 30,

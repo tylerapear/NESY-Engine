@@ -6,8 +6,8 @@ class Enemy(Creature):
 
 ### METHODS ###
 
-  def update(self, dt, world_map, weapon):
-    super().update(dt, world_map)
+  def update(self, dt, FRAMERATE, world_map, weapon):
+    super().update(dt, FRAMERATE, world_map)
     if not self.alive:
       return #their update logic wont run if the enemies die
     if weapon.active and self.immunity_count <= 0:
@@ -15,7 +15,6 @@ class Enemy(Creature):
     
   def draw(self, surface):
     super().draw(surface)
-    surface.blit(self.image, (self.x, self.y))
 
   def checkForDamage(self, weapon):
     if self.immunity_count > 0:

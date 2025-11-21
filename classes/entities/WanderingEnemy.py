@@ -5,8 +5,8 @@ from classes.entities.Enemy import Enemy
 class WanderingEnemy(Enemy):
   def __init__(
     self,
-    spritePath,
     animationSpeed,
+    animations,
     width=100,
     height=100,
     x=0,
@@ -22,8 +22,8 @@ class WanderingEnemy(Enemy):
     display_health=True
   ):
     super().__init__(
-      spritePath=spritePath,
       animationSpeed=animationSpeed,
+      animations = animations,
       width=width,
       height=height,
       x=x,
@@ -40,6 +40,7 @@ class WanderingEnemy(Enemy):
     self._idle_chance = idle_chance
     self._wander_time_left = random.uniform(self._change_dir_min, self._change_dir_max)
     self._wander_direction = random.choice(["Up", "Down", "Left", "Right"])
+    self._current_animation = self.animations["Idle"]
 
   def _dir_multiplier(self, direction: str) -> float:
     if direction == "Up":
@@ -63,9 +64,9 @@ class WanderingEnemy(Enemy):
       self._wander_direction = random.choice(allowed)
     self._wander_time_left = random.uniform(self._change_dir_min, self._change_dir_max)
 
-  def update(self, dt, world_map, weapon):
+  def update(self, dt, FRAMERATE, world_map, weapon):
     # Collisions, immunity, animation
-    Creature.update(self, dt, world_map)
+    Creature.update(self, dt, FRAMERATE, world_map)
     if not self.alive:
       return
 

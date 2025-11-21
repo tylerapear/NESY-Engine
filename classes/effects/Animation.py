@@ -1,5 +1,12 @@
-import pygame
-import os
+import pygame, os
+from enum import Enum
+
+class DamangePhase(Enum):
+  NONE = 1
+  FIRST = 2
+  SECOND = 3
+  THIRD = 4
+  FOURTH = 5
 
 class Animation:
   def __init__(self, spritePath, speed, width, height):
@@ -55,6 +62,14 @@ class Animation:
   @phase.setter
   def phase(self, phase):
     self._phase = phase
+    
+  @property
+  def frame_count(self):
+    return self._frame_count
+
+  @frame_count.setter
+  def frame_count(self, frame_count):
+    self._frame_count = frame_count
 
   @property
   def images(self):
@@ -83,6 +98,7 @@ class Animation:
 
     return files
 
+  '''
   def getNextImage(self, entity, immunity_count = 0): 
     if entity.current_animation != self.current_animation:
       self.phase = 0
@@ -123,9 +139,48 @@ class Animation:
       self.image = damage_image
       
     return self.image
+  '''
   
-  def update(self):
-    # set current image
-    self.current_image_path = self._images[0]
-    self.current_image = pygame.image.load(self.current_image_path)
-    self.current_image = pygame.transform.scale(self.current_image, (self.width, self.height))
+  def update(self, FRAMERATE, immunity_count = 0):
+    
+    ### CALCULATE THRESHOLD
+    threshold = FRAMERATE - self.speed
+    if threshold <= 0:
+      threshold = 5
+    
+    self._frame_count += 1
+    if self._frame_count >= threshold:
+      self._frame_count = 0
+      self.phase += 1
+      if self.phase >= len(self.images):
+        self.phase = 0
+    
+    # Set image based on animation phase and damage phase
+    self.current_image_path = self._images[self.phase]
+    current_image = pygame.image.load(self.current_image_path)
+    current_image = pygame.transform.scale(current_image, (self.width, self.height))
+    self.current_image = self.get_image(current_image, immunity_count)
+    
+  def get_damage_phase(self, immunity_count) -> DamangePhase:
+    if immunity_count > 28:
+      return DamangePhase.FIRST
+    if immunity_count > 24:
+      return DamangePhase.SECOND
+    if immunity_count > 17:
+      return DamangePhase.THIRD
+    if immunity_count > 15:
+      return DamangePhase.FOURTH
+    return DamangePhase.NONE
+  
+    
+  def get_image(self, current_image, immunity_count):
+    match self.get_damage_phase(immunity_count):
+      case DamangePhase.FIRST:
+        current_image.fill((255, 255, 255, 0), special_flags=pygame.BLEND_RGBA_ADD)
+      case DamangePhase.SECOND:
+        current_image.fill((180,20,20,0), special_flags=pygame.BLEND_RGBA_ADD)
+      case DamangePhase.THIRD:
+        current_image.fill((255, 255, 255, 0), special_flags=pygame.BLEND_RGBA_ADD)
+      case DamangePhase.FOURTH:
+        current_image.fill((180,20,20,0), special_flags=pygame.BLEND_RGBA_ADD)
+    return current_image
