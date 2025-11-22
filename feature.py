@@ -3,8 +3,9 @@ from classes.entities.Player import Player
 from classes.entities.items.Sword import Sword
 from classes.effects.Animation import Animation
 from classes.entities.LogicalSurface import LogicalSurface
-from classes.entities.WanderingEnemy import WanderingEnemy
+from classes.entities.Enemy import Enemy
 from data.worldMap2x2 import buildMap
+from data.main_animations import player_animations, enemy_animations
 
 pygame.init()
 
@@ -18,28 +19,6 @@ clock = pygame.time.Clock()
 
 logical_surface = LogicalSurface(LOGICAL_W, LOGICAL_H, BACKGROUND_COLOR)
 
-player_animations = {
-    "IdleUp": Animation("./assets/Sprites/Link/IdleUp", 10, 250, 250),
-    "IdleDown": Animation("./assets/Sprites/Link/IdleDown", 10, 250, 250),
-    "IdleLeft": Animation("./assets/Sprites/Link/IdleLeft", 10, 250, 250),
-    "IdleRight": Animation("./assets/Sprites/Link/IdleRight", 10, 250, 250),
-    "Up": Animation("./assets/Sprites/Link/Up", 50, 250, 250),
-    "Down": Animation("./assets/Sprites/Link/Down", 50, 250, 250),
-    "Left": Animation("./assets/Sprites/Link/Left", 50, 250, 250),
-    "Right": Animation("./assets/Sprites/Link/Right", 50, 250, 250),
-    "AttackUp": Animation("./assets/Sprites/Link/AttackUp", 10, 250, 250),
-    "AttackDown": Animation("./assets/Sprites/Link/AttackDown", 10, 250, 250),
-    "AttackLeft": Animation("./assets/Sprites/Link/AttackLeft", 10, 250, 250),
-    "AttackRight": Animation("./assets/Sprites/Link/AttackRight", 10, 250, 250),
-    "Death": Animation("./assets/Sprites/Link/Death", 50, 250, 250)
-    
-}
-
-enemy_animations = {
-    "Idle": Animation("./assets/Sprites/Enemies/ChuChu/Idle", 10, 250, 250),
-    
-}
-
 player = Player(  
     animationSpeed = 10,
     animations = player_animations,
@@ -52,7 +31,7 @@ player = Player(
     hitbox_visible = False
 )
 
-enemy = WanderingEnemy( 
+enemy = Enemy( 
           animationSpeed = 25,
           animations = enemy_animations,
           width = 100, 

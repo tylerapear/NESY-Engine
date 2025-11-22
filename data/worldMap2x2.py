@@ -1,17 +1,14 @@
-#refactoring the old code in just a few lines
+import copy
 from classes.entities.Tile import Tile
 from classes.entities.Screen import Screen
 from classes.entities.WorldMap import WorldMap
 from classes.entities.WanderingEnemy import WanderingEnemy
 from classes.effects.Animation import Animation
+from data.main_animations import enemy_animations
 
 hitbox_active = True
 hitbox_visible = False
 LOGICAL_W, LOGICAL_H = 1280, 720
-
-enemy_animations = {
-    "Idle": Animation("./assets/Sprites/Enemies/ChuChu/Idle", 10, 250, 250)
-}
 
 #base + overlay mapping
 tile_mapping = {"S": {"base": "assets/Tiles/sand.png", "overlay": None, "hitbox": None},
@@ -20,6 +17,13 @@ tile_mapping = {"S": {"base": "assets/Tiles/sand.png", "overlay": None, "hitbox"
                 "P": {"base": "assets/Tiles/sand.png", "overlay": "assets/Tiles/mountainPeak.png",
                       "hitbox": {"x": 0, "y": 0, "width": 50, "height": 50}}
                 }
+
+enemies = [
+  
+  
+  
+  
+]
 
 # formerly called "layouts"
 
@@ -41,7 +45,7 @@ def buildMap():
       "creatures": [
         WanderingEnemy(  
           animationSpeed = 25,
-          animations = enemy_animations,
+          animations = enemy_animations[0],
           width = 100, 
           height = 100,
           health = 30,
@@ -52,7 +56,7 @@ def buildMap():
         ),
         WanderingEnemy( 
           animationSpeed = 25,
-          animations = enemy_animations,
+          animations = enemy_animations[1],
           width = 100, 
           height = 100,
           health = 30, 
@@ -78,7 +82,7 @@ def buildMap():
       "creatures": [
         WanderingEnemy( 
           animationSpeed = 25,
-          animations = enemy_animations,
+          animations = enemy_animations[2],
           width = 100, 
           height = 100,
           health = 30, 
@@ -89,7 +93,7 @@ def buildMap():
         ),
         WanderingEnemy( 
           animationSpeed = 25,
-          animations = enemy_animations,
+          animations = enemy_animations[3],
           width = 100, 
           height = 100,
           health = 30,
@@ -115,7 +119,7 @@ def buildMap():
       "creatures": [
         WanderingEnemy( 
           animationSpeed = 25,
-          animations = enemy_animations,
+          animations = enemy_animations[4],
           width = 100, 
           height = 100,
           health = 30,
@@ -126,7 +130,7 @@ def buildMap():
         ),
         WanderingEnemy(  
           animationSpeed = 25,
-          animations = enemy_animations,
+          animations = enemy_animations[5],
           width = 100, 
           height = 100,
           health = 30,
@@ -152,7 +156,7 @@ def buildMap():
       "creatures": [
         WanderingEnemy( 
           animationSpeed = 25,
-          animations = enemy_animations,
+          animations = enemy_animations[6],
           width = 100, 
           height = 100,
           health = 30,
@@ -163,7 +167,7 @@ def buildMap():
         ),
         WanderingEnemy( 
           animationSpeed = 25,
-          animations = enemy_animations,
+          animations = enemy_animations[7],
           width = 100, 
           height = 100,
           health = 30,

@@ -88,15 +88,15 @@ class Screen():
   
 ### METHODS ###
     
-  def update(self, dt, world_map, weapon):
+  def update(self, dt, FRAMERATE, world_map, weapon):
     # Forward updates to creatures. Enemies take (dt, world_map, weapon).
     # Some creatures (e.g., NPCs or simple tiles-as-creatures) might only take (dt, world_map).
     for creature in self.creatures:
       if creature.alive:
         try:
-          creature.update(dt, world_map, weapon)
+          creature.update(dt, FRAMERATE, world_map, weapon)
         except TypeError:
-          creature.update(dt, world_map)
+          creature.update(dt, FRAMERATE, world_map)
     
   def draw(self, surface, *args, **kwargs):
     draw_position = [0,0]

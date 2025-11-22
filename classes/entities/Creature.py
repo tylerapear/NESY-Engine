@@ -29,9 +29,7 @@ class Creature:
     self._immunity_count = 0
 
     self._animations = animations
-    self._current_animation = Animation("./assets/Sprites/Default", 10, 250, 250)
-    #self._current_animation = "IdleDown"
-    #self._current_image = self._current_animation["path"]
+    self._current_animation = animations[next(iter(animations))]
 
     self._hitbox_offset_dimentions = hitbox_offset_dimentions
     self._hitbox = Hitbox(
@@ -359,6 +357,7 @@ class Creature:
     print("progressing death")
     if not self.dying:
       self.dying = True
+      self.immunity_count = 0
       self.movement_locked = True
       if "Death" in self.animations:
           self.current_animation = self.animations["Death"]
