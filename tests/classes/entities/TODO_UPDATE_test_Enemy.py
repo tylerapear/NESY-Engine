@@ -65,7 +65,6 @@ class TestEnemy(unittest.TestCase):
         self.assertEqual(self.enemy.health, 90)
         self.assertEqual(self.enemy.damage_direction, "Down")
 
-
     def test_update_enemy_dead(self):
         """Enemy should not take damage if not alive."""
         self.enemy.alive = False
@@ -73,13 +72,11 @@ class TestEnemy(unittest.TestCase):
         self.enemy.update(1, None, weapon)
         self.assertEqual(self.enemy.health, 100)
 
-
     def test_update_weapon_inactive(self):
         """Enemy should not take damage if weapon is inactive."""
         weapon = DummyWeapon(active=False)
         self.enemy.update(1, None, weapon)
         self.assertEqual(self.enemy.health, 100)
-
 
     def test_update_immunity_count(self):
         """Enemy should not take damage if immunity_count > 0."""
@@ -87,7 +84,6 @@ class TestEnemy(unittest.TestCase):
         weapon = DummyWeapon(active=True)
         self.enemy.update(1, None, weapon)
         self.assertEqual(self.enemy.health, 100)
-
 
     def test_checkForDamage_collision(self):
         """Enemy should take correct damage and update direction on collision."""
@@ -103,7 +99,6 @@ class TestEnemy(unittest.TestCase):
         self.enemy.checkForDamage(weapon)
         self.assertEqual(self.enemy.health, 100)
 
-
     def test_draw(self):
         """Enemy.draw should call surface.blit."""
         class DummySurface:
@@ -115,7 +110,6 @@ class TestEnemy(unittest.TestCase):
         self.enemy.image = "dummy_image"
         self.enemy.draw(surface)
         self.assertTrue(surface.blit_called)
-
 
     def test_take_damage_to_zero(self):
         """Enemy should die and health should not go below zero when taking fatal damage."""

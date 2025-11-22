@@ -138,9 +138,10 @@ class TestScreen(unittest.TestCase):
         # Verify both creatures were updated with all three parameters
         self.mock_creature1.update.assert_called_once_with(dt, world_map, weapon)
         self.mock_creature2.update.assert_called_once_with(dt, world_map, weapon)
-
+    
     def test_update_with_simple_creatures(self):
         dt = 0.016
+        FRAMERATE = 60
         world_map = Mock()
         weapon = Mock()
         
@@ -149,7 +150,7 @@ class TestScreen(unittest.TestCase):
         self.mock_creature2.update.side_effect = [TypeError(), None]
         
         # Call update
-        self.screen.update(dt, world_map, weapon)
+        self.screen.update(dt, FRAMERATE, world_map, weapon)
         
         # Verify creatures were called first with 3 params, then with 2 params
         expected_calls_creature1 = [
@@ -180,6 +181,7 @@ class TestScreen(unittest.TestCase):
         self.mock_creature1.update.assert_not_called()
         self.mock_creature2.update.assert_called_once_with(dt, world_map, weapon)
 
+    
     def test_update_with_empty_creatures_list(self):
         screen = Screen(800, 600, 2, 2, self.tiles, [])
         dt = 0.016
@@ -298,7 +300,6 @@ class TestScreen(unittest.TestCase):
             unittest.mock.call(dt, world_map)
         ]
         self.assertEqual(self.mock_creature2.update.call_args_list, expected_calls)
-
 
 if __name__ == "__main__":
     unittest.main()
