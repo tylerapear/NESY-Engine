@@ -97,49 +97,6 @@ class Animation:
     ])
 
     return files
-
-  '''
-  def getNextImage(self, entity, immunity_count = 0): 
-    if entity.current_animation != self.current_animation:
-      self.phase = 0
-      self.frame_count = self.speed - 1
-      self.current_animation = entity.current_animation
-
-    self.frame_count += 1
-
-    if "Death" in self.current_animation:
-        if self.frame_count >= self.speed:
-            self.frame_count = 0
-            self.image = pygame.image.load(self.animations[self.current_animation][self.phase])
-            self.image = pygame.transform.scale(self.image, (self.width, self.height))
-            if self.phase < len(self.animations[self.current_animation]) - 1:
-                self.phase += 1
-    else:
-        if self.frame_count >= self.speed:
-            self.frame_count = 0
-            self.image = pygame.image.load(self.animations[self.current_animation][self.phase])
-            self.image = pygame.transform.scale(self.image, (self.width, self.height))
-            if self.phase >= len(self.animations[self.current_animation]) - 1:
-                self.phase = 0
-            else:
-                self.phase += 1
-
-    #flash red when taking damage
-    if immunity_count > 15:
-      image = self.image
-      damage_image = image.copy()
-      damage_image.fill((0, 0, 0, 255), special_flags=pygame.BLEND_RGBA_MULT)
-      if( 
-        (immunity_count > 24 and immunity_count < 29) or 
-        (immunity_count > 15 and immunity_count < 18)
-      ):
-        damage_image.fill((180,20,20,0), special_flags=pygame.BLEND_RGBA_ADD)
-      else:
-        damage_image.fill((255, 255, 255, 0), special_flags=pygame.BLEND_RGBA_ADD)
-      self.image = damage_image
-      
-    return self.image
-  '''
   
   def update(self, FRAMERATE, immunity_count = 0):
     
