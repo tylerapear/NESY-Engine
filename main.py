@@ -9,14 +9,15 @@ from classes.entities.items.Sword import Sword
 from classes.entities.LogicalSurface import LogicalSurface
 from classes.entities.WorldMap import WorldMap
 
-
+from data.main_animations import player_animations
 from data.worldMap2x2 import buildMap
 # from data.TestMap3x3 import screens
 
 async def main(): 
     
   # SET WINDOW PROPERTIES #
-  LOGICAL_W, LOGICAL_H = 1280, 720 
+  LOGICAL_W, LOGICAL_H = 1280, 720
+  FRAMERATE = 60
   BACKGROUND_COLOR = (24,26,32) 
   pygame.display.set_mode((LOGICAL_W, LOGICAL_H), pygame.RESIZABLE) 
   icon = pygame.transform.scale(pygame.image.load('./assets/Icons/GameIcon.png'), (132,132)) 
@@ -33,9 +34,10 @@ async def main():
   logical_surface = LogicalSurface(LOGICAL_W, LOGICAL_H, BACKGROUND_COLOR)
 
   def init_game():
-    player = Player( 
-      spritePath = './assets/Sprites/Link', 
-      animationSpeed = 10, 
+    
+    player = Player(  
+      animationSpeed = 10,
+      animations = player_animations,
       width = 250, 
       height = 250, 
       health = 60,
@@ -90,7 +92,7 @@ async def main():
   player, hud = init_game()
   first_frame = True
   while running: 
-    dt = clock.tick(60) / 1000 
+    dt = clock.tick(FRAMERATE) / 1000 
     
     # CHECK FOR WINDOW EVENTS #
     events = pygame.event.get()
@@ -116,9 +118,9 @@ async def main():
           
     if player.alive:
       # UPDATE ENTITIES #
-      player.update(dt, world_map, logical_surface.surface, active_enemies, player.inventory[0])
+      player.update(dt, FRAMERATE, world_map, logical_surface.surface, active_enemies, player.inventory[0])
       
-      world_map.current_screen.update(dt, world_map, player.inventory[0])
+      world_map.current_screen.update(dt, FRAMERATE, world_map, player.inventory[0])
 
       # FILL THE SCREEN BACKGROUND COLOR #
       logical_surface.surface.fill((10,10,10)) 

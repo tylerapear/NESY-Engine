@@ -5,8 +5,8 @@ class Player(Creature):
 
   def __init__(
     self, 
-    spritePath, 
-    animationSpeed, 
+    animationSpeed,
+    animations,
     width = 50, 
     height = 50, 
     x = 0, 
@@ -19,8 +19,8 @@ class Player(Creature):
     inventory = []
   ):
     super().__init__(
-      spritePath, 
-      animationSpeed, 
+      animationSpeed,
+      animations,
       width, 
       height, 
       x, 
@@ -64,8 +64,8 @@ class Player(Creature):
 
 ### METHODS ###
 
-  def update(self, dt, screen, surface, enemies, weapon):
-    super().update(dt, screen)
+  def update(self, dt, FRAMERATE, screen, surface, enemies, weapon):
+    super().update(dt, FRAMERATE, screen)
 
     ### UPDATE INVENTORY ITEMS ###
     for item in self.inventory:
@@ -86,7 +86,7 @@ class Player(Creature):
       self.attack_cooldown -= 1
       if self.attack_cooldown < 5:
         self.attacking = False
-        self.current_animation = self.direction
+        #self.current_animation = self.direction
 
     ### HANDLE MOVEMENT ###
     keys = pygame.key.get_pressed()
@@ -106,17 +106,20 @@ class Player(Creature):
         self.moveDirection(dt, "Right", 200 * self.right_speed)
 
     ### Update Animation ###
-    self.current_animation = "Idle" + self.direction
+    new_animation = self.current_animation
+    new_animation = self.animations["Idle" + self.direction]
     if self.moving:
-      self.current_animation = self.direction
+      new_animation = self.animations[self.direction]
     if self.attacking:
-      self.current_animation = "Attack" + self.direction
+      new_animation = self.animations["Attack" + self.direction]
     if self._dying:
-      self.current_animation = "Death"
+      new_animation = self.animations["Death"]
+    if new_animation != self.current_animation:
+      self.current_animation = new_animation
 
   def draw(self, surface):
     super().draw(surface)
-    surface.blit(self.image, (self.x, self.y))
+    surface.blit(self.current_animation.current_image, (self.x, self.y))
     for item in self.inventory:
       item.drawHitbox(surface)
 
@@ -124,7 +127,7 @@ class Player(Creature):
     if self.attack_cooldown <= 0:
       self.attack_cooldown = 15
       self.attacking = True
-      self.current_animation = "Attack" + direction
+      #self.current_animation = "Attack" + direction
       weapon.active = True
 
   def checkForDamage(self, enemies):
@@ -134,7 +137,6 @@ class Player(Creature):
           continue
         self.damage_direction = self.hitbox.getCollisionDirection(enemy.hitbox)
         self.takeDamage(10)
-        self.immunity_count = 30
 
   def getKnockedBack(self, dt, direction, speed):
     super().getKnockedBack(dt, direction, speed)

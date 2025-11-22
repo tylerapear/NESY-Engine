@@ -1,13 +1,14 @@
 import pygame
 
-from classes.effects.Animations import Animations
+#from classes.effects.Animations import Animations
+from classes.effects.Animation import Animation
 from classes.entities.Hitbox import Hitbox
 
 class Creature:
   def __init__(
     self, 
-    spritePath, 
-    animationSpeed, 
+    animationSpeed,
+    animations,
     width = 50, 
     height = 50, 
     x = 0, 
@@ -24,13 +25,11 @@ class Creature:
     self._height = height
     self._direction = "Down"
     self._moving = False
-    self._animationPhase = 0
     self._frame_count = 0
     self._immunity_count = 0
 
-    self._animations = Animations(spritePath, animationSpeed, width, height)
-    self._current_animation = "IdleDown"
-    self._image = self.animations.getNextImage(self, 0)
+    self._animations = animations
+    self._current_animation = animations[next(iter(animations))]
 
     self._hitbox_offset_dimentions = hitbox_offset_dimentions
     self._hitbox = Hitbox(
@@ -105,14 +104,6 @@ class Creature:
   @moving.setter
   def moving(self, moving):
     self._moving = moving
-
-  @property
-  def animationPhase(self):
-    return self._animationPhase
-
-  @animationPhase.setter
-  def animationPhase(self, animationPhase):
-    self._animationPhase = animationPhase
   
   @property
   def frame_count(self):
@@ -145,14 +136,7 @@ class Creature:
   @current_animation.setter
   def current_animation(self, current_animation):
     self._current_animation = current_animation
-
-  @property
-  def image(self):
-    return self._image
-
-  @image.setter
-  def image(self, image):
-    self._image = image
+    self._current_animation.phase = 0
 
   @property
   def hitbox_offset_dimentions(self):
@@ -252,13 +236,13 @@ class Creature:
 
 ### METHODS ###
 
-  def update(self, dt, world_map):
+  def update(self, dt, FRAMERATE, world_map):
 
     if self.health <= 0:
-      if not self.dying:
-        self.progress_death()
-      elif self.dying:
-        self.current_animation = "Death"
+      self.progress_death()
+      #elif self.dying:
+        #if "Death" in self.animations:
+          #self.current_animation = self.animations["Death"]
 
     else:  
       self.up_speed = 1
@@ -287,7 +271,7 @@ class Creature:
         if self.immunity_count > 23:
           self.getKnockedBack(dt, self.damage_direction, 1000)
       
-    self.image = self.animations.getNextImage(self, self.immunity_count)
+    self.current_animation.update(FRAMERATE, self.immunity_count)
     if self.dying and self.current_animation == "Death":
       last_frame_index = len(self.animations.animations["Death"]) - 1
       if self.animations.phase == last_frame_index:
@@ -295,7 +279,7 @@ class Creature:
         self.alive = False
 
   def draw(self, surface):
-    surface.blit(self.image, (self.x, self.y))
+    surface.blit(self.current_animation.current_image, (self.x, self.y))
     if self.display_health:
       pygame.init()
       font = pygame.font.Font(None, 24)
@@ -370,18 +354,15 @@ class Creature:
       self.right_speed = 0
 
   def progress_death(self):
+    print("progressing death")
     if not self.dying:
       self.dying = True
+      self.immunity_count = 0
       self.movement_locked = True
-      self.animationPhase = 0
-      print("phase:", self.animations.phase, "dying:", self.dying, "alive:", self.alive)
-      if "Death" in self.animations.animations:
-        self.current_animation = "Death"
-      else:
-        self.animationPhase = 0
-    elif self.animations.phase < len(self.animations.animations.get(self.current_animation, [])) - 1:
-        pass
-    
+      if "Death" in self.animations:
+          self.current_animation = self.animations["Death"]
+    elif self.current_animation.phase < len(self.current_animation.images) - 1:
+        return
     else:
       self.alive = False
       
