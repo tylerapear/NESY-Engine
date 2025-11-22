@@ -5,7 +5,7 @@ These tests cover all logic branches and edge cases for open source contribution
 import unittest
 import pygame
 from unittest.mock import Mock, MagicMock, patch
-from classes.entities.WorldMap import WorldMap
+from src.classes.entities.WorldMap import WorldMap
 
 class TestWorldMap(unittest.TestCase):
     """Unit tests for the WorldMap class"""

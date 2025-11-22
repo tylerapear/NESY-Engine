@@ -1,17 +1,17 @@
 #refactoring the old code in just a few lines
-from classes.entities.Tile import Tile
-from classes.entities.Screen import Screen
-from classes.entities.Enemy import Enemy
+from src.classes.entities.Tile import Tile
+from src.classes.entities.Screen import Screen
+from src.classes.entities.Enemy import Enemy
 
 hitbox_active = True
 hitbox_visible = False
 LOGICAL_W, LOGICAL_H = 1280, 720
 
 #base + overlay mapping
-tile_mapping = {"S": {"base": "assets/Tiles/sand.png", "overlay": None, "hitbox": None},
-                "M": {"base": "assets/Tiles/sand.png", "overlay": "assets/Tiles/mountain.png",
+tile_mapping = {"S": {"base": "src/assets/Tiles/sand.png", "overlay": None, "hitbox": None},
+                "M": {"base": "src/assets/Tiles/sand.png", "overlay": "src/assets/Tiles/mountain.png",
                       "hitbox": {"x": 0, "y": 0, "width": 50, "height": 50}},
-                "P": {"base": "assets/Tiles/sand.png", "overlay": "assets/Tiles/mountainPeak.png",
+                "P": {"base": "assets/Tiles/sand.png", "overlay": "src/assets/Tiles/mountainPeak.png",
                       "hitbox": {"x": 0, "y": 0, "width": 50, "height": 50}}
                 }
 
@@ -31,7 +31,7 @@ screen_details = {
     ],
     "creatures": [
       Enemy( 
-        spritePath = './assets/Sprites/Enemies/ChuChu', 
+        spritePath = './src/assets/Sprites/Enemies/ChuChu', 
         animationSpeed = 25, 
         width = 100, 
         height = 100, 
@@ -41,7 +41,7 @@ screen_details = {
         hitbox_visible = hitbox_visible 
       ),
       Enemy( 
-        spritePath = './assets/Sprites/Enemies/ChuChu', 
+        spritePath = './src/assets/Sprites/Enemies/ChuChu', 
         animationSpeed = 25, 
         width = 100, 
         height = 100, 
@@ -66,7 +66,7 @@ screen_details = {
     ],
     "creatures": [
       Enemy( 
-        spritePath = './assets/Sprites/Enemies/ChuChu', 
+        spritePath = './src/assets/Sprites/Enemies/ChuChu', 
         animationSpeed = 25, 
         width = 100, 
         height = 100, 
@@ -91,7 +91,7 @@ screen_details = {
     ],
     "creatures": [
       Enemy( 
-        spritePath = './assets/Sprites/Enemies/ChuChu', 
+        spritePath = './src/assets/Sprites/Enemies/ChuChu', 
         animationSpeed = 25, 
         width = 100, 
         height = 100, 
@@ -116,7 +116,7 @@ screen_details = {
     ],
     "creatures": [
       Enemy( 
-        spritePath = './assets/Sprites/Enemies/ChuChu', 
+        spritePath = './src/assets/Sprites/Enemies/ChuChu', 
         animationSpeed = 25, 
         width = 100, 
         height = 100, 
@@ -141,7 +141,7 @@ screen_details = {
     ],
     "creatures": [
       Enemy( 
-        spritePath = './assets/Sprites/Enemies/ChuChu', 
+        spritePath = './src/assets/Sprites/Enemies/ChuChu', 
         animationSpeed = 25, 
         width = 100, 
         height = 100, 
@@ -166,7 +166,7 @@ screen_details = {
     ],
     "creatures": [
       Enemy( 
-        spritePath = './assets/Sprites/Enemies/ChuChu', 
+        spritePath = './src/assets/Sprites/Enemies/ChuChu', 
         animationSpeed = 25, 
         width = 100, 
         height = 100, 
@@ -191,7 +191,7 @@ screen_details = {
     ],
     "creatures": [
       Enemy( 
-        spritePath = './assets/Sprites/Enemies/ChuChu', 
+        spritePath = './src/assets/Sprites/Enemies/ChuChu', 
         animationSpeed = 25, 
         width = 100, 
         height = 100, 
@@ -216,7 +216,7 @@ screen_details = {
     ],
     "creatures": [
       Enemy( 
-        spritePath = './assets/Sprites/Enemies/ChuChu', 
+        spritePath = './src/assets/Sprites/Enemies/ChuChu', 
         animationSpeed = 25, 
         width = 100, 
         height = 100, 
@@ -241,7 +241,7 @@ screen_details = {
     ],
     "creatures": [
       Enemy( 
-        spritePath = './assets/Sprites/Enemies/ChuChu', 
+        spritePath = './src/assets/Sprites/Enemies/ChuChu', 
         animationSpeed = 25, 
         width = 100, 
         height = 100, 

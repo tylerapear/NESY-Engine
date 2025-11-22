@@ -6,7 +6,7 @@ These tests cover all logic branches and edge cases for open source contribution
 import unittest
 import pygame
 from unittest.mock import Mock, MagicMock, patch
-from classes.entities.Screen import Screen
+from src.classes.entities.Screen import Screen
 
 class TestScreen(unittest.TestCase):
 

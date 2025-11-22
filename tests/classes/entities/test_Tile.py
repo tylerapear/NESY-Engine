@@ -5,7 +5,7 @@ These tests mock pygame and the Hitbox class so they run without external assets
 """
 import unittest
 from unittest.mock import MagicMock, patch
-from classes.entities.Tile import Tile
+from src.classes.entities.Tile import Tile
 
 
 def get_hitbox_mock(x=0.0, y=0.0, width=10.0, height=10.0):

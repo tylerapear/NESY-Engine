@@ -1,6 +1,6 @@
 import pygame
 import random
-from classes.entities.Enemy import Enemy
+from src.classes.entities.Enemy import Enemy
 
 class JumpingEnemy(Enemy):
     def __init__(self, spritePath, animationSpeed, width=50, height=50, x=0, y=0,

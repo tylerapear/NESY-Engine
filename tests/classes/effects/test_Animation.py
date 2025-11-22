@@ -1,7 +1,7 @@
 import unittest
 import pygame
 
-from classes.effects.Animation import Animation, DamangePhase
+from src.classes.effects.Animation import Animation, DamangePhase
 
 class TestAnimation(unittest.TestCase):
     

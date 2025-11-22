@@ -1,4 +1,4 @@
-from classes.entities.Creature import Creature
+from src.classes.entities.Creature import Creature
 
 class Enemy(Creature):
 

@@ -1,7 +1,7 @@
 import pygame
 
-from classes.entities.items.Item import Item
-from classes.entities.Hitbox import Hitbox
+from src.classes.entities.items.Item import Item
+from src.classes.entities.Hitbox import Hitbox
 
 
 class Sword(Item):

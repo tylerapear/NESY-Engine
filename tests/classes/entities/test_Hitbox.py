@@ -6,8 +6,8 @@ These tests cover all logic branches and edge cases for open source contribution
 import unittest
 import pygame
 from unittest.mock import Mock, MagicMock, patch
-from classes.entities.Hitbox import Hitbox
-from classes.entities.Creature import Creature
+from src.classes.entities.Hitbox import Hitbox
+from src.classes.entities.Creature import Creature
 
 
 

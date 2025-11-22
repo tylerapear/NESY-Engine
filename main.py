@@ -1,16 +1,16 @@
 import pygame, sys, asyncio, math, copy
-from classes.UI.HUD import HUD
+from src.classes.UI.HUD import HUD
 
 pygame.init() 
 
-from classes.effects.TextSurface import TextSurface
-from classes.entities.Player import Player 
-from classes.entities.items.Sword import Sword
-from classes.entities.LogicalSurface import LogicalSurface
-from classes.entities.WorldMap import WorldMap
+from src.classes.effects.TextSurface import TextSurface
+from src.classes.entities.Player import Player 
+from src.classes.entities.items.Sword import Sword
+from src.classes.entities.LogicalSurface import LogicalSurface
+from src.classes.entities.WorldMap import WorldMap
 
-from data.main_animations import player_animations
-from data.worldMap2x2 import buildMap
+from src.data.main_animations import player_animations
+from src.data.worldMap2x2 import buildMap
 # from data.TestMap3x3 import screens
 
 async def main(): 
@@ -20,7 +20,7 @@ async def main():
   FRAMERATE = 60
   BACKGROUND_COLOR = (24,26,32) 
   pygame.display.set_mode((LOGICAL_W, LOGICAL_H), pygame.RESIZABLE) 
-  icon = pygame.transform.scale(pygame.image.load('./assets/Icons/GameIcon.png'), (132,132)) 
+  icon = pygame.transform.scale(pygame.image.load('./src/assets/Icons/GameIcon.png'), (132,132)) 
   pygame.display.set_icon(icon)  
   pygame.display.set_caption("The Legend of Xelda") 
   

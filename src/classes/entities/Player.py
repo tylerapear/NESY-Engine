@@ -1,5 +1,5 @@
 import pygame
-from classes.entities.Creature import Creature
+from src.classes.entities.Creature import Creature
 
 class Player(Creature):
 

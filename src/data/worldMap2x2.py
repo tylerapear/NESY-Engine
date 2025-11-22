@@ -1,20 +1,20 @@
 import copy
-from classes.entities.Tile import Tile
-from classes.entities.Screen import Screen
-from classes.entities.WorldMap import WorldMap
-from classes.entities.WanderingEnemy import WanderingEnemy
-from classes.effects.Animation import Animation
-from data.main_animations import enemy_animations
+from src.classes.entities.Tile import Tile
+from src.classes.entities.Screen import Screen
+from src.classes.entities.WorldMap import WorldMap
+from src.classes.entities.WanderingEnemy import WanderingEnemy
+from src.classes.effects.Animation import Animation
+from src.data.main_animations import enemy_animations
 
 hitbox_active = True
 hitbox_visible = False
 LOGICAL_W, LOGICAL_H = 1280, 720
 
 #base + overlay mapping
-tile_mapping = {"S": {"base": "assets/Tiles/sand.png", "overlay": None, "hitbox": None},
-                "M": {"base": "assets/Tiles/sand.png", "overlay": "assets/Tiles/mountain.png",
+tile_mapping = {"S": {"base": "src/assets/Tiles/sand.png", "overlay": None, "hitbox": None},
+                "M": {"base": "src/assets/Tiles/sand.png", "overlay": "src/assets/Tiles/mountain.png",
                       "hitbox": {"x": 0, "y": 0, "width": 50, "height": 50}},
-                "P": {"base": "assets/Tiles/sand.png", "overlay": "assets/Tiles/mountainPeak.png",
+                "P": {"base": "src/assets/Tiles/sand.png", "overlay": "src/assets/Tiles/mountainPeak.png",
                       "hitbox": {"x": 0, "y": 0, "width": 50, "height": 50}}
                 }
 

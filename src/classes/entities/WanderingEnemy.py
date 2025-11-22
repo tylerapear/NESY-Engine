@@ -1,6 +1,6 @@
 import random
-from classes.entities.Creature import Creature
-from classes.entities.Enemy import Enemy
+from src.classes.entities.Creature import Creature
+from src.classes.entities.Enemy import Enemy
 
 class WanderingEnemy(Enemy):
   def __init__(

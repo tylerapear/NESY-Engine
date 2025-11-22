@@ -1,8 +1,8 @@
 import pygame
 
 #from classes.effects.Animations import Animations
-from classes.effects.Animation import Animation
-from classes.entities.Hitbox import Hitbox
+from src.classes.effects.Animation import Animation
+from src.classes.entities.Hitbox import Hitbox
 
 class Creature:
   def __init__(

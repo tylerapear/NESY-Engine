@@ -1,4 +1,4 @@
-from classes.entities.Hitbox import Hitbox
+from src.classes.entities.Hitbox import Hitbox
 import pygame
 
 class Tile():
