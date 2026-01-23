@@ -264,7 +264,7 @@ class Creature:
       for tile in world_map.current_screen.tiles:
         if tile.hitbox_active and self.hitbox.collides(tile.hitbox):
           collision_direction = self.hitbox.getReverseCollisionDirection(tile.hitbox)
-          self.handleTileCollision(collision_direction)
+          self.handleTileCollision(collision_direction, tile)
       
       if self.immunity_count > 0:
         self.immunity_count -= 1
@@ -343,14 +343,26 @@ class Creature:
     if direction == "Right":
       self.right_speed = 0
       
-  def handleTileCollision(self, direction):
+  def handleTileCollision(self, direction, tile):
+    EPS = 1e-6
     if direction == "Up":
+      self.hitbox.y = tile.hitbox.y + tile.hitbox.height - EPS
+      self.y = self.hitbox.y - self.hitbox_offset_dimentions["y"]
       self.up_speed = 0
-    if direction == "Down":
+
+    elif direction == "Down":
+      self.hitbox.y = tile.hitbox.y - self.hitbox.height + EPS
+      self.y = self.hitbox.y - self.hitbox_offset_dimentions["y"]
       self.down_speed = 0
-    if direction == "Left":
+
+    elif direction == "Left":
+      self.hitbox.x = tile.hitbox.x + tile.hitbox.width - EPS
+      self.x = self.hitbox.x - self.hitbox_offset_dimentions["x"]
       self.left_speed = 0
-    if direction == "Right":
+
+    elif direction == "Right":
+      self.hitbox.x = tile.hitbox.x - self.hitbox.width + EPS
+      self.x = self.hitbox.x - self.hitbox_offset_dimentions["x"]
       self.right_speed = 0
 
   def progress_death(self):
