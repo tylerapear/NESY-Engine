@@ -366,19 +366,20 @@ Prevents the creature from moving through screen borders by setting the appropri
 creature.handleBorderCollision(game_world, "Up")
 ```
 
-### `handleTileCollision(direction)`
+### `handleTileCollision(direction, tile)`
 
-Prevents the creature from moving through solid tiles by setting the appropriate directional speed multiplier to 0.
+Prevents the creature from moving through solid tiles by snapping their position to the nearest empty space in the direction of the collision and setting the appropriate directional speed multiplier to 0.
 
 **Parameters:**
 - `direction`: The direction of tile collision ("Up", "Down", "Left", or "Right")
+- `tile`: The tile object that the creature collides with.
 
 **Returns:**
 - `None`
 
 **Example:**
 ```python
-creature.handleTileCollision("Left")
+creature.handleTileCollision("Left", tile_037)
 ```
 
 ### `progress_death()`
